@@ -242,7 +242,6 @@
             } catch (Exception $ex) {
                 die($ex->getMessage());
             }
-
         }
         
         public function ObtenerModelo($id){
@@ -263,94 +262,145 @@
             } catch (Exception $ex) {
                 die($ex->getMessage());
             }
-
         }
             
         public function RegistrarVehiculo(Vehiculo $v){
-        try{
-            $consulta = Conexion::Conectar()->prepare("INSERT INTO vehiculos(id_modelos, id_clientes, placa, serial_motor, serial_carroceria, serial_caja, color, anio, estatus) "
-                . "VALUES (:id_modelos, :id_clientes, :placa, :serial_motor, :serial_carroceria, :serial_caja, :color, :anio, :estatus)");
+            try{
+                $consulta = Conexion::Conectar()->prepare("INSERT INTO vehiculos(id_modelos, id_clientes, placa, serial_motor, serial_carroceria, serial_caja, color, anio, estatus) "
+                    . "VALUES (:id_modelos, :id_clientes, :placa, :serial_motor, :serial_carroceria, :serial_caja, :color, :anio, :estatus)");
 
-            $id_modelos = $v->getId_modelo();
-            $id_clientes = $v->getId_cliente();
-            $placa = $v->getPlaca();
-            $serial_motor = $v->getSerial_motor();
-            $serial_carroceria = $v->getSerial_carroceria();
-            $serial_caja = $v->getSerial_caja();
-            $color = $v->getColor();
-            $anio = $v->getAnio();
-            $estatus = $v->getEstatus();
+                $id_modelos = $v->getId_modelo();
+                $id_clientes = $v->getId_cliente();
+                $placa = $v->getPlaca();
+                $serial_motor = $v->getSerial_motor();
+                $serial_carroceria = $v->getSerial_carroceria();
+                $serial_caja = $v->getSerial_caja();
+                $color = $v->getColor();
+                $anio = $v->getAnio();
+                $estatus = $v->getEstatus();
 
-            $consulta->bindParam(":id_modelos", $id_modelos);
-            $consulta->bindParam(":id_clientes", $id_clientes);
-            $consulta->bindParam(":placa", $placa);
-            $consulta->bindParam(":serial_motor", $serial_motor);
-            $consulta->bindParam(":serial_carroceria", $serial_carroceria);
-            $consulta->bindParam(":serial_caja", $serial_caja);
-            $consulta->bindParam(":color", $color);
-            $consulta->bindParam(":anio", $anio);
-            $consulta->bindParam(":estatus", $estatus);
+                $consulta->bindParam(":id_modelos", $id_modelos);
+                $consulta->bindParam(":id_clientes", $id_clientes);
+                $consulta->bindParam(":placa", $placa);
+                $consulta->bindParam(":serial_motor", $serial_motor);
+                $consulta->bindParam(":serial_carroceria", $serial_carroceria);
+                $consulta->bindParam(":serial_caja", $serial_caja);
+                $consulta->bindParam(":color", $color);
+                $consulta->bindParam(":anio", $anio);
+                $consulta->bindParam(":estatus", $estatus);
 
-            $consulta->execute();
+                $consulta->execute();
 
-            $alerta= [
-            'alerta' => 'simple',
-            'titulo' => 'Operacion Exitosa...!!!',
-            'texto' => 'Vehiculo registrado satisfactoriamente',
-            'tipo' => 'success'
-            ];
+                $alerta= [
+                'alerta' => 'simple',
+                'titulo' => 'Operacion Exitosa...!!!',
+                'texto' => 'Vehiculo registrado satisfactoriamente',
+                'tipo' => 'success'
+                ];
 
-            return $alerta;
+                return $alerta;
 
-        } catch (Exception $ex) {
+                } catch (Exception $ex) {
 
-//            $alerta= [
-//            'alerta' => 'simple',
-//            'titulo' => 'Error Inesperado...!!!',
-//            'texto' => 'Se produjo un error inesperado, Por favor verifique los datos e intente nuevamente',
-//            'tipo' => 'error'
-//            ];
-//
-//            return $alerta;
-            die($ex->getMessage());
+                   // $alerta= [
+                   // 'alerta' => 'simple',
+                   // 'titulo' => 'Error Inesperado...!!!',
+                   // 'texto' => 'Se produjo un error inesperado, Por favor verifique los datos e intente nuevamente',
+                   // 'tipo' => 'error'
+                   // ];
+        
+                   return $alerta;
+                    die($ex->getMessage());
+                }
         }
-    }
 
+        public function RegistrarMarca(Vehiculo $marca){
+            try {
+                $consulta = parent::Conectar()->prepare("INSERT INTO marcas(nombre, estatus) VALUES (:nombre, :estatus)");
+                
+                $nombre = $marca->getMarca();
+                $estatus = $marca->getEstatus();
+                
+                $consulta->bindParam(":nombre", $nombre);
+                $consulta->bindParam(":estatus", $estatus);
+                
+                $consulta->execute();
+                
+                $alerta= [
+                'alerta' => 'simple',
+                'titulo' => 'Operacion Exitosa...!!!',
+                'texto' => 'Marca registrada satisfactoriamente',
+                'tipo' => 'success'
+                ];
+                
+                return $alerta;
+            } catch (Exception $exc) {
+                echo $exc->getTraceAsString();
+            }
+        }
+
+        public function RegistrarModelo(Vehiculo $modelo){
+            try {
+                $consulta = parent::Conectar()->prepare("INSERT INTO modelos(id_marcas, nombre, estatus) VALUES (:id_marcas, :nombre, :estatus)");
+                
+                $id_marcas = $modelo->getId_marca();
+                $nombre = $modelo->getModelo();
+                $estatus = $modelo->getEstatus();
+                
+                $consulta->bindParam(":id_marcas", $id_marcas);
+                $consulta->bindParam(":nombre", $nombre);
+                $consulta->bindParam(":estatus", $estatus);
+                
+                $consulta->execute();
+                
+                $alerta= [
+                'alerta' => 'simple',
+                'titulo' => 'Operacion Exitosa...!!!',
+                'texto' => 'Modelo registrado satisfactoriamente',
+                'tipo' => 'success'
+                ];
+                
+                return $alerta;
+            } catch (Exception $exc) {
+                die($exc->getMessage());
+            }
+        }
+        
         public function ActualizarMarca(Vehiculo $marca){
-        try{
-            $consulta = Conexion::Conectar()->prepare("UPDATE marcas SET nombre=:nombre, estatus=:estatus WHERE id=:id");
+            try{
+                $consulta = Conexion::Conectar()->prepare("UPDATE marcas SET nombre=:nombre, estatus=:estatus WHERE id=:id");
 
-            $id = $marca->getId();
-            $nombre = $marca->getMarca();
-            $estatus = $marca->getEstatus();
+                $id = $marca->getId();
+                $nombre = $marca->getMarca();
+                $estatus = $marca->getEstatus();
 
-            $consulta->bindParam(":id", $id);
-            $consulta->bindParam(":nombre", $nombre);
-            $consulta->bindParam(":estatus", $estatus);
+                $consulta->bindParam(":id", $id);
+                $consulta->bindParam(":nombre", $nombre);
+                $consulta->bindParam(":estatus", $estatus);
 
-            $consulta->execute();
+                $consulta->execute();
 
-            $alerta= [
-            'alerta' => 'simple',
-            'titulo' => 'Operacion Exitosa...!!!',
-            'texto' => 'Se Actualizo el registro correctamente',
-            'tipo' => 'success'
-            ];
+                $alerta= [
+                'alerta' => 'simple',
+                'titulo' => 'Operacion Exitosa...!!!',
+                'texto' => 'Se Actualizo el registro correctamente',
+                'tipo' => 'success'
+                ];
 
-            return $alerta;
+                return $alerta;
 
-        } catch (Exception $ex) {
+            } catch (Exception $ex) {
 
-            $alerta= [
-            'alerta' => 'simple',
-            'titulo' => 'Error Inesperado...!!!',
-            'texto' => 'Se Produjo un Error al intentar Modificar los Datos',
-            'tipo' => 'error'
-            ];
+                $alerta= [
+                'alerta' => 'simple',
+                'titulo' => 'Error Inesperado...!!!',
+                'texto' => 'Se Produjo un Error al intentar Modificar los Datos',
+                'tipo' => 'error'
+                ];
 
-            return $alerta;
-            die();
-        }
+                return $alerta;
+                die();
+            }
         }
         
         public function ActualizarModelo(Vehiculo $modelo){
@@ -422,20 +472,19 @@
 
             } catch (Exception $ex) {
 
-//                $alerta= [
-//                'alerta' => 'simple',
-//                'titulo' => 'Error Inesperado...!!!',
-//                'texto' => 'Se Produjo un Error al intentar Modificar los Datos',
-//                'tipo' => 'error'
-//                ];
-//
-//                return $alerta;
+               // $alerta= [
+               // 'alerta' => 'simple',
+               // 'titulo' => 'Error Inesperado...!!!',
+               // 'texto' => 'Se Produjo un Error al intentar Modificar los Datos',
+               // 'tipo' => 'error'
+               // ];
+
+               // return $alerta;
                 die($ex->getMessage());
             }
         }
-        
-        
-       public function Borrar($tabla, $id) {
+          
+        public function Borrar($tabla, $id) {
            try{
                $consulta = parent::Conectar()->prepare("UPDATE $tabla SET estatus='ELIMINADO' WHERE id='$id'");
                $consulta->execute();
@@ -451,59 +500,9 @@
            } catch (Exception $ex) {
                 die("Error :". $ex->getMessage());
            }
-       }
+        }
         
-        public function RegistrarMarca(Vehiculo $marca){
-            try {
-                $consulta = parent::Conectar()->prepare("INSERT INTO marcas(nombre, estatus) VALUES (:nombre, :estatus)");
-                
-                $nombre = $marca->getMarca();
-                $estatus = $marca->getEstatus();
-                
-                $consulta->bindParam(":nombre", $nombre);
-                $consulta->bindParam(":estatus", $estatus);
-                
-                $consulta->execute();
-                
-                $alerta= [
-                'alerta' => 'simple',
-                'titulo' => 'Operacion Exitosa...!!!',
-                'texto' => 'Marca registrada satisfactoriamente',
-                'tipo' => 'success'
-                ];
-                
-                return $alerta;
-            } catch (Exception $exc) {
-                echo $exc->getTraceAsString();
-            }
-        }
-
-        public function RegistrarModelo(Vehiculo $modelo){
-            try {
-                $consulta = parent::Conectar()->prepare("INSERT INTO modelos(id_marcas, nombre, estatus) VALUES (:id_marcas, :nombre, :estatus)");
-                
-                $id_marcas = $modelo->getId_marca();
-                $nombre = $modelo->getModelo();
-                $estatus = $modelo->getEstatus();
-                
-                $consulta->bindParam(":id_marcas", $id_marcas);
-                $consulta->bindParam(":nombre", $nombre);
-                $consulta->bindParam(":estatus", $estatus);
-                
-                $consulta->execute();
-                
-                $alerta= [
-                'alerta' => 'simple',
-                'titulo' => 'Operacion Exitosa...!!!',
-                'texto' => 'Modelo registrado satisfactoriamente',
-                'tipo' => 'success'
-                ];
-                
-                return $alerta;
-            } catch (Exception $exc) {
-                die($exc->getMessage());
-            }
-        }
+        
 
 	}
 ?>

@@ -139,11 +139,23 @@
                     </a>
                 </li>
             
-                
+                <div class="dropdown-divider m-2"></div>
+                <li>
+                    <a class="sombra" href="#">
+                        <div class="row m-0 p-0">
+                            <div class="col-md-3">
+                                <i class="fas fa-chart-bar fa-2x mt-2 d-flex"></i>    
+                            </div>
+                           <div class="col-md-9 mt-1">
+                               <span>Reportes</span>
+                           </div>  
+                        </div>   
+                    </a>
+                </li>
                 
                 <div class="dropdown-divider m-2"></div>
                 <li>
-                    <a class="sombra" href="ayuda">
+                    <a class="sombra" href="#">
                         <div class="row m-0 p-0">
                             <div class="col-md-3">
                                 <i class="fas fa-question-circle fa-2x mt-2 d-flex"></i>    

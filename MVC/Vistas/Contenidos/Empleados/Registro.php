@@ -4,7 +4,7 @@
             <div class="col-md-12 justify-content-md-center">
                 <h1 class=" text-center"><?= $titulo;?> Empleado</h1>
                 <hr class="bg-danger">
-                <form action="?controlador=Empleado&accion=Guardar" method="POST">
+                <form action="?controlador=Empleado&accion=Guardar" method="POST" class="formulario">
 
                     <div class="row form-group">
                         <input name="id" value="<?= $empleado->getId();?>" hidden>
@@ -57,7 +57,7 @@
                                 <option value="" selected>-</option>
                                 <option value="mecanico">Mecanico</option>
                                 <option value="ayudante mecanico">Ayudante Mecanico</option>
-                                <option value="administrador">Adminitrador</option>
+                                <option value="administrador">Administrador</option>
                             </select>
                         </div>
 
@@ -67,7 +67,7 @@
                     <hr class="btn-danger">
 
                     <div class="row justify-content-md-center">
-                        <button type="submit" class="btn btn-danger m-2">Enviar</button>
+                        <button type="submit" class="btn btn-danger m-2" id="enviar">Enviar</button>
                         <button type="reset" class="btn btn-secondary m-2">Limpiar</button>
                     </div>
 

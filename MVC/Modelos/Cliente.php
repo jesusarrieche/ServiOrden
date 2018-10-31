@@ -5,13 +5,13 @@
    class Cliente extends Persona{
 
         public function Contar(){
-        try{
-            $consulta = Conexion::Conectar()->query("SELECT * FROM clientes WHERE estatus='ACTIVO'")->rowCount();
-            return $consulta;
-        
-        } catch (Exception $ex) {
-            die($ex->getMessage());
-        }
+            try{
+                $consulta = Conexion::Conectar()->query("SELECT * FROM clientes WHERE estatus='ACTIVO'")->rowCount();
+                return $consulta;
+            
+            } catch (Exception $ex) {
+                die($ex->getMessage());
+            }
         }
     
         public function Listar(){
@@ -54,9 +54,7 @@
                   
             } catch (Exception $ex) {
                 die($ex->getMessage());
-            }
-
-            
+            }      
         }
        
         public function Registrar(Cliente $c){

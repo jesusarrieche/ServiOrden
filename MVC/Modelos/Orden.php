@@ -3,6 +3,8 @@
     class Orden extends Conexion{
         
         private $id;
+        private $id_mecanicos = [];
+        private $id_accesorios = [];
         private $id_vehiculo;
         private $codigo;
         private $fecha_registro;
@@ -10,8 +12,6 @@
         private $fecha_cierre;
         private $descripcion;
         private $estatus;
-        private $id_mecanicos = [];
-        private $id_accesorios = [];
         
         public function getId_accesorios() {
             return $this->id_accesorios;
@@ -95,28 +95,10 @@
         }
 
         public function Contar(){
-        try{
-            $consulta = Conexion::Conectar()->query("SELECT * FROM ordenes WHERE estatus='ACTIVO'")->rowCount();
-            return $consulta;
-        
-        } catch (Exception $ex) {
-            die($ex->getMessage());
-        }
-        }
-        
-        public function ObtenerOrden($id){
-            try {
-                $consulta = parent::Conectar()->prepare("SELECT ordenes.id, ordenes.codigo, ordenes.fecha_registro, ordenes.fecha_anulacion, ordenes.fecha_cierre, clientes.identificacion, clientes.nombre, clientes.apellido, vehiculos.placa, vehiculos.serial_caja ,marcas.nombre as marca, modelos.nombre as modelo, vehiculos.anio, ordenes.descripcion FROM ordenes
-                    JOIN vehiculos on ordenes.id_vehiculos = vehiculos.id
-                    JOIN modelos on vehiculos.id_modelos = modelos.id
-                    JOIN marcas on modelos.id_marcas = marcas.id
-                    JOIN clientes on vehiculos.id_clientes = clientes.id
-                    WHERE ordenes.id = '$id'");
-                
-                $consulta->execute();
-                
-                return $consulta->fetch(PDO::FETCH_OBJ);
-                
+            try{
+                $consulta = Conexion::Conectar()->query("SELECT * FROM ordenes WHERE estatus='ACTIVO'")->rowCount();
+                return $consulta;
+            
             } catch (Exception $ex) {
                 die($ex->getMessage());
             }
@@ -133,6 +115,24 @@
                 $consulta->execute();
                 
                 return $consulta->fetchAll(PDO::FETCH_OBJ);
+                
+            } catch (Exception $ex) {
+                die($ex->getMessage());
+            }
+        }
+        
+        public function ObtenerOrden($id){
+            try {
+                $consulta = parent::Conectar()->prepare("SELECT ordenes.id, ordenes.codigo, ordenes.fecha_registro, ordenes.fecha_anulacion, ordenes.fecha_cierre, clientes.identificacion, clientes.nombre, clientes.apellido, vehiculos.placa, vehiculos.serial_caja ,marcas.nombre as marca, modelos.nombre as modelo, vehiculos.anio, ordenes.descripcion FROM ordenes
+                    JOIN vehiculos on ordenes.id_vehiculos = vehiculos.id
+                    JOIN modelos on vehiculos.id_modelos = modelos.id
+                    JOIN marcas on modelos.id_marcas = marcas.id
+                    JOIN clientes on vehiculos.id_clientes = clientes.id
+                    WHERE ordenes.id = '$id'");
+                
+                $consulta->execute();
+                
+                return $consulta->fetch(PDO::FETCH_OBJ);
                 
             } catch (Exception $ex) {
                 die($ex->getMessage());

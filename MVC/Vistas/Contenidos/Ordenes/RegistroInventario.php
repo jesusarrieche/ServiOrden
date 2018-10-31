@@ -1,11 +1,11 @@
 <div id="contenido-principal">
     <div class="container-fluid">
     
-        <h2 class="bg-danger text-light font-weight-normal rounded shadow p-2 text-center">Inventario</h2>
+        <h2 class="bg-danger text-light font-weight-normal rounded shadow p-2 text-center">Accesorios</h2>
         <div class="row form-group">
 	        <label for="inventario" class="col-form-label col-md-1"><strong>Articulos:</strong></label> 
 	    </div>      
-        <form action="?controlador=Orden&accion=GuardarInventario" method="POST">
+        <form action="?controlador=Orden&accion=GuardarInventario" method="POST" class="formulario">
             <input name="id" value="<?= $_GET['id'];?>" hidden>
             <div class="row">
                 <div class="col-12">
@@ -116,7 +116,7 @@
 
                     <div class="row justify-content-center">
                         <a href="javascript:history.back(-1);" class="btn btn-secondary"><i class="fas fa-arrow-circle-left"></i> Atras</a>
-                        <button type="submit" class="btn btn-success ml-2">Enviar</button>
+                        <button type="submit" class="btn btn-success ml-2" id="enviar">Enviar</button>
                         <button type="reset" class="btn btn-danger ml-2">Limpiar</button>
                     </div>
                 </div>

@@ -17,7 +17,6 @@
                     <th>Nombre y Apellido</th>
                     <th>Usuario</th>
                     <th>Privilegio</th>
-                    <th>Estatus</th>
                     <th>Modificar</th>
                     <th>Eliminar</th>
                 </tr>
@@ -36,7 +35,6 @@
                     <td><?= $usuario->nombre . " " . $usuario->apellido ?></td>
                     <td><?= $usuario->usuario ?></td>
                     <td><?= $usuario->privilegio ?></td>
-                    <td><?= $usuario->estatus ?></td> 
                     <td><a href="?controlador=usuario&accion=RegistroUsuario&id=<?= $usuario->id ?>" class="pl-4 text-info"><i class="fas fa-sync-alt fa-lg"></i></a></td>
                     <td><a href="?controlador=usuario&accion=BorrarUsuario&id=<?= $usuario->id ?>" class="pl-4 text-danger eliminar"><i class="fas fa-trash-alt fa-lg"></i></a></td>
                 </tr>

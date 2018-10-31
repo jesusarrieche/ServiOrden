@@ -14,13 +14,13 @@
         }
 
         public function Contar(){
-        try{
-            $consulta = Conexion::Conectar()->query("SELECT * FROM empleados")->rowCount();
-            return $consulta;
-        
-        } catch (Exception $ex) {
-            die($ex->getMessage());
-        }
+            try{
+                $consulta = Conexion::Conectar()->query("SELECT * FROM empleados")->rowCount();
+                return $consulta;
+            
+            } catch (Exception $ex) {
+                die($ex->getMessage());
+            }
         }
     
         public function Listar(){
@@ -65,9 +65,7 @@
                   
             } catch (Exception $ex) {
                 die($ex->getMessage());
-            }
-
-            
+            }      
         }
        
         public function Registrar(Empleado $e){
@@ -168,16 +166,9 @@
             }
         }
         
-        public function Borrar(Empleado $empleado){
-            try{
-
-                $id = $empleado->getId();
-                
-                $consulta = Conexion::Conectar()->prepare("UPDATE empleados SET estatus=:estatus WHERE id='$id'");
-
-                $estatus = "INACTIVO";
-
-                $consulta->bindParam(":estatus", $estatus);
+        public function Borrar($tabla, $id){
+            try{                
+                $consulta = Conexion::Conectar()->prepare("UPDATE $tabla SET estatus='ELIMINADO' WHERE id=$id");
 
                 $consulta->execute();
                 

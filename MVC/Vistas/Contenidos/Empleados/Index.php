@@ -39,7 +39,7 @@
                     <td><?= $empleado->telefono;?></td>
                     <td><?= $empleado->cargo;?></td>
                     <td><a href="?controlador=empleado&accion=RegistroEmpleado&id=<?= $empleado->id?>" class="text-info"><i class="fas fa-sync fa-lg pl-4"></i></a></td>
-                    <td><a href="?controlador=empleado&accion=BorrarEmpleado&id=<?= $empleado->id?>" class="text-danger"><i class="fas fa-trash-alt fa-lg pl-4"></i></a></td>
+                    <td><a href="?controlador=empleado&accion=BorrarEmpleado&id=<?= $empleado->id?>" class="text-danger eliminar"><i class="fas fa-trash-alt fa-lg pl-4"></i></a></td>
                 
                 </tr>
 

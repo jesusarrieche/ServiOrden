@@ -66,15 +66,13 @@
         }
         
         public function BorrarUsuario(){
-            $alerta = $this->modeloUsuario->Borrar($_GET['id']);
+            $alerta = $this->modeloUsuario->Borrar("usuarios",$_GET['id']);
             $alerta = parent::Alerta($alerta);
-            if(!empty($alerta)){
-                require_once 'Vistas/Encabezado.php';
-                require_once 'Vistas/Contenidos/Usuarios/Index.php';
-                require_once 'Vistas/Pie.php';
-           }else{
-               header("location:?controlador=usuario");
-           }
+          
+            require_once 'Vistas/Encabezado.php';
+            require_once 'Vistas/Contenidos/Usuarios/Index.php';
+            require_once 'Vistas/Pie.php';
+        
         }
 
     }

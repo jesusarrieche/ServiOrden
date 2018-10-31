@@ -46,7 +46,7 @@
         public function Listar(){
             $id = $_SESSION['id'];
             try{
-                $consulta = Conexion::Conectar()->prepare("SELECT id, identificacion, nombre, apellido, usuario, privilegio, estatus FROM usuarios WHERE id != $id");
+                $consulta = Conexion::Conectar()->prepare("SELECT id, identificacion, nombre, apellido, usuario, privilegio, estatus FROM usuarios WHERE id != $id AND estatus='ACTIVO'");
                 $consulta->execute();
                 
                 return $consulta->fetchAll(PDO::FETCH_OBJ);
@@ -88,9 +88,7 @@
                 
             } catch (Exception $ex) {
                 die($ex->getMessage());
-            }
-
-            
+            }    
         }
         
         public function Registrar(Usuario $u){
@@ -200,9 +198,9 @@
             }
         }
         
-        public function Borrar($id){
+        public function Borrar($tabla, $id){
             try{
-                $consulta = Conexion::Conectar()->prepare("DELETE FROM usuarios WHERE id='$id'");
+                $consulta = Conexion::Conectar()->prepare("UPDATE $tabla SET estatus='ELIMINADO' WHERE id=$id");
                 $consulta->execute();
                 
                 $alerta= [

@@ -94,19 +94,14 @@
         }
 
         public function BorrarEmpleado(){
-            $empleado = new Empleado();
-            $empleado->setId($_GET['id']);
-            $empleado = $this->modeloEmpleado->Obtener($empleado->getId());
 
-            $alerta = $this->modeloEmpleado->Borrar($empleado);
+            $alerta = $this->modeloEmpleado->Borrar("empleados", $_GET['id']);
             $alerta = parent::Alerta($alerta);
-             if(!empty($alerta)){
-                 require_once 'Vistas/Encabezado.php';
-                 require_once 'Vistas/Contenidos/Empleados/Index.php';
-                 require_once 'Vistas/Pie.php';
-             } else {
-                 header("location:?controlador=Empleado");
-             }
+           
+            require_once 'Vistas/Encabezado.php';
+            require_once 'Vistas/Contenidos/Empleados/Index.php';
+            require_once 'Vistas/Pie.php';
+               
          }
     }
 
