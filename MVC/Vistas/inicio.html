@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>HidroParts</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- Iconos -->
+    <link rel="stylesheet" type="text/css" href="Icon/css/all.css">
+    <link rel="shortcut icon" type="text/css" href="Icon/favicon.ico">
+
+    <!-- Estilos Propios -->
+    <link href="css/menu-lateral.css" rel="stylesheet">
+    <link href="css/estilos.css" rel="stylesheet">
+
+    <!-- Sweet-Alert -->
+    <link rel="stylesheet" href="css/sweetalert2.css">
+    <script src="js/sweetalert2.all.js"></script>
+    
+</head>
+
+<body>
+    
+
+    <!-- Inicio Contenedor Principal -->
+    <div id="contenedor-principal" class="mostrar">
+
+        <!-- Contenedor Lateral -->
+        <div id="contenedor-lateral">
+            <ul class="text-light" id="menu-lateral">
+                <a href="<?php SERVERURL; ?>inicio" class="nav-link"><center><span class="font-weight-normal text-white" id="titulo">Hidro<span id="resaltado">Parts</span></span></center></a>  
+                <div class="dropdown-divider m-2"></div>
+                <li>
+                    <div class="row">
+                        <div class="col-12">
+                            <center><img src="vistas/imagenes/usuario.png" height="100" width="100" class= "rounded-circle"></center>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-6">
+                            <span>Administrador</span> 
+                        </div>
+                    </div>
+                    <div class="row justify-content-center" id="iconos">
+                        <div class="col-2 pl-0">
+                           <a href="#"><i class="fas fa-home d-flex"></i></a>     
+                        </div>
+                        <div class="col-2 pl-0">
+                            <a href="#"><i class="fas fa-cog d-flex"></i></a>
+                        </div>
+                        <div class="col-2 pl-0 d">
+                                <a href="#"><i class="fas fa-power-off d-flex"></i></a>
+                        </div>
+                </li>
+                <div class="dropdown-divider m-2"></div>
+                
+                <li>
+                    <a class= "sombra" href="<?php echo SERVERURL; ?>usuarios">
+                        <div class="row m-0 p-0">
+                            <div class="col-md-3 p-0">
+                                <i class="fas fa-user fa-lg mt-3"></i>    
+                            </div>
+                            <div class="col-md-9 mt-1">
+                                <span>Usuarios</span>
+                            </div>  
+                        </div>
+                    </a>            
+                </li>
+                <li>
+                    <a class= "sombra" href="<?php echo SERVERURL; ?>clientes">
+                        <div class="row m-0 p-0">
+                            <div class="col-md-3 p-0">
+                                <i class="fas fa-users fa-lg mt-3"></i>    
+                            </div>
+                            <div class="col-md-9 mt-1">
+                                <span>Clientes</span>
+                            </div>  
+                        </div>
+                    </a>   
+                </li>
+                <li>
+                    <a class= "sombra" href="<?php echo SERVERURL; ?>vehiculosCajas">
+                        <div class="row m-0 p-0">
+                            <div class="col-md-3 p-0">
+                                <i class="fas fa-car fa-lg mt-3"></i>    
+                            </div>
+                            <div class="col-md-9 mt-1">
+                                <span>Vehiculos/Cajas</span>
+                            </div>  
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a class= "sombra" href="<?php echo SERVERURL; ?>mecanicos">
+                        <div class="row m-0 p-0">
+                            <div class="col-3 p-0">
+                                <i class="fas fa-wrench fa-lg mt-3"></i>    
+                            </div>
+                            <div class="col-9 mt-1">
+                                <span>Mecanicos</span>
+                            </div>  
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a class= "sombra" href="<?php echo SERVERURL; ?>ordenes">
+                        <div class="row m-0 p-0">
+                            <div class="col-3 p-0">
+                                <i class="fas fa-clipboard-list fa-lg mt-3"></i>    
+                            </div>
+                            <div class="col-9 mt-1">
+                                <span>Ordenes</span>
+                            </div>  
+                        </div>
+                    </a>
+                </li>
+                <div class="dropdown-divider m-2"></div>
+                
+                <li>
+                    <a class="sombra" href="<?php echo SERVERURL; ?>reportes">
+                        <div class="row m-0 p-0">
+                            <div class="col-md-3">
+                                <i class="fas fa-chart-bar fa-2x mt-2 d-flex"></i>    
+                            </div>
+                           <div class="col-md-9 mt-1">
+                               <span>Reportes</span>
+                           </div>  
+                        </div>
+                    </a>
+                </li>
+                <div class="dropdown-divider m-2"></div>
+                <li>
+                    <a class="sombra" href="<?php echo SERVERURL; ?>ayuda">
+                        <div class="row m-0 p-0">
+                            <div class="col-md-3">
+                                <i class="fas fa-question-circle fa-2x mt-2 d-flex"></i>    
+                            </div>
+                           <div class="col-md-9 mt-1">
+                               <span>Ayuda</span>
+                           </div>  
+                        </div>   
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- Fin Contenedor Lateral -->
+  
+        <!-- Barra Superior -->
+        <nav class="navbar navbar-dark bg-dark p-0 shadow sticky-top borde">
+            <a href="#menu-mostrar" class="btn btn-dark m-1" id="menu-mostrar"><i class="fas fa-bars"></i> Menu</a>
+            <ul class="navbar-nav px-3">
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fas fa-sign-out-alt"></i> Salir</a>
+                </li>
+            </ul>
+        </nav>
+        <!-- Fin Barra Superior -->
+    
+        <!-- Contenido Principal -->
+        <div id="contenido-principal">
+            <img src="<?php echo SERVERURL; ?>vistas/imagenes/hidroparts.png" width="100%">    
+            <hr class="bg-danger">
+        
+            <div class="container">
+                <center>
+                    <h1>Bienvenido a ServiOrden HidroParts</h1>
+        
+                    <p>ServiOrden HidroParts es un sistema de informacion para la automatizacion del registro y seguimiento
+                        de ordenes de servicio. 
+                    </p>
+                    <br>
+                    <br>
+                    <h2 class="bg-danger text-light rounded">Conoce los Distintos Apartados</h2>
+                    <br>
+                    <br>
+                    <div class="row justify-content-around">
+                        <div class="col-3">
+                            <div class="p-2 shadow franja-azul">
+                                <i class="fas fa-users fa-4x"></i>
+                                <div class="card-body">
+                                    <h4 class="card-title">Gestion de Clientes</h4>
+                                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Blanditiis, quis illo! Ratione necessitatibus veniam ut totam maxime magni provident sunt aliquid? Accusantium ducimus dolores distinctio dolorem, voluptas repudiandae obcaecati harum.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3"></div>
+                        <div class="col-3"></div>
+                    </div>
+                </center>
+            </div>
+        </div>
+        <!-- Fin Contenido Principal -->
+   
+    </div>
+    <!-- Fin Contenedor  -->
+
+ 
+    <!-- Bootstrap core JavaScript -->
+    <script src="<?php echo SERVERURL; ?>vistas/js/jquery/jquery-3.2.1.js"></script>
+    <script src="<?php echo SERVERURL; ?>vistas/js/bootstrap/bootstrap.js"></script>
+    <script src="<?php echo SERVERURL; ?>vistas/js/menu_lateral.js"></script>
+
+</body>
+
+</html>
