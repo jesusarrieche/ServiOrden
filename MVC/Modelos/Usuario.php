@@ -106,7 +106,7 @@
                 $telefono = Conexion::LimpiaCadena($u->getTelefono());
                 $correo = Conexion::LimpiaCadena($u->getCorreo());
                 $usuario = Conexion::LimpiaCadena($u->getUsuario());
-                $password = Conexion::Encriptar(Conexion::LimpiaCadena($u->getPassword()));
+                $password = $u->getPassword();
                 $privilegio = Conexion::LimpiaCadena($u->getPrivilegio());
                 $estatus = Conexion::LimpiaCadena($u->getEstatus());
                 

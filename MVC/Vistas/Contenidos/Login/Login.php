@@ -1,31 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>HidroParts</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="Assets/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Iconos -->
+    <link rel="stylesheet" type="text/css" href="Assets/Icon/css/all.css">
+    <link rel="shortcut icon" type="text/css" href="Assets/Icon/favicon.ico">
+
+    <!-- Estilos Propios -->
+    <link href="Assets/css/menu-lateral.css" rel="stylesheet">
+    <link href="Assets/css/estilos.css" rel="stylesheet">
+    
+    <!-- Sweet-Alert -->
+    <link rel="stylesheet" href="Assets/css/sweetalert2.css">
+    <script src="Assets/js/sweetalert2.all.js"></script>
+
+    <!-- Select2 -->
+    <link rel="stylesheet" type="text/css" href="Assets/css/select2.css">
+    
+    
+</head>
+
+<body>
+<?php
+    if(isset($alerta)){
+        echo $alerta;
+    }
+?>
 <div class="container-fluid login">
     <div class="row h-100 justify-content-center align-items-center">
         <div class="col-md-4">
             <div class="container bg-white rounded p-3 shadow">
-                <img src="<?php echo SERVERURL ?>vistas/imagenes/hidroparts.png" width="100%">
+                <img src="" width="100%">
                 <hr class="bg-danger">
                 <center><i class="fas fa-user-circle fa-5x"></i></center>
                 <center><h1>Inicio de Sesion</h1></center>
                 <hr class="bg-danger">
-                <form action=""  method="POST" class="h-25 rounded">
+                <form action="?controlador=Login&accion=IniciarSession"  method="POST" class="h-25 rounded">
                     <div class="row form-group">
                         <label for="id_usuario" class="col-form-label col-md-3">Usuario:</label>
                         <div class="col-md-9">
-                            <input type="text" pattern="[A-Za-z0-9._]{2,}" class="form-control" required>
+                            <input name="usuario" type="text" pattern="[A-Za-z0-9._]{2,}" class="form-control" required>
                         </div>
                     </div>
                     <div class="row form-group">
-                        <label for="password_usuario" class="col-form-label col-md-3">Contraseña:</label>
+                        <label for="password" class="col-form-label col-md-3">Contraseña:</label>
                         <div class="col-md-9">
-                                <input type="password" pattern="[A-Za-z0-9]{2,}"class="form-control" required>
+                            <input name="password" type="password" pattern="[A-Za-z0-9]{2,}" class="form-control" required>
                         </div>
                     </div>
                     <div class="row form-group justify-content-center">
                         <button type="submit" class="btn btn-success m-2">Iniciar</button>
-                        <button type="submit" class="btn btn-secondary m-2">Limpiar</button>
+                        <button type="reset" class="btn btn-secondary m-2">Limpiar</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+
+
+ 
+    <!-- Bootstrap core JavaScript -->
+    <script src="Assets/js/jquery/jquery-3.2.1.js"></script>
+    <script src="Assets/js/bootstrap/bootstrap.js"></script>
+    <script src="Assets/js/menu_lateral.js"></script>
+    <script src="Assets/js/validacion.js"></script>
+	<script src="Assets/js/select2.js"></script>
+</body>
+
+</html>

@@ -3,9 +3,9 @@
 require_once "Modelos/Conexion.php";
 
 if (!isset($_GET['controlador'])) {
-    require_once "Controladores/InicioControlador.php";
-    $controlador = new InicioControlador();
-    call_user_func(array($controlador, "Inicio"));
+    require_once "Controladores/LoginControlador.php";
+    $controlador = new LoginControlador();
+    call_user_func(array($controlador, "Login"));
 } else {
     $controlador= $_GET['controlador'];
     require_once "Controladores/".ucwords($controlador) . "Controlador.php"; // si en la url viene controlador= vehiculo entonces ucwors-> Vehiculo -->> Controladores/VehiculoControlador.php

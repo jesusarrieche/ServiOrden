@@ -30,6 +30,18 @@
 
 <body>
     
+    <?php
+    
+        session_start();
+        
+//        var_dump($_SESSION);
+        
+        if(!isset($_SESSION['usuario'])){
+            
+            header("location:?controlador=Login&accion=Login");
+        }
+    
+    ?>
 
     <!-- Inicio Contenedor Principal -->
     <div id="contenedor-principal" class="mostrar">
@@ -58,7 +70,7 @@
                             <a href="#"><i class="fas fa-cog d-flex"></i></a>
                         </div>
                         <div class="col-2 pl-0 d">
-                                <a href="#"><i class="fas fa-power-off d-flex"></i></a>
+                                <a href="?controlador=Login&accion=CerrarSession"><i class="fas fa-power-off d-flex"></i></a>
                         </div>
                 </li>
                 <div class="dropdown-divider m-2"></div>
