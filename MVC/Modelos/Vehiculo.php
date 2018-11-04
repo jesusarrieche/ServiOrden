@@ -134,7 +134,7 @@
 
         public function ListarVehiculos(){
             try{
-                $consulta = Conexion::Conectar()->prepare("SELECT vehiculos.id, vehiculos.id_modelos AS id_modelos, clientes.nombre, clientes.apellido, vehiculos.placa, marcas.nombre AS marca, modelos.nombre AS  modelo, vehiculos.estatus from clientes
+                $consulta = Conexion::Conectar()->prepare("SELECT vehiculos.id, vehiculos.id_modelos AS id_modelos, vehiculos.serial_motor, clientes.nombre, clientes.apellido, vehiculos.placa, marcas.nombre AS marca, modelos.nombre AS  modelo, vehiculos.estatus from clientes
                                                 JOIN vehiculos ON id_clientes = clientes.id
                                                 JOIN modelos ON  vehiculos.id_modelos = modelos.id
                                                 JOIN marcas ON modelos.id_marcas = marcas.id ORDER BY clientes.nombre ASC;");
@@ -149,7 +149,7 @@
         
         public function ListarMarcas(){
             try{
-                $consulta = Conexion::Conectar()->prepare("SELECT * FROM marcas");
+                $consulta = Conexion::Conectar()->prepare("SELECT * FROM marcas WHERE estatus='ACTIVO' ORDER BY nombre ASC");
                 $consulta->execute();
 
                 return $consulta->fetchAll(PDO::FETCH_OBJ);
@@ -161,11 +161,8 @@
 
         public function ListarModelos($id){
             try{
-                if(isset($id)){
-                    $consulta = Conexion::Conectar()->prepare("SELECT * FROM modelos WHERE id_marcas='$id'");
-                } else {
-                    $consulta = Conexion::Conectar()->prepare("SELECT * FROM modelos ");
-                }
+            
+                $consulta = Conexion::Conectar()->prepare("SELECT * FROM modelos WHERE id_marcas='$id' AND estatus='ACTIVO'");
                 
                 $consulta->execute();
 
@@ -176,32 +173,56 @@
             }
         }
 
-        public function Obtener($id){
-        try{
-            $consulta = Conexion::Conectar()->prepare("SELECT * FROM vehiculos WHERE id='$id'");
-            $consulta->execute();
+        public function ObtenerVehiculo($id){
+            try{
+                $consulta = Conexion::Conectar()->prepare("SELECT * FROM vehiculos WHERE id='$id'");
+                $consulta->execute();
 
-            $registro = $consulta->fetch(PDO::FETCH_OBJ);;
+                $registro = $consulta->fetch(PDO::FETCH_OBJ);;
 
-            $vehiculo = new Vehiculo();
-            
-            $vehiculo->setId($registro->id);
-            $vehiculo->setPlaca($registro->placa);
-            $vehiculo->setSerial_motor($registro->serial_motor);
-            $vehiculo->setSerial_carroceria($registro->serial_carroceria);
-            $vehiculo->setSerial_caja($registro->serial_caja);
-            $vehiculo->setColor($registro->color);
-            $vehiculo->setMarca($registro->marca);
-            $vehiculo->setModelo($registro->modelo);
-            $vehiculo->setAnio($registro->anio);
-            $vehiculo->setEstatus($registro->estatus);
+                $vehiculo = new Vehiculo();
 
-            return $vehiculo;
+                $vehiculo->setId($registro->id);
+                $vehiculo->setId_cliente($registro->id_clientes);
+                $vehiculo->setPlaca($registro->placa);
+                $vehiculo->setSerial_motor($registro->serial_motor);
+                $vehiculo->setSerial_carroceria($registro->serial_carroceria);
+                $vehiculo->setSerial_caja($registro->serial_caja);
+                $vehiculo->setColor($registro->color);
+                $vehiculo->setId_modelo($registro->id_modelos);
+                $vehiculo->setAnio($registro->anio);
+                $vehiculo->setEstatus($registro->estatus);
 
-        } catch (Exception $ex) {
-            die($ex->getMessage());
+                return $vehiculo;
+
+            } catch (Exception $ex) {
+                die($ex->getMessage());
+            }
         }
-    }
+        
+        public function ObtenerCaja($id){
+            try{
+                $consulta = Conexion::Conectar()->prepare("SELECT * FROM vehiculos WHERE id='$id'");
+                $consulta->execute();
+
+                $registro = $consulta->fetch(PDO::FETCH_OBJ);;
+
+                $caja = new Vehiculo();
+
+                $caja->setId($registro->id);
+                $caja->setPlaca($registro->placa);
+                $caja->setSerial_caja($registro->serial_caja);
+                $caja->setId_cliente($registro->id_clientes);
+                $caja->setId_modelo($registro->id_modelos);
+                $caja->setAnio($registro->anio);
+                $caja->setEstatus($registro->estatus);
+
+                return $caja;
+
+            } catch (Exception $ex) {
+                die($ex->getMessage());
+            }
+        }
         
         public function ObtenerMarca($id){
             try{
@@ -368,51 +389,69 @@
                 die();
             }
         }
-
-        public function Borrar($tabla, $id){
+        
+        public function ActualizarCaja(Vehiculo $caja){
             try{
-                $consulta = Conexion::Conectar()->prepare("DELETE FROM $tabla WHERE id=$id");
-                $consulta->execute();
+                $consulta = Conexion::Conectar()->prepare("UPDATE vehiculos SET id_clientes=:id_clientes, id_modelos=:id_modelos, anio=:anio, placa=:placa, serial_caja=:serial_caja WHERE id=:id");
                 
+                $id = $caja->getId();
+                
+                $id_cliente = $caja->getId_cliente();
+                $id_modelo = $caja->getId_modelo();
+                $anio = $caja->getAnio();
+                $placa = $caja->getPlaca();
+                $serial_caja = $caja->getSerial_caja();
+                
+                $consulta->bindParam(":id", $id);
+                $consulta->bindParam(":id_clientes", $id_cliente);
+                $consulta->bindParam(":id_modelos", $id_modelo);
+                $consulta->bindParam(":anio", $anio);
+                $consulta->bindParam(":placa", $placa);
+                $consulta->bindParam(":serial_caja", $serial_caja);
+
+                $consulta->execute();
+
                 $alerta= [
                 'alerta' => 'simple',
                 'titulo' => 'Operacion Exitosa...!!!',
-                'texto' => 'El registro fue eliminado satisfactoriamente',
+                'texto' => 'Se Actualizo el registro correctamente',
                 'tipo' => 'success'
                 ];
-                
+
                 return $alerta;
-                
+
             } catch (Exception $ex) {
+
 //                $alerta= [
 //                'alerta' => 'simple',
 //                'titulo' => 'Error Inesperado...!!!',
-//                'texto' => 'Se produjo un error al intentar eliminar el registro',
+//                'texto' => 'Se Produjo un Error al intentar Modificar los Datos',
 //                'tipo' => 'error'
 //                ];
-//                
+//
 //                return $alerta;
                 die($ex->getMessage());
             }
         }
         
-//        public function BorrarMarca($idMarca) {
-//            try{
-//                $consulta = parent::Conectar()->prepare("DELETE FROM marcas WHERE id = '$idMarca'");
-//                $consulta->execute();
-//                
-//                $alerta= [
-//                'alerta' => 'simple',
-//                'titulo' => 'Marca Eliminada',
-//                'texto' => 'La marca fue eliminada satisfactoriamente',
-//                'tipo' => 'success'
-//                ];
-//                
-//                return $alerta;
-//            } catch (Exception $ex) {
-//
-//            }
-//        }
+        
+       public function Borrar($tabla, $id) {
+           try{
+               $consulta = parent::Conectar()->prepare("UPDATE $tabla SET estatus='ELIMINADO' WHERE id='$id'");
+               $consulta->execute();
+               
+               $alerta= [
+               'alerta' => 'simple',
+               'titulo' => 'Registro Eliminado',
+               'texto' => 'El Registro fue eliminado satisfactoriamente',
+               'tipo' => 'success'
+               ];
+               
+               return $alerta;
+           } catch (Exception $ex) {
+                die("Error :". $ex->getMessage());
+           }
+       }
         
         public function RegistrarMarca(Vehiculo $marca){
             try {

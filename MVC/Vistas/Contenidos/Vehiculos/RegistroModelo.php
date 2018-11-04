@@ -11,15 +11,17 @@
             <div class="row form-group">
                 <label for="nombreModelo" class="col-form-label col-md-2">Nombre del Modelo:</label>
                 <div class="col-md-3">
-                    <input type="text" name="modelo" class="form-control" placeholder="Modelo">
+                    <input type="text" name="modelo" class="form-control" placeholder="Modelo" value="<?= $modelo->getModelo();?>">
                 </div>
 
                 <input name="estatus" value="ACTIVO" hidden>
             </div>
             <hr class="bg-secondary">
             <div class="row form-group justify-content-center">
+            
+                <a href="javascript:history.back(-1);" class="btn btn-secondary mr-1"><i class="fas fa-arrow-circle-left"></i> Atras</a>  
                 <button class="btn btn-success" id="enviar" type="submit">Enviar</button>
-                <button class="btn btn-secondary ml-1" type="reset">Limpiar</button> 
+                <button class="btn btn-danger ml-1" type="reset">Limpiar</button> 
             </div>
                 
           

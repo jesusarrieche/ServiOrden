@@ -12,7 +12,8 @@
     		<thead class="thead-dark">
     			<tr>
     				<th>#</th>
-    				<th>Nombre Modelo</th>        
+    				<th>Nombre Modelo</th> 
+					<th>Actualizar</th>       
                     <th>Eliminar</th>
     			</tr>
     		</thead>
@@ -29,8 +30,9 @@
 		
 				<tr>
 					<td><?= $orden;?></td>
-					<td><?= $modelo->nombre; ?></td>                   
-                    <td><a href="?controlador=Vehiculo&accion=BorrarModelo&id=<?= $modelo->id?>" class="text-danger"><i class="fas fa-trash-alt fa-lg pl-4"></i></a></td>
+					<td><?= $modelo->nombre; ?></td>
+                    <td><a href="?controlador=Vehiculo&accion=RegistroModelo&id=<?= $modelo->id?>" class="text-info"><i class="fas fa-sync fa-lg pl-4"></i></a></td>
+                    <td><a href="?controlador=Vehiculo&accion=BorrarModelo&id=<?= $modelo->id?>" class="text-danger eliminar"><i class="fas fa-trash-alt fa-lg pl-4"></i></a></td>
 				</tr>
 				
 

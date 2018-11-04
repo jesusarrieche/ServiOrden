@@ -20,15 +20,16 @@
         <table class="table shadow table-striped">
             <thead class="thead-dark">
                 <tr>
-                    <th colspan="7" class="text-center bg-primary"><h4 class="font-weight-normal">Vehiculos</h4></th>
+                    <th colspan="8" class="text-center bg-primary"><h4 class="font-weight-normal">Vehiculos | Cajas</h4></th>
                 </tr>
                 <tr>
                     <th>#</th>
                     <th>Placa</th>
+                    <th>Tipo</th>
                     <th>Marca | Modelo </th>
                     <th>Ordenes</th>
                     <th>Actualizar</th>
-                    <th>Eliminar</th>
+       
                     <th>Propietario</th>
                 </tr>
             </thead>
@@ -43,12 +44,21 @@
                 <tr>
                     <td><?= $orden;?></td>
                     <td><?= $vehiculo->placa;?></td>
+                    <td>
+                    <?php
+                            if($vehiculo->serial_motor == "NO APLICA"){
+                                echo "CAJA";
+                            } else {
+                                echo "VEHICULO";
+                            }
+                        ?>
+                    </td>
                     <td><?= $vehiculo->marca . " - " .$vehiculo->modelo;?></td>
                     <td>
                         <a href="?controlador=Orden&accion=OrdenesPropiedad&id=<?= $vehiculo->id; ?>" class="text-dark"><i class="fas fa-search fa-lg "></i></a>
                     </td>
-                    <td><a href="?controlador=Vehiculo" class="text-info"><i class="fas fa-sync fa-lg pl-4"></i></a></td>
-                    <td><a href="?controlador=Vehiculo" class="text-danger"><i class="fas fa-trash-alt fa-lg pl-4"></i></a></td>
+                    <td><a href="?controlador=Vehiculo&accion=Registro<?php if($vehiculo->serial_motor == "NO APLICA"){ echo "Caja";} else {echo "Vehiculo";}?>&id=<?= $vehiculo->id;?>" class="text-info"><i class="fas fa-sync fa-lg pl-4"></i></a></td>
+                   
                     <td><?= $vehiculo->nombre . " " . $vehiculo->apellido;?></td>
                 </tr>    
             <?php endforeach; ?>

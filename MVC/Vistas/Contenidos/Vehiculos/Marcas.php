@@ -9,7 +9,7 @@
         
         <div class="container-fluid">
             <div class="row">
-                <a href="javascript:history.back(-1);" class="btn btn-secondary btn-lg mr-2"><i class="fas fa-arrow-circle-left"></i> Atras</a>
+                <a href="?controlador=Vehiculo" class="btn btn-secondary btn-lg mr-2"><i class="fas fa-arrow-circle-left"></i> Atras</a>
                 <a href="?controlador=Vehiculo&accion=RegistroMarca" class="btn btn-info btn-lg"><i class="fas fa-wrench"></i> Registrar Marca</a>
             </div>
         </div>
@@ -46,7 +46,7 @@
                         
                     </td>
                     <td><a href="?controlador=Vehiculo&accion=RegistroMarca&id=<?= $marca->id?>" class="text-info"><i class="fas fa-sync fa-lg pl-4"></i></a></td>
-                    <td><a href="?controlador=Vehiculo&accion=BorrarMarca&id=<?= $marca->id?>" class="text-danger"><i class="fas fa-trash-alt fa-lg pl-4"></i></a></td>
+                    <td><a href="?controlador=Vehiculo&accion=BorrarMarca&id=<?= $marca->id?>" class="text-danger eliminar"><i class="fas fa-trash-alt fa-lg pl-4"></i></a></td>
     
                </tr>
                 <?php endforeach ;?>
