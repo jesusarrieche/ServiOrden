@@ -25,7 +25,7 @@
                 <tr>
                     <th>#</th>
                     <th>Placa</th>
-                    <th>Marca | Modelo | Año</th>
+                    <th>Marca | Modelo </th>
                     <th>Ordenes</th>
                     <th>Actualizar</th>
                     <th>Eliminar</th>
@@ -34,6 +34,7 @@
             </thead>
             <tbody>
             <?php
+            
                 $orden = 0;
 //                var_dump($this->modeloVehiculo->listarVehiculos());
                 foreach ( $this->modeloVehiculo->listarVehiculos() as $vehiculo):
@@ -42,7 +43,7 @@
                 <tr>
                     <td><?= $orden;?></td>
                     <td><?= $vehiculo->placa;?></td>
-                    <td><?= $vehiculo->marca . " - " .$vehiculo->modelo . " - " . $vehiculo->anio;?></td>
+                    <td><?= $vehiculo->marca . " - " .$vehiculo->modelo;?></td>
                     <td>
                         <a href="?controlador=Orden&accion=OrdenesPropiedad&id=<?= $vehiculo->id; ?>" class="text-dark"><i class="fas fa-search fa-lg "></i></a>
                     </td>

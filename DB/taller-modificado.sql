@@ -1,5 +1,5 @@
 CREATE TABLE usuarios(
-    id SERIAL NOT NULL UNIQUE,
+    id SERIAL,
     identificacion VARCHAR(15) UNIQUE NOT NULL,
     nombre VARCHAR(50),
     apellido VARCHAR(50),
@@ -15,7 +15,7 @@ CREATE TABLE usuarios(
 );
 
 CREATE TABLE clientes(
-    id SERIAL NOT NULL UNIQUE,
+    id SERIAL,
     identificacion VARCHAR(15) UNIQUE NOT NULL,
     nombre VARCHAR(50),
     apellido VARCHAR(50),
@@ -28,7 +28,7 @@ CREATE TABLE clientes(
 );
 
 CREATE TABLE empleados(
-    id SERIAL NOT NULL UNIQUE,
+    id SERIAL,
     identificacion VARCHAR(15) UNIQUE NOT NULL,
     nombre VARCHAR(50),
     apellido VARCHAR(50),
@@ -42,7 +42,7 @@ CREATE TABLE empleados(
 );
 
 CREATE TABLE marcas(
-    id SERIAL NOT NULL UNIQUE,
+    id SERIAL,
     nombre VARCHAR(40) UNIQUE,
     estatus VARCHAR(15),
 
@@ -50,10 +50,9 @@ CREATE TABLE marcas(
 );
 
 CREATE TABLE modelos(
-    id SERIAL NOT NULL UNIQUE,
+    id SERIAL,
     id_marcas INT,
     nombre VARCHAR(25),
-    anio VARCHAR(10),
     estatus VARCHAR(15),
 
     CONSTRAINT id_modelos_pk PRIMARY KEY(id),
@@ -63,14 +62,15 @@ CREATE TABLE modelos(
 );
 
 CREATE TABLE vehiculos(
-    id SERIAL NOT NULL UNIQUE,
-    id_modelos INT DEFAULT '1',
+    id SERIAL,
+    id_modelos INT,
     id_clientes INT,
     placa VARCHAR(25),
     serial_motor VARCHAR(25),
     serial_carroceria VARCHAR(25),
     serial_caja VARCHAR(25),
     color VARCHAR(20),
+    anio VARCHAR(10),
     estatus VARCHAR(15),
 
     CONSTRAINT id_vehiculos_pk PRIMARY KEY(id),
@@ -83,7 +83,8 @@ CREATE TABLE vehiculos(
 );
 
 CREATE TABLE ordenes(
-    id SERIAL NOT NULL UNIQUE,
+    id SERIAL,
+    codigo VARCHAR(15) UNIQUE NOT NULL,
     id_vehiculos INT,
     descripcion TEXT,
     fecha_registro TIMESTAMP,
@@ -98,7 +99,7 @@ CREATE TABLE ordenes(
 );
 
 CREATE TABLE observaciones(
-    id SERIAL NOT NULL UNIQUE,
+    id SERIAL,
     id_ordenes INT,
     descripcion TEXT,
     imagen VARCHAR(500),
@@ -110,7 +111,7 @@ CREATE TABLE observaciones(
 );
 
 CREATE TABLE accesorios(
-    id SERIAL NOT NULL UNIQUE,
+    id SERIAL,
     nombre VARCHAR(50),
     estatus VARCHAR(15),
 

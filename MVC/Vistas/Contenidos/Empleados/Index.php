@@ -9,7 +9,7 @@
         <table class="table shadow table-striped">
             <thead class="thead-dark">
                 <tr>
-                    <th colspan="10" class="text-center bg-danger"><h4 class="font-weight-normal">Clientes Registrados</h4></th>
+                    <th colspan="10" class="text-center bg-danger"><h4 class="font-weight-normal">Empleados Registrados</h4></th>
                 </tr>
                 <tr>
                     <th>#</th>

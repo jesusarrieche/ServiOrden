@@ -20,7 +20,7 @@
 
         public function OrdenesPropiedad() {
             $id = $_GET['id'];
-            $ordenes = parent::ObtenerObjetos("SELECT ordenes.id, ordenes.fecha_registro, ordenes.fecha_anulacion, ordenes.fecha_cierre, clientes.nombre, clientes.apellido, vehiculos.serial_motor, vehiculos.placa,marcas.nombre as marca, modelos.nombre as modelo, modelos.anio, ordenes.descripcion FROM ordenes
+            $ordenes = parent::ObtenerObjetos("SELECT ordenes.id, ordenes.fecha_registro, ordenes.fecha_anulacion, ordenes.fecha_cierre, clientes.nombre, clientes.apellido, vehiculos.serial_motor, vehiculos.placa,marcas.nombre as marca, modelos.nombre as modelo, ordenes.descripcion FROM ordenes
                     JOIN vehiculos on ordenes.id_vehiculos = vehiculos.id
                     JOIN modelos on vehiculos.id_modelos = modelos.id
                     JOIN marcas on modelos.id_marcas = marcas.id
@@ -31,14 +31,16 @@
             require_once 'Vistas/Pie.php';
         }
 
-        public function InventarioOrden() {
+        public function ChequeoOrden() {
             $id = $_GET['id'];
             $accesorios = parent::ObtenerObjetos("select accesorios.nombre from accesorios
                                                   join ordenes_accesorios on accesorios.id = ordenes_accesorios.id_accesorios
                                                   where ordenes_accesorios.id_ordenes = '$id'");
+
+            $orden = $this->modeloOrden->ObtenerOrden($id);
             
             require_once 'Vistas/Encabezado.php';
-            require_once 'Vistas/Contenidos/Ordenes/Inventario.php';
+            require_once 'Vistas/Contenidos/Ordenes/Chequeo.php';
             require_once 'Vistas/Pie.php';
         }
         
@@ -78,6 +80,12 @@
             require_once 'Vistas/Pie.php';
         }
 
+        public function RegistroObservacion(){
+            require_once 'Vistas/Encabezado.php';
+            require_once 'Vistas/Contenidos/Ordenes/RegistroObservacion.php';
+            require_once 'Vistas/Pie.php';
+        }
+
         public function RegistroInventario() {
             require_once 'Vistas/Encabezado.php';
             require_once 'Vistas/Contenidos/Ordenes/RegistroInventario.php';
@@ -87,7 +95,7 @@
         public function RegistroOrden() {
             
             $mecanicos = parent::ObtenerObjetos("SELECT * FROM EMPLEADOS WHERE estatus='ACTIVO' AND cargo='MECANICO' OR cargo='AYUDANTE MECANICO'");
-            $vehiculos = parent::ObtenerObjetos("select vehiculos.id, clientes.identificacion, clientes.nombre, clientes.apellido, vehiculos.placa, marcas.nombre as marca, modelos.nombre as modelo, modelos.anio from clientes 
+            $vehiculos = parent::ObtenerObjetos("select vehiculos.id, clientes.identificacion, clientes.nombre, clientes.apellido, vehiculos.placa, vehiculos.anio, marcas.nombre as marca, modelos.nombre as modelo from clientes 
                                                 join vehiculos on clientes.id = vehiculos.id_clientes
                                                 join modelos on vehiculos.id_modelos = modelos.id
                                                 join marcas on modelos.id_marcas = marcas.id");
@@ -110,6 +118,9 @@
             $orden = new Orden();
             
             $orden->setId_vehiculo(parent::LimpiaCadena($_POST['id_vehiculo']));
+            
+            $numero = parent::ConsultaSimple("SELECT * FROM ordenes")->rowCount() + 1;
+            $orden->setCodigo(parent::CodigoAleatorio("OR", 5, $numero));
             $orden->setFecha_registro(date("j-n-y h:i:s"));
             $orden->setDescripcion(parent::LimpiaCadena($_POST['descripcion']));
             $orden->setEstatus("ACTIVO");

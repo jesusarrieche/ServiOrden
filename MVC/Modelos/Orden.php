@@ -4,6 +4,7 @@
         
         private $id;
         private $id_vehiculo;
+        private $codigo;
         private $fecha_registro;
         private $fecha_anulacion;
         private $fecha_cierre;
@@ -19,8 +20,16 @@
         public function setId_accesorios($id_accesorios) {
             array_push($this->id_accesorios, $id_accesorios);
         }
+        
+        public function getCodigo() {
+            return $this->codigo;
+        }
 
-                
+        public function setCodigo($codigo) {
+            $this->codigo = $codigo;
+        }
+
+                 
         public function getId_mecanicos() {
             return $this->id_mecanicos;
         }
@@ -97,7 +106,7 @@
         
         public function ObtenerOrden($id){
             try {
-                $consulta = parent::Conectar()->prepare("SELECT ordenes.id, ordenes.fecha_registro, ordenes.fecha_anulacion, ordenes.fecha_cierre, clientes.identificacion, clientes.nombre, clientes.apellido, vehiculos.placa, vehiculos.serial_caja ,marcas.nombre as marca, modelos.nombre as modelo, modelos.anio, ordenes.descripcion FROM ordenes
+                $consulta = parent::Conectar()->prepare("SELECT ordenes.id, ordenes.codigo, ordenes.fecha_registro, ordenes.fecha_anulacion, ordenes.fecha_cierre, clientes.identificacion, clientes.nombre, clientes.apellido, vehiculos.placa, vehiculos.serial_caja ,marcas.nombre as marca, modelos.nombre as modelo, vehiculos.anio, ordenes.descripcion FROM ordenes
                     JOIN vehiculos on ordenes.id_vehiculos = vehiculos.id
                     JOIN modelos on vehiculos.id_modelos = modelos.id
                     JOIN marcas on modelos.id_marcas = marcas.id
@@ -115,7 +124,7 @@
                 
         public function ListarOrdenes(){
             try {
-                $consulta = parent::Conectar()->prepare("SELECT ordenes.id, ordenes.fecha_registro, ordenes.fecha_anulacion, ordenes.fecha_cierre, clientes.nombre, clientes.apellido, vehiculos.serial_motor, vehiculos.placa,marcas.nombre as marca, modelos.nombre as modelo, modelos.anio, ordenes.descripcion FROM ordenes
+                $consulta = parent::Conectar()->prepare("SELECT ordenes.id, ordenes.codigo, ordenes.fecha_registro, ordenes.fecha_anulacion, ordenes.fecha_cierre, clientes.nombre, clientes.apellido, vehiculos.serial_motor, vehiculos.placa,marcas.nombre as marca, modelos.nombre as modelo, ordenes.descripcion FROM ordenes
                     JOIN vehiculos on ordenes.id_vehiculos = vehiculos.id
                     JOIN modelos on vehiculos.id_modelos = modelos.id
                     JOIN marcas on modelos.id_marcas = marcas.id
@@ -132,15 +141,17 @@
         
         public function RegistrarOrden(Orden $orden){
             try {
-                $consulta = parent::Conectar()->prepare("INSERT INTO ordenes(id_vehiculos, descripcion, fecha_registro, estatus) VALUES "
-                        . "(:id_vehiculos, :descripcion, :fecha_registro, :estatus)");
+                $consulta = parent::Conectar()->prepare("INSERT INTO ordenes(id_vehiculos, codigo, descripcion, fecha_registro, estatus) VALUES "
+                        . "(:id_vehiculos, :codigo, :descripcion, :fecha_registro, :estatus)");
                 
                 $id_vehiculos = $orden->getId_vehiculo();
+                $codigo = $orden->getCodigo();
                 $descripcion = $orden->getDescripcion();
                 $fecha_registro = $orden->getFecha_registro();
                 $estatus = $orden->getEstatus();
                 
                 $consulta->bindParam(":id_vehiculos", $id_vehiculos);
+                $consulta->bindParam(":codigo", $codigo);
                 $consulta->bindParam(":descripcion", $descripcion);
                 $consulta->bindParam(":fecha_registro", $fecha_registro);
                 $consulta->bindParam(":estatus", $estatus);

@@ -28,24 +28,27 @@
                     <th colspan="10" class="text-center bg-danger"><h4 class="font-weight-normal">Ordenes Registradas</h4></th>
                 </tr>
                 <tr>
-                    <th><center>#</center></th>
+                    <th>#</th>
+                    <th>Codigo</th>
                     <th>Registro</th>
                     <th>Cliente</th>
                     <th>Propiedad</th>
                     <th>Detalles</th>
-                    <th>Inventario | Observaciones</th>
+                    <th>Revision</th>
+                    <th>Observaciones</th>
                     <th>Estado</th>
                 </tr>
             </thead>
             <tbody>
             <?php
-                $ordenr = 0;
+                $or= 0;
                 // var_dump($this->modeloOrden->ListarOrdenes());
                 foreach ($this->modeloOrden->ListarOrdenes() as $orden):
-                    $ordenr++;
+                    $or++;
             ?>
                 <tr>
-                    <td><?= $ordenr;?></td>
+                    <td><?= $or;?></td>
+                    <td><?= $orden->codigo;?></td>
                     <td>
                         <?php
                            $fecha = explode(" ", $orden->fecha_registro);
@@ -56,23 +59,30 @@
                     <td><?= $orden->nombre ." ". $orden->apellido;?></td>
                     <td>
                         <?php
-                            if($orden->serial_motor == ""){
+                            if($orden->serial_motor == "NO APLICA"){
                                 echo "CAJA";
                             } else {
                                 echo "VEHICULO";
                             }
                         ?>
                     </td>
-                    <td>
+                    <td>                 
                         <a href="?controlador=Orden&accion=Detalles&id=<?= $orden->id;?>" class="text-dark"><i class="fas fa-eye fa-lg"></i></a>
                     </td>
                     <td>               
-                        <div class="row m-0 p-0 ">
-                            <a href="?controlador=Orden&accion=InventarioOrden&id=<?= $orden->id;?>" class="text-secondary ml-5 mr-3"><i class="fas fa-clipboard-list fa-lg"></i></a>
-                            |<a href="?controlador=Orden&accion=Observaciones&id=<?= $orden->id;?>" class="text-secondary ml-3"><i class="fas fa-eye fa-lg"></i></a>
-                       
-                        </div>
+                        
+                    <?php
+                        $inventario = '<a href="?controlador=Orden&accion=ChequeoOrden&id='. $orden->id.'" class="text-secondary ml-5 mr-3"><i class="fas fa-clipboard-list fa-lg"></i></a>';
+                        if($orden->serial_motor == "NO APLICA"){
                             
+                        } else {
+                            echo $inventario;
+                        }
+                    ?>
+                    
+                    </td>
+                    <td>
+                        <a href="?controlador=Orden&accion=Observaciones&id=<?= $orden->id;?>" class="text-secondary ml-3"><i class="fas fa-eye fa-lg"></i></a>        
                     </td>
                     <td>
                         <?php

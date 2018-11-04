@@ -43,7 +43,7 @@
                         <a href="?controlador=Vehiculo&accion=PropiedadCliente&id=<?= $cliente->id;?>" class="text-dark"><i class="fas fa-search fa-lg "></i></a>
                     </td>
                     <td><a href="?controlador=cliente&accion=RegistroCliente&id=<?= $cliente->id?>" class="text-info"><i class="fas fa-sync fa-lg pl-4"></i></a></td>
-                    <td><a href="?controlador=cliente&accion=BorrarCliente&id=<?= $cliente->id?>" class="text-danger"><i class="fas fa-trash-alt fa-lg pl-4"></i></a></td>
+                    <td><a href="?controlador=cliente&accion=BorrarCliente&id=<?= $cliente->id?>" class="text-danger eliminar"><i class="fas fa-trash-alt fa-lg pl-4"></i></a></td>
                 </tr>
                 <?php endforeach;?>
             </tbody>

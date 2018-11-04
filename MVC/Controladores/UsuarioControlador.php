@@ -43,9 +43,8 @@
            $usuario->setCorreo(strtoupper($_POST['correo']));
            
            $usuario->setUsuario($_POST['usuario']);
-           $usuario->setPassword($_POST['password']);
+           $usuario->setPassword(parent::Encriptar($_POST['password']));
            $usuario->setPrivilegio($_POST['privilegio']);
-           //$usuario->setImagen("usuario.png");
            $usuario->setEstatus("ACTIVO");
            
            if($usuario->getId() > 0){

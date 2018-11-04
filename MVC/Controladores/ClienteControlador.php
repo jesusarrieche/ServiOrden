@@ -57,8 +57,8 @@
               if ($consultaIdentificacion->rowCount() >= 1) {
                 $alerta= [
                 'alerta' => 'simple',
-                'titulo' => 'Esta Identificacion ya Existe',
-                'texto' => 'Por favor intente de nuevo',
+                'titulo' => "Esta Identificacion ya Existe",
+                'texto' => "La identificacion $identificacion pertenece a otro cliente. Por favor intente de nuevo",
                 'tipo' => 'error'
                 ];
               }else{

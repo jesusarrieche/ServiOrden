@@ -6,7 +6,7 @@
                 <h1><center><?= $titulo ;?> Cliente</center></h1>
                 <hr class="bg-danger">
 
-                <form action="?controlador=cliente&accion=Guardar" method="POST">
+                <form action="?controlador=cliente&accion=Guardar" method="POST" class="formulario">
                     <div class="row form-group">
                         <input  name="id" hidden="" value="<?= $cliente->getId();?>">
                         <label for="nombre" class="col-form-label col-md-2">Nombre:</label>
@@ -54,8 +54,8 @@
                     <hr class="bg-secondary">
 
                     <div class="row form-group justify-content-md-center">
-                        <a href="javascript:history.back(-1);" class="btn btn-secondary m-2"><i class="fas fa-arrow-circle-left"></i> Atras</a>
-                        <button type="submit"  class="btn btn-success m-2" id="validacion">Enviar</button>
+                        <a href="?controlador=Cliente" class="btn btn-secondary m-2"><i class="fas fa-arrow-circle-left"></i> Atras</a>
+                        <button type="submit"  class="btn btn-success m-2" id="enviar">Enviar</button>
                         <button type="reset" class="btn btn-danger m-2">Limpiar</button>
                     </div>
                 </form>

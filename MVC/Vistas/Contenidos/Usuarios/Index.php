@@ -38,7 +38,7 @@
                     <td><?= $usuario->privilegio ?></td>
                     <td><?= $usuario->estatus ?></td> 
                     <td><a href="?controlador=usuario&accion=RegistroUsuario&id=<?= $usuario->id ?>" class="pl-4 text-info"><i class="fas fa-sync-alt fa-lg"></i></a></td>
-                    <td><a href="?controlador=usuario&accion=BorrarUsuario&id=<?= $usuario->id ?>" class="pl-4 text-danger"><i class="fas fa-trash-alt fa-lg"></i></a></td>
+                    <td><a href="?controlador=usuario&accion=BorrarUsuario&id=<?= $usuario->id ?>" class="pl-4 text-danger eliminar"><i class="fas fa-trash-alt fa-lg"></i></a></td>
                 </tr>
                 <?php endforeach;?>
             </tbody>

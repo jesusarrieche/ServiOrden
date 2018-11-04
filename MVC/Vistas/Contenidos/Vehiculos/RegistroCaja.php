@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row justify-content-md-center">
             <div class="col-md-12">
-                <h3><center>Registro de Vehiculo</center></h3>
+                <h3><center>Registro de Caja</center></h3>
                 <hr class="bg-danger">
 <?php 
     if(isset($alerta)){
@@ -35,8 +35,8 @@
                     </div>
                     <hr class="bg-secondary">
                     <div class="row form-group">
-                        <label for="marca" class="col-form-label col-md-2 pr-0">Marca | Modelo | Año*:</label>
-                        <div class="col-md-5 pt-2">
+                        <label for="marca" class="col-form-label col-md-2 pr-0">Marca | Modelo*:</label>
+                        <div class="col-md-3 pt-2">
                             <select class="selectorBusqueda form-control" required name="id_modelo">
                                 <option value="" selected>-</option>
                                 
@@ -44,10 +44,27 @@
                             foreach( $modelos as $modelo):
                         ?>
                             
-                                <option value="<?= $modelo->id;?>"><?= $modelo->marca;?> - <?= $modelo->modelo;?> - <?= $modelo->anio;?></option>
+                                <option value="<?= $modelo->id;?>"><?= $modelo->marca;?> - <?= $modelo->modelo;?></option>
                         <?php endforeach; ?>
                             </select>
-                        </div>  
+                        </div>
+
+
+                        <label class="col-form-label col-md-2">Año del Vehiculo*:</label>
+                        <div class="col-md-2">
+                            <select class="form-control" name="anio">
+                                <?php
+
+                                $anio = date("Y");
+
+                                for($i=1945 ; $i<=$anio; $i++){
+
+                                    echo '<option value="'.$i.'">'.$i.'</option>';
+                                }
+
+                                ?>
+                            </select>
+                        </div>
                     </div>
 
                     <div class="row form-group">
@@ -57,7 +74,7 @@
                         </div>
                         <label for="serial_caja" class="col-form-label col-md-1">S/Caja:</label>
                         <div class="col-md-3">
-                            <input type="text" name="serial_caja" class="form-control" pattern="[A-Za-z0-9]" placeholder="Opcional...">
+                            <input type="text" name="serial_caja" class="form-control" placeholder="Opcional...">
                         </div>
                     </div>
                     <div class="row form-group">

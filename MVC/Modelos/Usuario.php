@@ -44,8 +44,9 @@
         }
         
         public function Listar(){
+            $id = $_SESSION['id'];
             try{
-                $consulta = Conexion::Conectar()->prepare("SELECT id, identificacion, nombre, apellido, usuario, privilegio, estatus FROM usuarios");
+                $consulta = Conexion::Conectar()->prepare("SELECT id, identificacion, nombre, apellido, usuario, privilegio, estatus FROM usuarios WHERE id != $id");
                 $consulta->execute();
                 
                 return $consulta->fetchAll(PDO::FETCH_OBJ);
@@ -82,7 +83,6 @@
                 $usuario->setUsuario($registro->usuario);
                 $usuario->setPassword($registro->password);
                 $usuario->setPrivilegio($registro->privilegio);
-                $usuario->setImagen($registro->imagen);
                 
                 return $usuario;
                 
@@ -161,7 +161,6 @@
                 $usuario = Conexion::LimpiaCadena($u->getUsuario());
                 $password = Conexion::Encriptar(Conexion::LimpiaCadena($u->getPassword()));
                 $privilegio = Conexion::LimpiaCadena($u->getPrivilegio());
-                $imagen = Conexion::LimpiaCadena($u->getImagen());
                 $estatus = Conexion::LimpiaCadena($u->getEstatus());
                 
                 $consulta->bindParam(":id", $id);

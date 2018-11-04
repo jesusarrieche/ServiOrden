@@ -134,7 +134,7 @@
 
         public function ListarVehiculos(){
             try{
-                $consulta = Conexion::Conectar()->prepare("SELECT vehiculos.id, vehiculos.id_modelos AS id_modelos, clientes.nombre, clientes.apellido, vehiculos.placa, marcas.nombre AS marca, modelos.nombre AS  modelo, modelos.anio, vehiculos.estatus from clientes
+                $consulta = Conexion::Conectar()->prepare("SELECT vehiculos.id, vehiculos.id_modelos AS id_modelos, clientes.nombre, clientes.apellido, vehiculos.placa, marcas.nombre AS marca, modelos.nombre AS  modelo, vehiculos.estatus from clientes
                                                 JOIN vehiculos ON id_clientes = clientes.id
                                                 JOIN modelos ON  vehiculos.id_modelos = modelos.id
                                                 JOIN marcas ON modelos.id_marcas = marcas.id ORDER BY clientes.nombre ASC;");
@@ -247,8 +247,8 @@
             
         public function RegistrarVehiculo(Vehiculo $v){
         try{
-            $consulta = Conexion::Conectar()->prepare("INSERT INTO vehiculos(id_modelos, id_clientes, placa, serial_motor, serial_carroceria, serial_caja, color, estatus) "
-                . "VALUES (:id_modelos, :id_clientes, :placa, :serial_motor, :serial_carroceria, :serial_caja, :color, :estatus)");
+            $consulta = Conexion::Conectar()->prepare("INSERT INTO vehiculos(id_modelos, id_clientes, placa, serial_motor, serial_carroceria, serial_caja, color, anio, estatus) "
+                . "VALUES (:id_modelos, :id_clientes, :placa, :serial_motor, :serial_carroceria, :serial_caja, :color, :anio, :estatus)");
 
             $id_modelos = $v->getId_modelo();
             $id_clientes = $v->getId_cliente();
@@ -257,6 +257,7 @@
             $serial_carroceria = $v->getSerial_carroceria();
             $serial_caja = $v->getSerial_caja();
             $color = $v->getColor();
+            $anio = $v->getAnio();
             $estatus = $v->getEstatus();
 
             $consulta->bindParam(":id_modelos", $id_modelos);
@@ -266,6 +267,7 @@
             $consulta->bindParam(":serial_carroceria", $serial_carroceria);
             $consulta->bindParam(":serial_caja", $serial_caja);
             $consulta->bindParam(":color", $color);
+            $consulta->bindParam(":anio", $anio);
             $consulta->bindParam(":estatus", $estatus);
 
             $consulta->execute();
@@ -439,16 +441,14 @@
 
         public function RegistrarModelo(Vehiculo $modelo){
             try {
-                $consulta = parent::Conectar()->prepare("INSERT INTO modelos(id_marcas, nombre, anio, estatus) VALUES (:id_marcas, :nombre, :anio, :estatus)");
+                $consulta = parent::Conectar()->prepare("INSERT INTO modelos(id_marcas, nombre, estatus) VALUES (:id_marcas, :nombre, :estatus)");
                 
                 $id_marcas = $modelo->getId_marca();
                 $nombre = $modelo->getModelo();
-                $anio = $modelo->getAnio();
                 $estatus = $modelo->getEstatus();
                 
                 $consulta->bindParam(":id_marcas", $id_marcas);
                 $consulta->bindParam(":nombre", $nombre);
-                $consulta->bindParam(":anio", $anio);
                 $consulta->bindParam(":estatus", $estatus);
                 
                 $consulta->execute();

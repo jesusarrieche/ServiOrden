@@ -15,8 +15,8 @@
             <hr class="bg-danger">    
             <div class="row">
                 <a href="javascript:history.back(-1);" class="btn btn-secondary btn-lg m-3"><i class="fas fa-arrow-circle-left"></i> Atras</a>
-                <a href="?controlador=Vehiculo&accion=RegistroVehiculo&id=<?= $_GET['id']; ?>" class="btn btn-success btn-lg m-3 font-weight-light"><i class="fas fa-car"></i> Registrar Vehiculo </a>
-                <a href="?controlador=Vehiculo&accion=RegistroCajaCliente&id=<?= $_GET['id']; ?>" class="btn btn-primary btn-lg m-3 font-weight-light"><i class="fas fa-box"></i> Registrar Caja </a>
+                <!-- <a href="?controlador=Vehiculo&accion=RegistroVehiculo&id=<?= $_GET['id']; ?>" class="btn btn-success btn-lg m-3 font-weight-light"><i class="fas fa-car"></i> Registrar Vehiculo </a>
+                <a href="?controlador=Vehiculo&accion=RegistroCajaCliente&id=<?= $_GET['id']; ?>" class="btn btn-primary btn-lg m-3 font-weight-light"><i class="fas fa-box"></i> Registrar Caja </a> -->
             </div>
         </div>
         <hr class="bg-danger">
@@ -30,7 +30,7 @@
                     <th>#</th>
                     <th>Tipo</th>
                     <th>Placa</th>
-                    <th>Marca | Modelo | Año</th>
+                    <th>Marca | Modelo</th>
                     <th>Ordenes</th>
                     <th>Actualizar</th>
                     <th>Eliminar</th>
@@ -47,7 +47,7 @@
                     <td><?= $orden;?></td>
                     <td></td>
                     <td><?= $vehiculo->placa;?></td>
-                    <td><?= $vehiculo->marca . " - " .$vehiculo->modelo . " - " . $vehiculo->anio;?></td>
+                    <td><?= $vehiculo->marca . " - " .$vehiculo->modelo;?></td>
                     <td>
                         <a href="?controlador=Orden&accion=OrdenesPropiedad&id=<?= $vehiculo->id; ?>" class="text-dark"><i class="fas fa-search fa-lg "></i></a>
                     </td>

@@ -9,17 +9,20 @@
         public function IniciarSession(){
             if(isset($_POST['usuario']) && isset($_POST['password'])){
                 $usuario = $_POST['usuario'];
-                $password = $_POST['password'];
+                $password = parent::Encriptar($_POST['password']) ;
                 
-                $consulta = parent::Conectar()->prepare("SELECT * FROM usuarios WHERE usuario = '$usuario' AND password = '$password'");
+                $consulta = parent::Conectar()->prepare("SELECT * FROM usuarios WHERE usuario = '$usuario' AND password = '$password'  AND estatus='ACTIVO'");
                 $consulta->execute();
                 
                 if($consulta->rowCount() >= 1){
                     
+                    $consulta2 = parent::ObtenerObjeto("SELECT * FROM usuarios WHERE usuario = '$usuario' AND password = '$password'  AND estatus='ACTIVO'");
+
                     session_start();
-                    
-                    $_SESSION['usuario'] = $usuario;
-                    
+
+                    $_SESSION['id']= $consulta2->id;                    
+                    $_SESSION['usuario'] = $consulta2->usuario;
+
                     header("location:?controlador=Inicio");
                 } else {
                     $alerta = [

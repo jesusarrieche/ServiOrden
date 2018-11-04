@@ -10,7 +10,7 @@
                 echo $alerta;
             }
         ?>
-        <form action="?controlador=Vehiculo&accion=GuardarMarca" method="POST">
+        <form action="?controlador=Vehiculo&accion=GuardarMarca" method="POST" class="formulario">
             <input name="id" value="<?= $marca->getId();?>" hidden>
             <div class="row form-group">
                 <label for="propietario" class="col-form-label col-md-2"> <strong>Datos de la Marca:</strong></label>
@@ -24,7 +24,7 @@
                
                     <input type="text" name="estatus" value="ACTIVO" hidden>
                 
-                <button type="submit" class="btn btn-info">Enviar</button>
+                <button type="submit" id="enviar" class="btn btn-info">Enviar</button>
                 <button type="reset" class="btn btn-secondary ml-1">Limpiar</button>
             </div>
 

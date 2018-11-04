@@ -18,6 +18,10 @@
     <link href="Assets/css/menu-lateral.css" rel="stylesheet">
     <link href="Assets/css/estilos.css" rel="stylesheet">
     
+    <!-- JQuery -->
+    <script src="Assets/js/jquery/jquery-3.2.1.js"></script>
+
+    
     <!-- Sweet-Alert -->
     <link rel="stylesheet" href="Assets/css/sweetalert2.css">
     <script src="Assets/js/sweetalert2.all.js"></script>
@@ -34,7 +38,7 @@
     
         session_start();
         
-//        var_dump($_SESSION);
+        // var_dump($_SESSION);
         
         if(!isset($_SESSION['usuario'])){
             
@@ -59,7 +63,7 @@
                     </div>
                     <div class="row justify-content-center">
                         <div class="col-6">
-                            <span>Administrador</span> 
+                           <center><span><?= $_SESSION['usuario'];?></span> </center> 
                         </div>
                     </div>
                     <div class="row justify-content-center" id="iconos">

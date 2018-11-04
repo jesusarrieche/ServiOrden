@@ -15,7 +15,7 @@
         
         public function Inicio(){
             
-            $vehiculos = parent::ObtenerObjetos("select vehiculos.id, vehiculos.id_modelos as id_modelos, clientes.nombre, clientes.apellido, vehiculos.placa, marcas.nombre as marca, modelos.nombre as  modelo, modelos.anio, vehiculos.estatus from clientes
+            $vehiculos = parent::ObtenerObjetos("select vehiculos.id, vehiculos.id_modelos as id_modelos, clientes.nombre, clientes.apellido, vehiculos.placa, marcas.nombre as marca, modelos.nombre as  modelo, vehiculos.estatus from clientes
                 right join vehiculos on id_clientes = clientes.id
                 left join modelos on  vehiculos.id_modelos = modelos.id
                 left join marcas on modelos.id_marcas = marcas.id;");
@@ -30,7 +30,7 @@
             
             $id = $_GET['id'];
             $cliente = $this->modeloCliente->Obtener($id);
-            $vehiculos = parent::ObtenerObjetos("select vehiculos.id, vehiculos.id_modelos as id_modelos, clientes.nombre, clientes.apellido, vehiculos.placa, marcas.nombre as marca, modelos.nombre as  modelo, modelos.anio, vehiculos.estatus from clientes
+            $vehiculos = parent::ObtenerObjetos("select vehiculos.id, vehiculos.id_modelos as id_modelos, clientes.nombre, clientes.apellido, vehiculos.placa, marcas.nombre as marca, modelos.nombre as  modelo, vehiculos.estatus from clientes
                 right join vehiculos on id_clientes = clientes.id
                 left join modelos on  vehiculos.id_modelos = modelos.id
                 left join marcas on modelos.id_marcas = marcas.id where clientes.id = '$id';");
@@ -45,7 +45,7 @@
 
         public function RegistroVehiculo(){        
             
-            $modelos = parent::ObtenerObjetos("SELECT modelos.id, marcas.nombre AS marca, modelos.nombre AS modelo, modelos.anio FROM marcas JOIN modelos ON id_marcas = marcas.id ORDER BY marca ASC");
+            $modelos = parent::ObtenerObjetos("SELECT modelos.id, marcas.nombre AS marca, modelos.nombre AS modelo FROM marcas JOIN modelos ON id_marcas = marcas.id ORDER BY marca ASC");
             
             require_once 'Vistas/Encabezado.php';
             require_once 'Vistas/Contenidos/Vehiculos/RegistroVehiculo.php';
@@ -66,13 +66,15 @@
         }
         
         public function MostrarModelos(){
+            $id=$_GET['id'];
+            $marca = parent::ObtenerObjeto("SELECT * FROM marcas WHERE id='$id'");
             require_once 'Vistas/Encabezado.php';
             require_once 'Vistas/Contenidos/Vehiculos/Modelos.php';
             require_once 'Vistas/Pie.php';
         }
         
         public function RegistroCaja(){    
-            $modelos = parent::ObtenerObjetos("SELECT modelos.id, marcas.nombre AS marca, modelos.nombre AS modelo, modelos.anio FROM marcas JOIN modelos ON id_marcas = marcas.id ORDER BY marca ASC");
+            $modelos = parent::ObtenerObjetos("SELECT modelos.id, marcas.nombre AS marca, modelos.nombre AS modelo FROM marcas JOIN modelos ON id_marcas = marcas.id ORDER BY marca ASC");
 
             require_once 'Vistas/Encabezado.php';
             require_once 'Vistas/Contenidos/Vehiculos/RegistroCaja.php';
@@ -116,16 +118,18 @@
 
                 $vehiculo->setId_cliente(parent::LimpiaCadena($_POST['id_cliente']));   
                 $vehiculo->setId_modelo(parent::LimpiaCadena($_POST['id_modelo']));
-                $vehiculo->setPlaca(parent::LimpiaCadena($_POST['placa']));
-                if(!isset($_POST['serial_caja'])){
+                $vehiculo->setPlaca(strtoupper(parent::LimpiaCadena($_POST['placa'])));
+                if($_POST['serial_caja'] == ""){
                     $vehiculo->setSerial_caja("NO APLICA");
                 } else {
-                    $vehiculo->setSerial_caja(parent::LimpiaCadena($_POST['serial_caja']));
+                    $vehiculo->setSerial_caja(strtoupper(parent::LimpiaCadena($_POST['serial_caja'])));
                 }
-
+                
+                $vehiculo->setAnio(parent::LimpiaCadena($_POST['anio']));
                 $vehiculo->setEstatus(parent::LimpiaCadena($_POST['estatus']));
                 $vehiculo->setSerial_motor("NO APLICA");
                 $vehiculo->setSerial_carroceria("NO APLICA");
+                $vehiculo->setColor("NO APLICA");
                 
                 $alerta = $this->modeloVehiculo->RegistrarVehiculo($vehiculo);
                 
@@ -133,11 +137,16 @@
 
                 $vehiculo->setId_cliente(parent::LimpiaCadena($_POST['id_cliente']));   
                 $vehiculo->setId_modelo(parent::LimpiaCadena($_POST['id_modelo']));
-                $vehiculo->setPlaca(parent::LimpiaCadena($_POST['placa']));
-                $vehiculo->setSerial_motor(parent::LimpiaCadena($_POST['serial_motor']));
-                $vehiculo->setSerial_carroceria(parent::LimpiaCadena($_POST['serial_carroceria']));
-                $vehiculo->setSerial_caja(parent::LimpiaCadena($_POST['serial_caja']));
-                $vehiculo->setColor(parent::LimpiaCadena($_POST['color']));
+                $vehiculo->setPlaca(strtoupper(parent::LimpiaCadena($_POST['placa'])));
+                $vehiculo->setSerial_motor(strtoupper(parent::LimpiaCadena($_POST['serial_motor'])));
+                $vehiculo->setSerial_carroceria(strtoupper(parent::LimpiaCadena($_POST['serial_carroceria'])));
+                if(!isset($_POST['serial_caja'])){
+                    $vehiculo->setSerial_caja("NO APLICA");
+                } else {
+                    $vehiculo->setSerial_caja(strtoupper(parent::LimpiaCadena($_POST['serial_caja'])));
+                }
+                $vehiculo->setColor(strtoupper(parent::LimpiaCadena($_POST['color'])));
+                $vehiculo->setAnio(parent::LimpiaCadena($_POST['anio']));
                 $vehiculo->setEstatus(parent::LimpiaCadena($_POST['estatus']));
                 
                 $alerta = $this->modeloVehiculo->RegistrarVehiculo($vehiculo);
@@ -206,12 +215,9 @@
             $modelo->setId(parent::LimpiaCadena($_POST['id_modelo']));
             $modelo->setId_marca(parent::LimpiaCadena($_POST['id_marca']));
             $modelo->setModelo(strtoupper(parent::LimpiaCadena($_POST['modelo'])));
-            $modelo->setAnio(parent::LimpiaCadena($_POST['anio']));
             $modelo->setEstatus(strtoupper(parent::LimpiaCadena($_POST['estatus'])));
-            
             $nombreModelo = strtoupper(parent::LimpiaCadena($_POST['modelo']));
-            $anioModelo = parent::LimpiaCadena($_POST['anio']);
-            $consulta = parent::ConsultaSimple("SELECT * FROM modelos WHERE nombre = '$nombreModelo' AND anio='$anioModelo'");
+            $consulta = parent::ConsultaSimple("SELECT * FROM modelos WHERE nombre = '$nombreModelo'");
             
             if($consulta->rowCount() >= 1){
                 $alerta = [

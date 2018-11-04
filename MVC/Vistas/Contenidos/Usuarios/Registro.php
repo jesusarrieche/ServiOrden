@@ -9,7 +9,7 @@
                 </div>
             </div>
             <hr class="bg-danger">
-            <form action="?controlador=usuario&accion=Guardar" method="POST" class="form-group">
+            <form action="?controlador=usuario&accion=Guardar" method="POST" class="formulario">
                 <div class="row">
                     <input name="id" hidden value="<?= $usuario->getId();?>">
                     <label for="cedula_usuario" class="col-form-label col-md-1">Cedula:</label>
@@ -71,12 +71,12 @@
                         
                     <label for="password1" class="col-form-label col-md-1">Password:</label>
                     <div class="col-md-3">
-                        <input type="password" name="password" class="form-control">
+                        <input type="password" name="password" id="password1" class="form-control">
                     </div>
                     
-                    <label for="password2" class="col-form-label col-md-1">Confirmar <br> Password:</label>
+                    <label for="password2" class="col-form-label col-md-1">Confirmar Password:</label>
                     <div class="col-md-3">
-                        <input type="password" name="password2" class="form-control">
+                        <input type="password" name="password2" id="password2" class="form-control">
                     </div>
 
                 </div>
@@ -94,8 +94,16 @@
 
                 <div class="row justify-content-md-center">
                     <a href="javascript:history.back(-1);" class="btn btn-secondary m-2"><i class="fas fa-arrow-circle-left"></i> Atras</a>
-                    <button type="submit"  class="btn btn-success m-2" id="validacion">Enviar</button>
+                    <button type="submit"  class="btn btn-success m-2" id="enviar">Enviar</button>
                     <button type="reset" class="btn btn-danger m-2">Limpiar</button>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="col md"></div>
+                    <div class="col md"></div>
+                    <div class="col md" id="mensaje"></div>
+                    <div class="col md"></div>
+                    <div class="col md"></div>
                 </div>
 
 

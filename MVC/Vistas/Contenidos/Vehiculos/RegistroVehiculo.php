@@ -35,8 +35,8 @@
                     </div>
                     <hr class="bg-secondary">
                     <div class="row form-group">
-                        <label for="marca" class="col-form-label col-md-2 pr-0">Marca | Modelo | Año*:</label>
-                        <div class="col-md-5 pt-2">
+                        <label for="marca" class="col-form-label col-md-2 pr-0">Marca | Modelo*:</label>
+                        <div class="col-md-3 pt-2">
                             <select class="selectorBusqueda form-control" required name="id_modelo">
                                 <option value="" selected>-</option>
                                 
@@ -44,10 +44,27 @@
                             foreach( $modelos as $modelo):
                         ?>
                             
-                                <option value="<?= $modelo->id;?>"><?= $modelo->marca;?> - <?= $modelo->modelo;?> - <?= $modelo->anio;?></option>
+                                <option value="<?= $modelo->id;?>"><?= $modelo->marca;?> - <?= $modelo->modelo;?></option>
                         <?php endforeach; ?>
                             </select>
-                        </div>  
+                        </div>
+
+
+                        <label class="col-form-label col-md-2">Año del Vehiculo*:</label>
+                        <div class="col-md-2">
+                            <select class="form-control" name="anio">
+                                <?php
+
+                                $anio = date("Y");
+
+                                for($i=1945 ; $i<=$anio; $i++){
+
+                                    echo '<option value="'.$i.'">'.$i.'</option>';
+                                }
+
+                                ?>
+                            </select>
+                        </div>
                     </div>
 
                     <div class="row form-group">
@@ -85,7 +102,7 @@
                     <hr class="btn-danger">
 
                     <div class="row justify-content-md-center">
-                        <a href="javascript:history.back(-1);" class="btn btn-secondary m-2"><i class="fas fa-arrow-circle-left"></i> Atras</a>
+                        <a href="?controlador=Vehiculo" class="btn btn-secondary m-2"><i class="fas fa-arrow-circle-left"></i> Atras</a>
                         <button type="submit" class="btn btn-success m-2">Enviar</button>
                         <button type="reset" class="btn btn-secondary m-2">Limpiar</button>
                     </div>

@@ -59,7 +59,7 @@
                             
                     </td>
                     <td><?= $orden->nombre ." ". $orden->apellido;?></td>
-                    <td><?= $orden->placa." - ".$orden->marca ." - ".$orden->modelo." - ".$orden->anio;?></td>
+                    <td><?= $orden->placa." - ".$orden->marca ." - ".$orden->modelo?></td>
                     <td><?= $orden->descripcion;?></td>
     
                 </tr>

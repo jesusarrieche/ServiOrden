@@ -2,6 +2,12 @@
     <div class="container-fluid">
    
         <h2 class="bg-info text-light font-weight-normal rounded shadow p-2 text-center">Detalles de Orden</h2>
+        <div class="row">
+            <label class="col-form-label col-md-1">Codigo:</label>
+            <div class="col-md-4 mt-2">
+                <h5><strong><?= $orden->codigo ;?></strong></h5>
+            </div>
+        </div>
         <hr class="bg-danger">
         <form>
             <div class="form-group">
@@ -100,8 +106,18 @@
 
             <div class="row justify-content-md-center">
                 <a href="?controlador=Orden" class="btn btn-secondary m-2"><i class="fas fa-arrow-circle-left"></i> Atras</a>
-                <a href="?controlador=Orden&accion=Anular&id=<?= $_GET['id'];?>" class="btn btn-danger m-2">Anular Orden</a>
-                <a href="?controlador=Orden&accion=Cerrar&id=<?= $_GET['id'];?>" class="btn btn-success m-2">Cerrar Orden</a>
+                <?php
+                    
+                
+                    $botonAnular = '<a href="?controlador=Orden&accion=Anular&id='. $orden->id .'" class="btn btn-danger m-2">Anular Orden</a>';
+                    $botonCierre = '<a href="?controlador=Orden&accion=Cerrar&id='. $orden->id .'" class="btn btn-success m-2">Cerrar Orden</a>';
+                    
+                    if(empty ($orden->fecha_cierre) && empty ($orden->fecha_anulacion)){
+                        echo $botonAnular;
+                        echo $botonCierre;
+                    }
+                    
+                ?>
 
             </div>
         </form>
