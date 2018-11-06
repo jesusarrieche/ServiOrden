@@ -87,13 +87,10 @@
             
             $alerta = parent::Alerta($alerta);
             
-            if(!empty($alerta)){
-                require_once 'Vistas/Encabezado.php';
-                require_once 'Vistas/Contenidos/Empleados/Index.php';
-                require_once 'Vistas/Pie.php';
-            }else{
-                header("location=?controlador=Empleado");
-            }
+            require_once 'Vistas/Encabezado.php';
+            require_once 'Vistas/Contenidos/Empleados/Index.php';
+            require_once 'Vistas/Pie.php';
+            
         }
 
         public function BorrarEmpleado(){

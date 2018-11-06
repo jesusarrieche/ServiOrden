@@ -60,6 +60,28 @@ $(document).ready(function(){
 
    });
 
+   // Alerta de Confirmacion enlaces
+   $(".guardar").on("click",function(e){
+       e.preventDefault();
+
+       swal({
+          title: 'Esta Seguro?',
+          text: "Los Datos seran almacenados en el sistema",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Aceptar',
+          cancelButtonText: 'Cancelar'
+        }).then((result) => {
+          if (result.value) {
+              var ruta = $(this).attr('href');
+              $(location).attr('href',ruta);
+          }
+        });
+
+   });
+
    //BLOUE DE VALIDACIONES
 
    //Registro de Usuarios

@@ -109,8 +109,8 @@
                 <?php
                     
                 
-                    $botonAnular = '<a href="?controlador=Orden&accion=Anular&id='. $orden->id .'" class="btn btn-danger m-2">Anular Orden</a>';
-                    $botonCierre = '<a href="?controlador=Orden&accion=Cerrar&id='. $orden->id .'" class="btn btn-success m-2">Cerrar Orden</a>';
+                    $botonAnular = '<a href="?controlador=Orden&accion=Anular&id='. $orden->id .'" class="btn btn-danger m-2 guardar">Anular Orden</a>';
+                    $botonCierre = '<a href="?controlador=Orden&accion=Cerrar&id='. $orden->id .'" class="btn btn-success m-2 guardar">Cerrar Orden</a>';
                     
                     if(empty ($orden->fecha_cierre) && empty ($orden->fecha_anulacion)){
                         echo $botonAnular;

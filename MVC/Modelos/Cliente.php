@@ -146,16 +146,9 @@
             }
         }
         
-        public function Borrar(Cliente $cliente){
+        public function Borrar($tabla, $id){    //Metodo elimina logicamente un registro
             try{
-
-                $id = $cliente->getId();
-
-                $consulta = Conexion::Conectar()->prepare("UPDATE clientes SET estatus=:estatus WHERE id='$id'");
-
-                $estatus = "INACTIVO";
-
-                $consulta->bindParam(":estatus", $estatus);
+                $consulta = Conexion::Conectar()->prepare("UPDATE $tabla SET estatus='ELIMINADO' WHERE id=$id");
 
                 $consulta->execute();
                 

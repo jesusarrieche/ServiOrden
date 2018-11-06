@@ -22,6 +22,7 @@
             $titulo= "Registrar";
             
             $cliente = new Cliente();
+
             if (isset($_GET['id'])) {
                 $titulo= "Actualizar";
                 $cliente = $this->modeloCliente->Obtener($_GET['id']);
@@ -38,11 +39,11 @@
            $cliente->setId($_POST['id']);
            $cliente->setTipoIdentificacion($_POST['inicial_identificacion']);
            $cliente->setIdentificacion($_POST['identificacion']);
-           $cliente->setNombre(strtoupper($_POST['nombre']));
-           $cliente->setApellido(strtoupper($_POST['apellido']));
-           $cliente->setDireccion(strtoupper($_POST['direccion']));
-           $cliente->setTelefono(strtoupper($_POST['telefono']));
-           $cliente->setCorreo(strtoupper($_POST['correo']));
+           $cliente->setNombre(strtoupper(parent::LimpiaCadena($_POST['nombre'])));
+           $cliente->setApellido(strtoupper(parent::LimpiaCadena($_POST['apellido'])));
+           $cliente->setDireccion(strtoupper(parent::LimpiaCadena($_POST['direccion'])));
+           $cliente->setTelefono(strtoupper(parent::LimpiaCadena($_POST['telefono'])));
+           $cliente->setCorreo(strtoupper(parent::LimpiaCadena($_POST['correo'])));
            $cliente->setEstatus("ACTIVO");
 
 
@@ -52,7 +53,7 @@
               $id = $cliente->getId();
               $identificacion = $cliente->getTipoIdentificacion()."-".$cliente->getIdentificacion();
 
-              $consultaIdentificacion = parent::ConsultaSimple("SELECT * FROM clientes WHERE identificacion='$identificacion' AND id!='$id'" );
+              $consultaIdentificacion = parent::ConsultaSimple("SELECT * FROM clientes WHERE identificacion='$identificacion' AND id!='$id'" ); // Verifica inexistencia de cedula, sies igual a la actual no la toma en cuenta puesto que si registramos un cambio en el nombre se mantiene la misma cedula y afectaria la consulta.
 
               if ($consultaIdentificacion->rowCount() >= 1) {
                 $alerta= [
@@ -94,33 +95,22 @@
            
             $alerta= parent::Alerta($alerta);
             
-            if(!empty($alerta)){
-                require_once 'Vistas/Encabezado.php';
-                require_once 'Vistas/Contenidos/Clientes/Index.php';
-                require_once 'Vistas/Pie.php';
-            } else {
-                header("location:?controlador=cliente");
-            }
+           
+            require_once 'Vistas/Encabezado.php';
+            require_once 'Vistas/Contenidos/Clientes/Index.php';
+            require_once 'Vistas/Pie.php';
              
         }
         
         public function BorrarCliente(){
 
-          $cliente = new Cliente();
-
-          $cliente->setId($_GET['id']);
-
-           $cliente = $this->modeloCliente->Obtener($cliente->getId());
-
-           $alerta = $this->modeloCliente->Borrar($cliente);
-           $alerta = parent::Alerta($alerta);
-            if(!empty($alerta)){
-                require_once 'Vistas/Encabezado.php';
-                require_once 'Vistas/Contenidos/Clientes/Index.php';
-                require_once 'Vistas/Pie.php';
-            } else {
-                header("location:?controlador=cliente");
-            }
+          $alerta = $this->modeloCliente->Borrar("clientes", $_GET['id']);
+          $alerta = parent::Alerta($alerta);
+           
+          require_once 'Vistas/Encabezado.php';
+          require_once 'Vistas/Contenidos/Clientes/Index.php';
+          require_once 'Vistas/Pie.php';
+           
         }
 
     }

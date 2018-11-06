@@ -32,9 +32,9 @@
                    
                     $orden = 0 ;
                     foreach ($this->modeloCliente->Listar() as $cliente):
+                        $orden++ ;
                 ?>
                 <tr>
-                    <?php $orden++ ;?>
                     <td><?= $orden;?></td>
                     <td><?= $cliente->identificacion ;?></td>
                     <td><?= $cliente->nombre . " " . $cliente->apellido ;?></td>

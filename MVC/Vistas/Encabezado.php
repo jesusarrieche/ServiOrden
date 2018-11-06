@@ -28,8 +28,7 @@
 
     <!-- Select2 -->
     <link rel="stylesheet" type="text/css" href="Assets/css/select2.css">
-    
-    
+
 </head>
 
 <body>

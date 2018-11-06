@@ -8,4 +8,11 @@
 
 		echo $cliente->Guardar();
 	}
+        
+        
+        require_once "../Controladores/ClienteControlador.php";
+
+	$cliente = new ClienteControlador();
+        
+        echo $cliente->ListarClientes();
 ?>

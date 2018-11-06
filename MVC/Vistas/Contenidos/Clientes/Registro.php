@@ -8,7 +8,7 @@
 
                 <form action="?controlador=cliente&accion=Guardar" method="POST" class="formulario">
                     <div class="row form-group">
-                        <input  name="id" hidden="" value="<?= $cliente->getId();?>">
+                        <input  name="id" hidden value="<?= $cliente->getId();?>">
                         <label for="nombre" class="col-form-label col-md-2">Nombre:</label>
                         <div class="col-md-4 ">
                             <input type="text" name="nombre" required="required" class="form-control" placeholder="Nombre" value="<?= $cliente->getNombre();?>">

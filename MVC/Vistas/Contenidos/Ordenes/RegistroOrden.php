@@ -3,7 +3,7 @@
     
         <h2 class="bg-danger text-light font-weight-normal rounded shadow p-2 text-center">Registro de Orden</h2>
         <hr class="bg-danger">
-        <form action="?controlador=Orden&accion=GuardarOrden" method="POST">
+        <form action="?controlador=Orden&accion=GuardarOrden" method="POST" class="formulario">
             <div class="form-group">
                 <div class="row pl-2">
                     <label for="fecha_emision" class="col-form-label col-md-3"><strong>Fecha: </strong> <?= date("j-n-y");?></label>
@@ -72,7 +72,7 @@
 
             <div class="row justify-content-md-center">
                 <a href="javascript:history.back(-1);" class="btn btn-secondary m-2"><i class="fas fa-arrow-circle-left"></i> Atras</a>
-                <button type="submit" class="btn btn-success m-2">Registrar</button>
+                <button type="submit" class="btn btn-success m-2" id="enviar">Registrar</button>
                 <button type="reset" class="btn btn-danger m-2">Limpiar</button>
             </div>
         </form>

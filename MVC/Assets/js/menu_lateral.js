@@ -6,6 +6,7 @@ $(document).ready(function(){
         $("#contenedor-principal").toggleClass("mostrar");
     });
 
+    // Select2
     $(".selectorBusqueda").select2();
 
   
