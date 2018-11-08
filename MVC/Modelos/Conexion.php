@@ -114,6 +114,10 @@
 
             return $letra.$acum.$numero;
         }
+        
+        public function GenerarPDF($html){
+            
+        }
        
     }
 

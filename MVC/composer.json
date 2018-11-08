@@ -1,0 +1,13 @@
+{
+    "name": "microtech/servi-orden",
+    "description": "Description of project ServiOrden.",
+    "authors": [
+        {
+            "name": "Jesus Arrieche",
+            "email": "jesusdanielarrieche@gmail.com"
+        }
+    ],
+    "require": {
+        "dompdf/dompdf": "v0.8.2"
+    }
+}

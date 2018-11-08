@@ -22,5 +22,22 @@
             require_once "Vistas/Pie.php";
         }
         
+        public function GenerarPDF(){
+            
+            ob_start();
+            include 'Vistas/pdf.php';
+         
+            $dompdf = new Dompdf\Dompdf();
+            
+            $dompdf->set_paper("A4", "portrait");
+            
+            $dompdf->loadHtml(ob_get_clean());
+            
+            $dompdf->render();
+            
+            $dompdf->stream('Orden.pdf');
+            
+            
+        }
        
     }

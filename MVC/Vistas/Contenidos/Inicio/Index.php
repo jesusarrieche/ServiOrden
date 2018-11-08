@@ -44,6 +44,7 @@
                 </div>
                 
             </div>
+            <a href="?controlador=Inicio&accion=GenerarPDF" class="btn btn-danger text-white">Generar PDF</a>
         </center>
     </div>
 </div>
