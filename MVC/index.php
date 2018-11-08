@@ -1,5 +1,4 @@
 <?php
-
 require_once "Modelos/Conexion.php";
 
 if (!isset($_GET['controlador'])) {

@@ -8,13 +8,13 @@
         <a href="?controlador=Vehiculo&accion=RegistroModelo&id_marca=<?= $_GET['id'] ?>" class="btn btn-success btn-lg"><i class="fas fa-plus-circle fa-lg pl-1"></i> Agregar Modelo</a>
      	<hr class="bg-danger"> 
 
-    	<table class="table table-striped">
+    	<table class="table table-striped" id="datatable" style="width:100%">
     		<thead class="thead-dark">
     			<tr>
-    				<th>#</th>
-    				<th>Nombre Modelo</th> 
-					<th>Actualizar</th>       
-                    <th>Eliminar</th>
+                            <th>#</th>
+                            <th>Nombre Modelo</th> 
+                            <th>Actualizar</th>       
+                            <th>Eliminar</th>
     			</tr>
     		</thead>
     		<tbody>

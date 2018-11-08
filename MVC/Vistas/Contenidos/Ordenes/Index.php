@@ -22,7 +22,7 @@
 
             </div>
         </div>
-        <table class="table table-striped">
+        <table class="table table-striped" id="datatable" style="width:100%">
             <thead class="thead-dark">
                 <tr>
                     <th colspan="10" class="text-center bg-danger"><h4 class="font-weight-normal">Ordenes Registradas</h4></th>

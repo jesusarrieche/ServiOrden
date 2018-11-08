@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <title>HidroParts</title>
+    
+    <script src="lib/DataTables/jQuery-3.3.1/jquery-3.3.1.js" type="text/javascript"></script>
+
 
     <!-- Bootstrap CSS -->
     <link href="Assets/css/bootstrap.css" rel="stylesheet">
@@ -18,17 +21,15 @@
     <link href="Assets/css/menu-lateral.css" rel="stylesheet">
     <link href="Assets/css/estilos.css" rel="stylesheet">
     
-    <!-- JQuery -->
-    <script src="Assets/js/jquery/jquery-3.2.1.js"></script>
-
     
     <!-- Sweet-Alert -->
     <link rel="stylesheet" href="Assets/css/sweetalert2.css">
-    <script src="Assets/js/sweetalert2.all.js"></script>
 
     <!-- Select2 -->
     <link rel="stylesheet" type="text/css" href="Assets/css/select2.css">
-
+    
+    <!-- DataTable -->
+    <link href="lib/DataTables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
 </head>
 
 <body>

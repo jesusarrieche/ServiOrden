@@ -6,7 +6,7 @@
             <a href="?controlador=Usuario&accion=RegistroUsuario" class="btn btn-success btn-lg m-3">Registrar <i class="fas fa-user-plus"></i></a>
         </div>
         <hr  class="bg-danger">
-        <table class="table shadow">
+        <table class="table shadow table-striped" id="datatable" style="width:100%">
             <thead class="thead-dark">
                 <tr>
                     <th colspan="10" class="text-center bg-danger"><h4 class="font-weight-normal">Usuarios Registrados</h4></th>

@@ -32,7 +32,7 @@ INSERT INTO clientes(identificacion, nombre, apellido, direccion, telefono, corr
 -- EMPLEADOS
 INSERT INTO empleados(identificacion, nombre, apellido, direccion, telefono, correo, cargo, estatus) VALUES
 ('V-26945214', 'JUAN', 'DIAZ', 'LOS CREPUSCULOS', '000-1234567', 'josnery@gmail.com', 'ADMINISTRADOR', 'ACTIVO'),
-('V-27025411', 'PREDRO', 'BETANCOURT', 'DON AURELIO', '000-1234567', 'maria@gmail.com', 'MECANICO', 'ACTIVO'),
+('V-27025411', 'PEDRO', 'BETANCOURT', 'DON AURELIO', '000-1234567', 'maria@gmail.com', 'MECANICO', 'ACTIVO'),
 ('V-26540950', 'CARLOS', 'ARRIECHE', 'DUACA', '000-1234567', 'jesus@gmail.com', 'AYUDANTE MECANICO', 'ACTIVO');
 
 -- MARCAS
