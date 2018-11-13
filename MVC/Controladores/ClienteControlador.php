@@ -95,7 +95,7 @@
            
             $alerta= parent::Alerta($alerta);
             
-           
+            var_dump($alerta);
             require_once 'Vistas/Encabezado.php';
             require_once 'Vistas/Contenidos/Clientes/Index.php';
             require_once 'Vistas/Pie.php';

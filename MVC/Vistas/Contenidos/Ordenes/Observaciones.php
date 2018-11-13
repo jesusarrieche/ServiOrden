@@ -30,6 +30,9 @@
             <tbody>
                 
             </tbody>
-        </table>            
+        </table>
+        <div class="row justify-content-center">
+            <a href="?controlador=Orden&accion=RegistroObservacion&id=<?= $_GET['id'];?>" class="btn btn-success">Registrar Observacion</a>
+        </div>
     </div>
 </div>

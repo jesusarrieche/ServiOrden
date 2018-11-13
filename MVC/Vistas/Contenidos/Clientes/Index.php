@@ -26,10 +26,11 @@
             <tbody>
 
                 <?php
+//                    var_dump($alerta);
                     if(isset($alerta)){
                         echo $alerta;
                     }
-                   
+                    
                     $orden = 0 ;
                     foreach ($this->modeloCliente->Listar() as $cliente):
                         $orden++ ;

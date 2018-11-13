@@ -38,15 +38,15 @@
         
         
         <hr class="bg-danger">
-
-        <div class="row form-group">
-            <div class="col-md-10">
-                <div class="row justify-content-center">
-                    <table class="table">
+            <div class="row justify-content-center">
+          
+                <div class="col-md">
+                    <table class="table" id="datatable" style="width: 100%;">
                         <thead class="thead-dark">
                             <tr>
-                                <th>#</th>
+                                <th></th>
                                 <th>Articulo</th>
+                                <th>Eliminar</th>
                              
                             </tr>
                         </thead>
@@ -59,6 +59,11 @@
                             <tr>
                                 <td><span class="text-success"><i class="fas fa-check-circle fa-lg"></i></span></td>
                                 <td><?= $accesorio->nombre;?></td>
+                                <td>
+                                    <a href="?controlador=Orden&accion=BorrarAccesorio&id=<?=$_GET['id'];?>&id_accesorio=<?= $accesorio->id; ?>" class="text-danger eliminar">
+                                        <i class="fas fa-trash-alt fa-lg"></i>
+                                    </a>
+                                </td>
                             </tr>
                             <?php
                                 endforeach;
@@ -66,15 +71,12 @@
                         </tbody>
                     </table>
                 </div>
+
+                
             </div>
-            <div class="col-md-2">
-                <div class="row form-group">
-                    <a href="?controlador=Orden&accion=RegistroInventario&id=<?= $_GET['id']; ?>" class="btn btn-success btn-lg ml-2" >Registrar <i class="fas fa-clipboard"></i></a>
-                </div>
-            </div>
-        </div>
         <div class="row justify-content-center">
             <a href="?controlador=Orden" class="btn btn-secondary"><i class="fas fa-arrow-circle-left"></i> Atras</a>
+            <a href="?controlador=Orden&accion=RegistroInventario&id=<?= $_GET['id']; ?>" class="btn btn-success ml-2" >Registrar <i class="fas fa-clipboard"></i></a>
         </div>
     </div>
 </div>

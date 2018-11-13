@@ -7,6 +7,10 @@
             <div class="col-md-4 mt-2">
                 <h5><strong><?= $orden->codigo ;?></strong></h5>
             </div>
+            <div class="col-md-5"></div>
+            <div class="col-md-1">
+                <a href="#" class="btn btn-outline-warning">Imprimir</a>
+            </div>
         </div>
         <hr class="bg-danger">
         <form>

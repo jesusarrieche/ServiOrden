@@ -5,13 +5,31 @@
         private $id;
         private $id_mecanicos = [];
         private $id_accesorios = [];
+        private $id_observacion;
         private $id_vehiculo;
         private $codigo;
+        private $rutaImagen;
         private $fecha_registro;
         private $fecha_anulacion;
         private $fecha_cierre;
         private $descripcion;
         private $estatus;
+
+        public function getRutaImagen() {
+            return $this->rutaImagen;
+        }
+
+        public function setRutaImagen($ruta) {
+            $this->rutaImagen = $ruta;
+        }
+
+        public function getId_observacion(){
+            return $this->id_observacion;
+        }
+
+        public function setId_observacion($id_observacion){
+            $this->id_observacion = $id_observacion;
+        }
         
         public function getId_accesorios() {
             return $this->id_accesorios;
@@ -216,6 +234,31 @@
             }
         }
         
+        public function RegistrarObservacion(Orden $observacion){
+            try {
+                $consulta = parent::Conectar()->prepare("INSERT INTO observaciones(id_ordenes, descripcion, imagen) VALUES (:id_ordenes, :descripcion, :imagen)");
+                
+                $id_ordenes = $observacion->getId();
+                $descripcion = $observacion->getDescripcion();
+                $imagen = $observacion->getRutaImagen();
+                
+                $consulta->bindParam(":id_ordenes", $id_ordenes);
+                $consulta->bindParam(":descripcion", $descripcion);
+                $consulta->bindParam(":imagen", $imagen);
+                
+                $consulta->execute();
+                
+                $alerta= [
+                'alerta' => 'simple',
+                'titulo' => 'Operacion Exitosa...!!!',
+                'texto' => 'Observacion Registrada satisfactoriamente',
+                'tipo' => 'success'
+                ];
+                
+            } catch (Exception $ex) {
+                die("Error".$ex->getMessage());
+            }
+        }
         public function AnularOrden($id){
             try{
                 $consulta = parent::Conectar()->prepare("UPDATE ordenes SET fecha_anulacion=:fecha_anulacion WHERE id='$id'");
@@ -262,5 +305,25 @@
             }
         }
         
-    }
+        public function Borrar($tabla, $id){    //Metodo elimina logicamente un registro
+            try{
+                $consulta = Conexion::Conectar()->prepare("DELETE FROM $tabla WHERE id_accesorios=$id");
 
+                $consulta->execute();
+                
+                $alerta= [
+                'alerta' => 'simple',
+                'titulo' => 'Operacion Exitosa...!!!',
+                'texto' => 'El registro fue eliminado satisfactoriamente',
+                'tipo' => 'success'
+                ];
+                
+                return $alerta;
+                
+            } catch (Exception $ex) {
+                
+                die("Error: ". $ex->getMessage());
+            }
+        }
+           
+}

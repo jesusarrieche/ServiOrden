@@ -33,7 +33,7 @@
 
         public function ChequeoOrden() {
             $id = $_GET['id'];
-            $accesorios = parent::ObtenerObjetos("select accesorios.nombre from accesorios
+            $accesorios = parent::ObtenerObjetos("select accesorios.nombre, accesorios.id from accesorios
                                                   join ordenes_accesorios on accesorios.id = ordenes_accesorios.id_accesorios
                                                   where ordenes_accesorios.id_ordenes = '$id'");
 
@@ -189,6 +189,38 @@
             }
         }
         
+        public function GuardarObservacion(){
+            $observacion = new Orden();
+                        
+            $observacion->setId($_POST['id_orden']);
+            $observacion->setDescripcion($_POST['descripcion']);
+            
+            $ruta = "./Salidas/ImgObservaciones/";
+            $archivo = $_FILES['imagen']['tmp_name'];
+            $nombreArchivo = $_FILES['imagen']['name'];
+            
+            $extension = explode('.', $nombreArchivo);
+            $extension = array_pop($extension);
+            
+            $numero = parent::ConsultaSimple("SELECT * FROM observaciones")->rowCount()+1;
+            $nombre = parent::CodigoAleatorio("OB", 5, $numero);
+            
+            //Movemos el archivo a la carpeta
+            move_uploaded_file($archivo, $ruta.$nombre.'.'.$extension);
+            
+            //guardamos la ruta y la setteamos
+            $ruta = $ruta.$nombre.'.'.$extension;
+            
+            $observacion->setRutaImagen($ruta);
+
+            
+            var_dump($observacion);
+            
+            $this->modeloOrden->RegistrarObservacion($observacion);
+            
+                      
+        }
+        
         public function Anular(){
             $id= $_GET['id'];
             
@@ -211,6 +243,15 @@
             require_once 'Vistas/Contenidos/Ordenes/Index.php';
             require_once 'Vistas/Pie.php';
             
+        }
+        
+        public function BorrarAccesorio(){
+            
+            $id= $_GET['id'];
+            $id_accesorio = $_GET['id_accesorio'];
+            $this->modeloOrden->Borrar("ordenes_accesorios", $id_accesorio);
+          
+            header("location:?controlador=Orden&accion=ChequeoOrden&id=$id");
         }
     }
 

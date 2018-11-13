@@ -27,7 +27,8 @@
 
     <!-- Select2 -->
     <link rel="stylesheet" type="text/css" href="Assets/css/select2.css">
-    
+    <script src="Assets/js/sweetalert2.all.js"></script>
+
     <!-- DataTable -->
     <link href="lib/DataTables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
 </head>

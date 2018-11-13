@@ -32,6 +32,8 @@
             $dompdf->set_paper("A4", "portrait");
             
             $dompdf->loadHtml(ob_get_clean());
+
+            // $dompdf->set_base_path("Assets/pdf/bootstrap.min.css");
             
             $dompdf->render();
             

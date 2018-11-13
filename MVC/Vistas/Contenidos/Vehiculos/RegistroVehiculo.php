@@ -105,7 +105,7 @@
                             <input type="text" name="serial_carroceria" value="<?= $vehiculo->getSerial_carroceria();?>" class="form-control" pattern="[A-Za-z0-9]{17}" maxlength="17" title="El Serial de Contener 17 Caracteres" placeholder="XXXXXXXXXXXXXXXXX"  required>
                         </div>
 
-                        <label for="serial_caja" class="col-form-label col-md-1">S/Caja:</label>
+                        <label for="serial_caja" class="col-form-label col-md-1">COD Caja:</label>
                         <div class="col-md-3">
                             <input type="text" name="serial_caja" value="<?= $vehiculo->getSerial_caja();?>" class="form-control" placeholder="Opcional...">
                         </div>
