@@ -26,8 +26,8 @@ $(document).ready(function(){
                           data:{inicial_identificacion:inicial_identificacion_ajax, identificacion:identificacion_ajax, nombre:nombre_ajax,
                                 apellido:apellido_ajax, direccion:direccion_ajax, telefono:telefono_ajax, correo:correo_ajax},
                           type:"POST",
-                          success:function(datos){
-                              $("#resultado").html(datos);
+                          success:function(dat){
+                            
                               $(".formulario")[0].reset();
                           }
                       });

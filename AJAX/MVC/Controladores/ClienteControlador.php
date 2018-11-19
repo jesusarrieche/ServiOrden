@@ -58,8 +58,14 @@
            }
             $alerta= parent::Alerta($alerta);
             
-            return $alerta;
+            echo $alerta;
              
+        }
+        
+        public function ListarClientes(){
+            $clientes = $this->modeloCliente->Listar();
+            
+            echo json_encode($clientes);
         }
         
         public function BorrarCliente(){

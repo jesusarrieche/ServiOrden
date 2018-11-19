@@ -21,7 +21,7 @@
         </div>
         <hr class="bg-danger">
         
-        <table class="table shadow table-striped">
+        <table class="table shadow table-striped" id="datatable" style="width:100%">
             <thead class="thead-dark">
                 <tr>
                     <th colspan="8" class="text-center bg-primary"><h4 class="font-weight-normal">Vehiculos | Cajas</h4></th>

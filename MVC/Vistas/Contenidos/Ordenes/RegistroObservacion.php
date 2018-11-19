@@ -4,7 +4,7 @@
             <h3 class="font-weight-normal">Registro Observacion</h3>
         </div>
         <hr class="bg-danger">
-        <form action="?controlador=Orden&accion=GuardarObservacion" method="POST" enctype="multipart/form-data">
+        <form action="?controlador=Orden&accion=GuardarObservacion" method="POST" enctype="multipart/form-data" class="formulario">
             <input value="<?= $_GET['id'];?>" name="id_orden" hidden>
             <div class="row form-group">
                 <label for="descripcion" class="col-form-label col-md-2">Descripcion de la Observacion:</label>
@@ -20,7 +20,7 @@
             </div>
             <div class="row justify-content-center">
                 <a href="?controlador=Orden" class="btn btn-secondary"><i class="fas fa-arrow-circle-left"></i> Atras</a>
-                <button type="submit" class="btn btn-success ml-2">Enviar</button>
+                <button type="submit" class="btn btn-success ml-2" id="enviar">Enviar</button>
             </div>
         </form>
     </div>

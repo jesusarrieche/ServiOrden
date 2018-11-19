@@ -26,7 +26,7 @@
             <tbody>
 
                 <?php
-//                    var_dump($alerta);
+
                     if(isset($alerta)){
                         echo $alerta;
                     }

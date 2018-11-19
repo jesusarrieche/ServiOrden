@@ -71,7 +71,7 @@
             <hr class="btn-danger">
 
             <div class="row justify-content-md-center">
-                <a href="javascript:history.back(-1);" class="btn btn-secondary m-2"><i class="fas fa-arrow-circle-left"></i> Atras</a>
+                <a href="?controlador=Orden" class="btn btn-secondary m-2"><i class="fas fa-arrow-circle-left"></i> Atras</a>
                 <button type="submit" class="btn btn-success m-2" id="enviar">Registrar</button>
                 <button type="reset" class="btn btn-danger m-2">Limpiar</button>
             </div>

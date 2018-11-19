@@ -14,7 +14,7 @@
                     <input name="id" hidden value="<?= $usuario->getId();?>">
                     <label for="cedula_usuario" class="col-form-label col-md-1">Cedula:</label>
                     <div class="col-md-1">
-                        <select class="form-control"  name="inicial_identificacion"  required="">
+                        <select class="form-control"  name="inicial_identificacion"  required>
                             <option value="" >-</option>
                             <option value="V">V</option>
                             <option value="E">E</option>
@@ -22,17 +22,17 @@
                     </div>
                     
                     <div class="col-md-2 pl-0">
-                        <input type="text" name="identificacion" class="form-control" placeholder="Cedula" value="<?= $usuario->getIdentificacion();?>">
+                        <input type="number" name="identificacion" class="form-control" placeholder="Cedula" value="<?= $usuario->getIdentificacion();?>">
                     </div>
                 
                     <label for="nombre_usuario" class="col-form-label col-md-1">Nombre:</label>
                     <div class="col-md-3">
-                        <input type="text" name="nombre" class="form-control" placeholder="Nombre" value="<?= $usuario->getNombre();?>">
+                        <input type="text" name="nombre" class="form-control" placeholder="Nombre" pattern="[A-za-z]" required="" value="<?= $usuario->getNombre();?>">
                     </div>
 
                     <label for="apellido_usuario" class="col-form-label col-md-1">Apellido:</label>
                     <div class="col-md-3">
-                        <input type="text" name="apellido" class="form-control" placeholder="Apellido" value="<?= $usuario->getApellido();?>">
+                        <input type="text" name="apellido" class="form-control" placeholder="Apellido" value="<?= $usuario->getApellido();?>" required="">
                     </div>
 
                 </div>
@@ -40,7 +40,7 @@
                     
                     <label for="telefono" class="col-form-label col-md-1">Telefono:</label>
                     <div class="col-md-3">
-                        <input type="tel" name="telefono" class="form-control" placeholder="Ej: xxxx-xxx xxxx" value="<?= $usuario->getTelefono();?>">
+                        <input type="tel" name="telefono" pattern="{11}" class="form-control" required="" placeholder="Ej: xxxx-xxx xxxx" value="<?= $usuario->getTelefono();?>">
                     </div>
 
                     <label for="correo" class="col-form-label col-md-1">Correo:</label>

@@ -261,7 +261,7 @@
         }
         public function AnularOrden($id){
             try{
-                $consulta = parent::Conectar()->prepare("UPDATE ordenes SET fecha_anulacion=:fecha_anulacion WHERE id='$id'");
+                $consulta = parent::Conectar()->prepare("UPDATE ordenes SET fecha_anulacion=:fecha_anulacion, estatus='ANULADA' WHERE id='$id'");
                 
                 $fecha_anulacion = date("j-n-y h:i:s");
                 
@@ -284,7 +284,7 @@
         
         public function CerrarOrden($id){
             try{
-                $consulta = parent::Conectar()->prepare("UPDATE ordenes SET fecha_cierre=:fecha_cierre WHERE id='$id'");
+                $consulta = parent::Conectar()->prepare("UPDATE ordenes SET fecha_cierre=:fecha_cierre, estatus='CERRADA' WHERE id='$id'");
                 
                 $fecha_cierre = date("j-n-y h:i:s");
                 
@@ -307,7 +307,7 @@
         
         public function Borrar($tabla, $id){    //Metodo elimina logicamente un registro
             try{
-                $consulta = Conexion::Conectar()->prepare("DELETE FROM $tabla WHERE id_accesorios=$id");
+                $consulta = Conexion::Conectar()->prepare("DELETE FROM $tabla WHERE $id");
 
                 $consulta->execute();
                 

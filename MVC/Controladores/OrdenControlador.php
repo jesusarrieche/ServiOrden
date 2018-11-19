@@ -20,7 +20,13 @@
 
         public function OrdenesPropiedad() {
             $id = $_GET['id'];
-            $ordenes = parent::ObtenerObjetos("SELECT ordenes.id, ordenes.fecha_registro, ordenes.fecha_anulacion, ordenes.fecha_cierre, clientes.nombre, clientes.apellido, vehiculos.serial_motor, vehiculos.placa,marcas.nombre as marca, modelos.nombre as modelo, ordenes.descripcion FROM ordenes
+            $propietario = parent::ObtenerObjeto("select clientes.identificacion, clientes.nombre, clientes.apellido, vehiculos.placa, marcas.nombre as marca, modelos.nombre as modelo, vehiculos.anio from clientes
+                    join vehiculos on vehiculos.id_clientes = clientes.id
+                    join modelos on vehiculos.id_modelos = modelos.id
+                    join marcas on modelos.id_marcas = marcas.id
+                    where vehiculos.id= $id");
+            
+            $ordenes = parent::ObtenerObjetos("SELECT ordenes.id, ordenes.codigo, ordenes.fecha_registro, ordenes.fecha_anulacion, ordenes.fecha_cierre, clientes.nombre, clientes.apellido, vehiculos.serial_motor, vehiculos.placa,marcas.nombre as marca, modelos.nombre as modelo, ordenes.descripcion FROM ordenes
                     JOIN vehiculos on ordenes.id_vehiculos = vehiculos.id
                     JOIN modelos on vehiculos.id_modelos = modelos.id
                     JOIN marcas on modelos.id_marcas = marcas.id
@@ -75,6 +81,9 @@
         }
 
         public function Observaciones() {
+            $id = $_GET['id'];
+            $observaciones = parent::ObtenerObjetos("SELECT * FROM observaciones WHERE id_ordenes=$id");
+            $orden = $this->modeloOrden->ObtenerOrden($id);
             require_once 'Vistas/Encabezado.php';
             require_once 'Vistas/Contenidos/Ordenes/Observaciones.php';
             require_once 'Vistas/Pie.php';
@@ -191,8 +200,9 @@
         
         public function GuardarObservacion(){
             $observacion = new Orden();
-                        
-            $observacion->setId($_POST['id_orden']);
+             
+            $id_orden = $_POST['id_orden'];
+            $observacion->setId($id_orden);
             $observacion->setDescripcion($_POST['descripcion']);
             
             $ruta = "./Salidas/ImgObservaciones/";
@@ -214,9 +224,11 @@
             $observacion->setRutaImagen($ruta);
 
             
-            var_dump($observacion);
+//            var_dump($observacion);
             
             $this->modeloOrden->RegistrarObservacion($observacion);
+            
+            header("location:?controlador=Orden&accion=Observaciones&id=$id_orden");
             
                       
         }
@@ -249,9 +261,18 @@
             
             $id= $_GET['id'];
             $id_accesorio = $_GET['id_accesorio'];
-            $this->modeloOrden->Borrar("ordenes_accesorios", $id_accesorio);
+            $this->modeloOrden->Borrar("ordenes_accesorios", "id_accesorios=".$id_accesorio);
           
             header("location:?controlador=Orden&accion=ChequeoOrden&id=$id");
+        }
+        
+        public function BorrarObservacion(){
+            $id= $_GET['id'];
+            $id_orden = $_GET['id_orden'];
+            $this->modeloOrden->Borrar("observaciones", "id=".$id);
+          
+            header("location:?controlador=Orden&accion=Observaciones&id=$id_orden");
+
         }
     }
 

@@ -8,6 +8,7 @@
         }
     ],
     "require": {
-        "dompdf/dompdf": "v0.8.2"
+        "dompdf/dompdf": "v0.8.2",
+        "mpdf/mpdf": "v7.1.6"
     }
 }

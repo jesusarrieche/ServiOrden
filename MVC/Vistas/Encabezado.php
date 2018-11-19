@@ -71,9 +71,9 @@
                         <div class="col-2 pl-0">
                            <a href="?controlador=Inicio"><i class="fas fa-home d-flex"></i></a>     
                         </div>
-                        <div class="col-2 pl-0">
+<!--                        <div class="col-2 pl-0">
                             <a href="#"><i class="fas fa-cog d-flex"></i></a>
-                        </div>
+                        </div>-->
                         <div class="col-2 pl-0 d">
                                 <a href="?controlador=Login&accion=CerrarSession"><i class="fas fa-power-off d-flex"></i></a>
                         </div>
@@ -143,7 +143,7 @@
             
                 <div class="dropdown-divider m-2"></div>
                 <li>
-                    <a class="sombra" href="#">
+                    <a class="sombra" href="?controlador=Reporte">
                         <div class="row m-0 p-0">
                             <div class="col-md-3">
                                 <i class="fas fa-chart-bar fa-2x mt-2 d-flex"></i>    
@@ -177,7 +177,7 @@
             <a href="#menu-mostrar" class="btn btn-dark m-1" id="menu-mostrar"><i class="fas fa-bars"></i> Menu</a>
             <ul class="navbar-nav px-3">
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-sign-out-alt"></i> Salir</a>
+                    <a class="nav-link" href="?controlador=Login&accion=CerrarSession"><i class="fas fa-sign-out-alt"></i> Salir</a>
                 </li>
             </ul>
         </nav>

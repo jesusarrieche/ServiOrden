@@ -302,12 +302,12 @@
 
                 } catch (Exception $ex) {
 
-                   // $alerta= [
-                   // 'alerta' => 'simple',
-                   // 'titulo' => 'Error Inesperado...!!!',
-                   // 'texto' => 'Se produjo un error inesperado, Por favor verifique los datos e intente nuevamente',
-                   // 'tipo' => 'error'
-                   // ];
+                    $alerta= [
+                   'alerta' => 'simple',
+                    'titulo' => 'Error Inesperado...!!!',
+                    'texto' => 'Se produjo un error inesperado, Por favor verifique los datos e intente nuevamente',
+                    'tipo' => 'error'
+                    ];
         
                    return $alerta;
                     die($ex->getMessage());
