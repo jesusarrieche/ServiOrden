@@ -7,7 +7,7 @@
         </div>
         <hr class="bg-danger">
 
-    
+
         <table class="table shadow table-striped" id="datatable" style="width:100%">
             <thead class="thead-dark">
                 <tr>
@@ -30,7 +30,7 @@
                     if(isset($alerta)){
                         echo $alerta;
                     }
-                    
+
                     $orden = 0 ;
                     foreach ($this->modeloCliente->Listar() as $cliente):
                         $orden++ ;
@@ -38,7 +38,11 @@
                 <tr>
                     <td><?= $orden;?></td>
                     <td><?= $cliente->identificacion ;?></td>
-                    <td><?= $cliente->nombre . " " . $cliente->apellido ;?></td>
+                    <td>
+                      <a href="?controlador=cliente&accion=DetalleCliente">
+                        <?= $cliente->nombre . " " . $cliente->apellido ;?>
+                      </a>
+                    </td>
                     <td><?= $cliente->telefono;?></td>
                     <td>
                         <a href="?controlador=Vehiculo&accion=PropiedadCliente&id=<?= $cliente->id;?>" class="text-dark"><i class="fas fa-search fa-lg "></i></a>

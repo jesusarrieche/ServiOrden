@@ -36,7 +36,7 @@
                         </div>
                         <label for="telefono" class="col-form-label col-md-2">Telefono:</label>
                         <div class="col-md-4 ">
-                            <input type="tel" name="telefono" title="Debe Contener minimo 11 Caracteres numericos" minlength="11"  maxlength="12" pattern="[0-9]+" required class="form-control" placeholder="Telefono" value="<?= $cliente->getTelefono();?>">
+                            <input type="tel" name="telefono" title="Debe Contener minimo 11 Caracteres numericos" minlength="10"  maxlength="12" pattern="[0-9-]+" required class="form-control" placeholder="Telefono" value="<?= $cliente->getTelefono();?>">
                         </div>
                     </div>
                     <div class="row form-group">
@@ -47,7 +47,7 @@
 
                         <label for="direccion" class="col-form-label col-md-2">Direccion:</label>
                         <div class="col-md-4">
-                            <input type="text" name="direccion" pattern="[A-Za-z0-9/]+" required maxlength="150" class="form-control" placeholder="Direccion" value="<?= $cliente->getDireccion();?>">
+                            <input type="text" name="direccion" pattern="[A-Za-z0-9/ ]+" required maxlength="150" class="form-control" placeholder="Direccion" value="<?= $cliente->getDireccion();?>">
                         </div>
                     </div>
 

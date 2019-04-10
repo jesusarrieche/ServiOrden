@@ -35,7 +35,7 @@
         
         public function Contar(){
             try{
-                $consulta = Conexion::Conectar()->query("SELECT  FROM usuarios")->rowCount();
+                $consulta = Conexion::Conectar()->query("SELECT * FROM usuarios")->rowCount();
                 return $consulta;
             
             } catch (Exception $ex) {

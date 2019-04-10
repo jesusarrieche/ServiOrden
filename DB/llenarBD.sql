@@ -1,7 +1,7 @@
 -- Insercion de Registros de Prueba en la base de datos
 
 -- (IMPORTANTE) Registrar Accesorios
-INSERT INTO accesorios(nombre, estatus) VALUES 
+INSERT INTO accesorios(nombre, estatus) VALUES
 ('REPRODUCTOR','ACTIVO'),
 ('LIMPIA PARABRISAS','ACTIVO'),
 ('CAUCHO DE RECUESTO','ACTIVO'),
@@ -20,8 +20,8 @@ INSERT INTO accesorios(nombre, estatus) VALUES
 
 
 -- USUARIO
-INSERT INTO usuarios(identificacion, nombre, apellido, direccion, telefono, correo, usuario, password, privilegio, estatus) 
-VALUES ('V-00000000', 'ADMINISTRADOR', 'ADMINISTRADOR', 'HIDROPARTS','000-0000000', 'administrador@correo.com', 'administrador', 'bWxzUFhsenNNTERQQUdXY21odG0rdz09', '1', 'ACTIVO');
+INSERT INTO usuarios(identificacion, nombre, apellido, direccion, telefono, correo, usuario, password, privilegio, estatus)
+VALUES ('V-00000000', 'ADMINISTRADOR', 'ADMINISTRADOR', 'HIDROPARTS','000-0000000', 'administrador@correo.com', 'administrador', 'bWxzUFhsenNNTERQQUdXY21odG0rdz09', '2', 'ACTIVO');
 
 -- CLIENTES
 INSERT INTO clientes(identificacion, nombre, apellido, direccion, telefono, correo, estatus) VALUES
@@ -36,7 +36,7 @@ INSERT INTO empleados(identificacion, nombre, apellido, direccion, telefono, cor
 ('V-26540950', 'CARLOS', 'ARRIECHE', 'DUACA', '000-1234567', 'jesus@gmail.com', 'AYUDANTE MECANICO', 'ACTIVO');
 
 -- MARCAS
-INSERT INTO marcas(nombre, estatus) VALUES 
+INSERT INTO marcas(nombre, estatus) VALUES
 ('FORD', 'ACTIVO'),
 ('FIAT', 'ACTIVO'),
 ('TOYOTA', 'ACTIVO');

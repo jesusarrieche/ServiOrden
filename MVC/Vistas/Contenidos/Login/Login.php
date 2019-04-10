@@ -11,7 +11,7 @@
     <link href="Assets/css/bootstrap.css" rel="stylesheet">
 
     <!-- Iconos -->
-    <link rel="stylesheet" type="text/css" href="Assets/Icon/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link rel="shortcut icon" type="text/css" href="Assets/Icon/favicon.ico">
 
     <!-- Estilos Propios -->

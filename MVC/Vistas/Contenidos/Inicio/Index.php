@@ -1,49 +1,63 @@
 <div id="contenido-principal">
-    <img src="Assets/imagenes/hidroparts.png" width="100%">    
+    <img src="Assets/imagenes/hidroparts.png" width="100%">
     <hr class="bg-danger">
 
     <div class="container">
-        <center>
-            <h1>Bienvenido a ServiOrden HidroParts</h1>
-
-          <!--   <p>ServiOrden HidroParts es un sistema de informacion para la automatizacion del registro y seguimiento
-                de ordenes de servicio.  -->
-            </p>
-            <br>
-            <br>
-            <h2 class="bg-danger text-light rounded">Conoce los Distintos Apartados</h2>
-            <br>
-            <br>
+            <p class="font-weight-light">Inicio > Indicadores</p>
             <div class="row justify-content-around">
-                <div class="col-3">
-                    <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-                        <div class="card-header bg-danger"><i class="fas fa-user fa-3x"></i></div>
-                        <div class="card-body ">
-                        <h1 class="card-title"><?= $usuarios=$this->modeloUsuario->Contar();?></h1>
-                        <p class="card-text">Usuarios Registrados en el sistema</p>
+                <div class="col-lg-3 col-xs-6">
+                    <div class=" small-box bg-info">
+                        <div class="inner">
+                            <h3><?= $usuarios=$this->modeloUsuario->Contar();?></h3>
+                            <p>Usuarios</p>
                         </div>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="card text-white bg-primary mb-3 bg-secondary" style="max-width: 18rem;">
-                        <div class="card-header"><i class="fas fa-users fa-3x"></i></div>
-                        <div class="card-body bg-dark">
-                        <h1 class="card-title"><?= $usuarios=$this->modeloCliente->Contar();?></h1>
-                        <p class="card-text">Clientes Registrados en nuestro sistema</p>
+                        <div class="icon">
+                            <i class="fas fa-user"></i>
                         </div>
-                    </div>
-                </div> 
-                <div class="col-3">
-                    <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-                        <div class="card-header bg-success"><i class="fas fa-clipboard-list fa-3x"></i></div>
-                        <div class="card-body">
-                        <h1 class="card-title"><?= $this->modeloOrden->Contar();?></h1>
-                        <p class="card-text">Ordenes Registradas en el Sistema</p>
-                        </div>
+                        <a href="?controlador=usuario" class="small-box-footer">Mas Informacion <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 
+                <div class="col-lg-3 col-xs-6">
+                    <div class=" small-box bg-primary">
+                        <div class="inner">
+                            <h3><?= $usuarios=$this->modeloCliente->Contar();?></h3>
+                            <p>Clientes</p>
+                        </div>
+                        <div class="icon">
+                        <i class="fas fa-users"></i>
+                        </div>
+                        <a href="?controlador=cliente" class="small-box-footer">Mas Informacion <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-xs-6">
+                    <div class=" small-box bg-success">
+                        <div class="inner">
+                            <h3><?= $usuarios=$this->modeloOrden->Contar();?></h3>
+                            <p>Ordenes</p>
+                        </div>
+                        <div class="icon">
+                        <i class="fas fa-clipboard-list"></i>
+                        </div>
+                        <a href="?controlador=orden" class="small-box-footer">Mas Informacion <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-xs-6">
+                    <div class=" small-box bg-warning">
+                        <div class="inner">
+                            <h3><?= $usuarios=$this->modeloEmpleado->Contar();?></h3>
+                            <p>Empleados</p>
+                        </div>
+                        <div class="icon">
+                        <i class="fas fa-wrench"></i>
+                        </div>
+                        <a href="?controlador=empleado" class="small-box-footer">Mas Informacion <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div> 
             </div>
-        </center>
+            <hr class="bg-danger">
+
     </div>
 </div>

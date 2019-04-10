@@ -1,17 +1,17 @@
 <?php
 
     require_once 'Modelos/Cliente.php';
-    
+
     class ClienteControlador extends Cliente{
-        
+
         private $modeloCliente;
-        
+
         public function __construct() {
             $this->modeloCliente = new Cliente();
         }
-        
+
         public function Inicio(){
-            
+
             require_once 'Vistas/Encabezado.php';
             require_once 'Vistas/Contenidos/Clientes/Index.php';
             require_once 'Vistas/Pie.php';
@@ -20,7 +20,7 @@
         public function RegistroCliente(){
 
             $titulo= "Registrar";
-            
+
             $cliente = new Cliente();
 
             if (isset($_GET['id'])) {
@@ -31,7 +31,7 @@
             require_once 'Vistas/Contenidos/Clientes/Registro.php';
             require_once 'Vistas/Pie.php';
         }
-        
+
         public function Guardar(){
            $cliente = new Cliente();
 
@@ -49,7 +49,7 @@
 
 
            if ($cliente->getId() != "") {
-              
+
               $id = $cliente->getId();
               $identificacion = $cliente->getTipoIdentificacion()."-".$cliente->getIdentificacion();
 
@@ -74,7 +74,7 @@
 
               if ($consulta->rowCount() >= 1) {
                 $registro = parent::ObtenerObjeto("SELECT * FROM clientes WHERE identificacion='$identificacion' AND estatus='INACTIVO'");
-                
+
                 $cliente->setId($registro->id);
 
                 $this->modeloCliente->Actualizar($cliente);
@@ -89,29 +89,34 @@
               }else{
                 $alerta = $this->modeloCliente->Registrar($cliente);
               }
-              
+
             }
-           
-           
+
+
             $alerta= parent::Alerta($alerta);
-            
+
 //            var_dump($alerta);
             require_once 'Vistas/Encabezado.php';
             require_once 'Vistas/Contenidos/Clientes/Index.php';
             require_once 'Vistas/Pie.php';
-             
+
         }
-        
+
+        public function DetalleCliente(){
+          require_once 'Vistas/Encabezado.php';
+          require_once 'Vistas/Contenidos/Clientes/Detalles.php';
+          require_once 'Vistas/Pie.php';
+        }
+
         public function BorrarCliente(){
 
           $alerta = $this->modeloCliente->Borrar("clientes", $_GET['id']);
           $alerta = parent::Alerta($alerta);
-           
+
           require_once 'Vistas/Encabezado.php';
           require_once 'Vistas/Contenidos/Clientes/Index.php';
           require_once 'Vistas/Pie.php';
-           
+
         }
 
     }
-

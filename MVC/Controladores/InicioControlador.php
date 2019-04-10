@@ -2,6 +2,7 @@
     
     require_once 'Modelos/Usuario.php';
     require_once 'Modelos/Cliente.php';
+    require_once 'Modelos/Empleado.php';
     require_once 'Modelos/Orden.php';
     
     class InicioControlador{
@@ -13,7 +14,9 @@
         public function __construct() {
             $this->modeloUsuario = new Usuario();
             $this->modeloCliente = new Cliente();
+            $this->modeloEmpleado = new Empleado();
             $this->modeloOrden = new Orden();
+
         }
        
         public function Inicio(){
