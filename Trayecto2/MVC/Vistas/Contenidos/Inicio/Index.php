@@ -6,7 +6,7 @@
             <p class="font-weight-light">Inicio > Indicadores</p>
             <div class="row justify-content-around">
                 <div class="col-lg-3 col-xs-6">
-                    <div class=" small-box bg-info">
+                    <div class=" small-box bg-success">
                         <div class="inner">
                             <h3><?= $usuarios=$this->modeloUsuario->Contar();?></h3>
                             <p>Usuarios</p>
@@ -32,7 +32,7 @@
                 </div>
 
                 <div class="col-lg-3 col-xs-6">
-                    <div class=" small-box bg-success">
+                    <div class=" small-box bg-info">
                         <div class="inner">
                             <h3><?= $usuarios=$this->modeloOrden->Contar();?></h3>
                             <p>Ordenes</p>
@@ -57,7 +57,54 @@
                     </div>
                 </div> 
             </div>
+
+            <div class="row justify-content-around">
+                <div class="col-lg-3 col-xs-6">
+                    <div class=" small-box bg-secondary">
+                        <div class="inner">
+                            <h3>0</h3>
+                            <p>Productos</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-boxes"></i>
+                        </div>
+                        <a href="?controlador=usuario" class="small-box-footer">Mas Informacion <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-xs-6">
+                    <div class=" small-box bg-danger">
+                        <div class="inner">
+                            <h3>0</h3>
+                            <p>Compras</p>
+                        </div>
+                        <div class="icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <a href="?controlador=cliente" class="small-box-footer">Mas Informacion <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-xs-6">
+                    <div class=" small-box bg-success">
+                        <div class="inner">
+                            <h3>0</h3>
+                            <p>Ventas</p>
+                        </div>
+                        <div class="icon">
+                        <i class="fas fa-money-bill"></i>
+                        </div>
+                        <a href="?controlador=orden" class="small-box-footer">Mas Informacion <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+            </div>
             <hr class="bg-danger">
+
+            <div class="row">
+            
+                
+            
+            </div>
 
     </div>
 </div>

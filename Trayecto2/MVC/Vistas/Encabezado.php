@@ -42,7 +42,7 @@
 
         session_start();
 
-        var_dump($_SESSION);
+        // var_dump($_SESSION);
 
         if(!isset($_SESSION['usuario'])){
 
@@ -143,7 +143,46 @@
                                 <i class="fas fa-clipboard-list fa-lg mt-3"></i>
                             </div>
                             <div class="col-9 mt-1">
-                                <span>Ordenes</span>
+                                <span>Ordenes de Servicio</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+
+                <li>
+                    <a class= "sombra" href="?controlador=Producto">
+                        <div class="row m-0 p-0">
+                            <div class="col-3 p-0">
+                                <i class="fas fa-boxes fa-lg mt-3"></i>
+                            </div>
+                            <div class="col-9 mt-1">
+                                <span>Productos</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+
+                <li>
+                    <a class= "sombra" href="#">
+                        <div class="row m-0 p-0">
+                            <div class="col-3 p-0">
+                                <i class="fas fa-shopping-cart fa-lg mt-3"></i>
+                            </div>
+                            <div class="col-9 mt-1">
+                                <span>Compras</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+
+                <li>
+                    <a class= "sombra" href="?controlador=venta">
+                        <div class="row m-0 p-0">
+                            <div class="col-3 p-0">
+                                <i class="fas fa-money-bill fa-lg mt-3"></i>
+                            </div>
+                            <div class="col-9 mt-1">
+                                <span>Ventas</span>
                             </div>
                         </div>
                     </a>
