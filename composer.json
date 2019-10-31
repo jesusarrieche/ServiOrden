@@ -1,0 +1,21 @@
+{
+    "name": "microtech/servi-orden",
+    "description": "Description of project ServiOrden.",
+    "authors": [
+        {
+            "name": "Jesus Arrieche",
+            "email": "jesusdanielarrieche@gmail.com"
+        }
+    ],
+    
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "System\\": "system/" 
+        }
+    },
+
+    "require": {
+        "fortawesome/font-awesome": "^5.11"
+    }
+}
