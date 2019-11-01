@@ -32,11 +32,11 @@
         <div class="card-body">
             <div class="row no-gutters align-items-center">
             <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">ventas registradas</div>
-                <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">productos registrados</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $productos; ?></div>
             </div>
             <div class="col-auto">
-                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                <i class="fas fa-boxes fa-2x text-gray-300"></i>
             </div>
             </div>
         </div>
@@ -70,7 +70,7 @@
                 <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
             </div>
             <div class="col-auto">
-                <i class="fas fa-comments fa-2x text-gray-300"></i>
+                <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
             </div>
             </div>
         </div>
@@ -149,3 +149,10 @@
         </div>
     </div>
 </div>
+
+
+    <script src="<?= ROOT; ?>public/assets/vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="<?= ROOT; ?>public/assets/js/demo/chart-area-demo.js"></script>
+    <script src="<?= ROOT; ?>public/assets/js/demo/chart-pie-demo.js"></script>

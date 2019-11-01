@@ -9,6 +9,16 @@ class Model extends Database{
     public function __construct(){
     }
 
+    public function contar($table){
+        try{
+            $consulta = parent::connect()->query("SELECT * FROM $table WHERE estatus='ACTIVO'")->rowCount();
+            return $consulta;
+        
+        } catch (Exception $ex) {
+            die($ex->getMessage());
+        }
+    }
+
     public function query($sql){
         try{
             $consulta = parent::connect()->prepare($sql);

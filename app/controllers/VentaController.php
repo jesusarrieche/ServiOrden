@@ -7,7 +7,7 @@ use App\Models\Producto;
 use System\Core\Controller;
 use System\Core\View;
 
-class HomeController extends Controller{
+class VentaController extends Controller{
 
     private $cliente;
     private $producto;
@@ -18,10 +18,10 @@ class HomeController extends Controller{
     }
 
     public function index(){
+        return View::getView('Venta.index');
+    }
 
-        return View::getView('Home.index', [
-            'clientes' => $this->cliente->contar('clientes'),
-            'productos' => $this->producto->contar('productos')
-        ]);
+    public function crear(){
+        return View::getView('Venta.create');
     }
 }

@@ -20,6 +20,11 @@
   <!-- DataTable -->
   <link href="<?= ROOT; ?>public/assets/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet" type="text/css">
 
+  <!-- Select2 -->
+  <link href="<?= ROOT; ?>public/assets/vendor/select2/css/select2.min.css" rel="stylesheet" type="text/css">
+  <link href="<?= ROOT; ?>public/assets/vendor/select2/css/select2-bootstrap4.min.css" rel="stylesheet" type="text/css">
+
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Fredoka+One&display=swap" rel="stylesheet">
 
   <!-- SweetAlert2 -->
@@ -108,8 +113,8 @@
             <a class="collapse-item" href="<?= ROOT;?>Categoria">Categorias</a>
             <a class="collapse-item" href="<?= ROOT;?>Producto">Productos</a>
             <h6 class="collapse-header">Entradas | salidas </h6>
-            <a class="collapse-item" href="#">Compras</a>
-            <a class="collapse-item" href="#">Ventas</a>
+            <a class="collapse-item" href="<?= ROOT;?>Compra">Compras</a>
+            <a class="collapse-item" href="<?= ROOT;?>Venta">Ventas</a>
           </div>
         </div>
       </li>
@@ -123,7 +128,7 @@
       </div>
 
       <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="<?= ROOT;?>Venta/crear" class="nav-link">
           <i class="fas fa-cash-register"></i>
           <span>Caja</span>
         </a>
@@ -143,7 +148,7 @@
           <i class="fas fa-fw fa-folder"></i>
           <span>Reportes</span>
         </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <!-- <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Login Screens:</h6>
             <a class="collapse-item" href="login.html">Login</a>
@@ -154,7 +159,7 @@
             <a class="collapse-item" href="404.html">404 Page</a>
             <a class="collapse-item" href="blank.html">Blank Page</a>
           </div>
-        </div>
+        </div> -->
       </li>
 
 
@@ -200,12 +205,12 @@
           <ul class="navbar-nav ml-auto">
 
             <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-            <li class="nav-item dropdown no-arrow d-sm-none">
+            <!-- <li class="nav-item dropdown no-arrow d-sm-none">
               <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-search fa-fw"></i>
-              </a>
+              </a> -->
               <!-- Dropdown - Messages -->
-              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+              <!-- <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
                 <form class="form-inline mr-auto w-100 navbar-search">
                   <div class="input-group">
                     <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
@@ -217,17 +222,17 @@
                   </div>
                 </form>
               </div>
-            </li>
+            </li> -->
 
             <!-- Nav Item - Alerts -->
-            <li class="nav-item dropdown no-arrow mx-1">
+            <!-- <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-bell fa-fw"></i>
+                <i class="fas fa-bell fa-fw"></i> -->
                 <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">3+</span>
-              </a>
+                <!-- <span class="badge badge-danger badge-counter">3+</span>
+              </a> -->
               <!-- Dropdown - Alerts -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+              <!-- <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                 <h6 class="dropdown-header">
                   Alerts Center
                 </h6>
@@ -266,17 +271,17 @@
                 </a>
                 <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
               </div>
-            </li>
+            </li> -->
 
             <!-- Nav Item - Messages -->
-            <li class="nav-item dropdown no-arrow mx-1">
+            <!-- <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-envelope fa-fw"></i>
+                <i class="fas fa-envelope fa-fw"></i> -->
                 <!-- Counter - Messages -->
-                <span class="badge badge-danger badge-counter">7</span>
-              </a>
+                <!-- <span class="badge badge-danger badge-counter">7</span>
+              </a> -->
               <!-- Dropdown - Messages -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
+              <!-- <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
                 <h6 class="dropdown-header">
                   Message Center
                 </h6>
@@ -322,7 +327,7 @@
                 </a>
                 <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
               </div>
-            </li>
+            </li> -->
 
             <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -336,20 +341,20 @@
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="#">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Profile
+                  Perfil
                 </a>
                 <a class="dropdown-item" href="#">
                   <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Settings
+                  Configuracion
                 </a>
                 <a class="dropdown-item" href="#">
                   <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Activity Log
+                  Resumen de Actividades
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Logout
+                  Salir
                 </a>
               </div>
             </li>

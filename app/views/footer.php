@@ -30,15 +30,15 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Seguro que quiere salir?</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
         </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-body">Selecciona "Salir" si estas listo para cerrar session.</div>
         <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+          <a class="btn btn-primary" href="login.html">Salir</a>
         </div>
       </div>
     </div>
@@ -57,12 +57,12 @@
   <script src="<?= ROOT; ?>public/assets/vendor/datatables/jquery.dataTables.js"></script>
   <script src="<?= ROOT; ?>public/assets/vendor/datatables/dataTables.bootstrap4.js"></script>
 
+  <!-- Select2 -->
+  <script src="<?= ROOT; ?>public/assets/vendor/select2/js/select2.min.js"></script>
   
-  <!-- <script src="<?= ROOT; ?>public/assets/vendor/chart.js/Chart.min.js"></script> -->
+  <!-- Script -->
+  <script src="<?= ROOT; ?>public/assets/js/script.js"></script>
 
-  <!-- Page level custom scripts -->
-  <!-- <script src="public/assets/js/demo/chart-area-demo.js"></script>
-  <script src="public/assets/js/demo/chart-pie-demo.js"></script> -->
 
 </body>
 

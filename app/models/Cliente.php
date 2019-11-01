@@ -6,16 +6,6 @@ use PDO;
 
 class Cliente extends Persona{
 
-    public function contar(){
-        try{
-            $consulta = parent::connect()->query("SELECT * FROM clientes WHERE estatus='ACTIVO'")->rowCount();
-            return $consulta;
-        
-        } catch (Exception $ex) {
-            die($ex->getMessage());
-        }
-    }
-
     public function listar(){
         try{
             $consulta = parent::connect()->prepare("SELECT id, documento, CONCAT(nombre, ' ', apellido) AS nombre, telefono, estatus, created_at FROM clientes WHERE estatus='ACTIVO' ORDER BY created_at DESC");
