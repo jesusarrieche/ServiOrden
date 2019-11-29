@@ -2,8 +2,6 @@ $(document).ready(function () {
     /**
      * DataTable
     */
-
-    
     let table = $('#datatable').DataTable({
         serverSide: false,
         ordering: false,
@@ -16,7 +14,7 @@ $(document).ready(function () {
             { data: 'codigo' },
             { data: "nombre" },
             { data: 'categoria' },
-            { data: 'precio' },
+            { data: 'precio_venta' },
             { data: 'stock' },
             { data: 'estatus' },
             { data: 'button' }

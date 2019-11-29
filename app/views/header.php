@@ -20,18 +20,21 @@
   <!-- DataTable -->
   <link href="<?= ROOT; ?>public/assets/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet" type="text/css">
 
-  <!-- Select2 -->
-  <link href="<?= ROOT; ?>public/assets/vendor/select2/css/select2.min.css" rel="stylesheet" type="text/css">
-  <link href="<?= ROOT; ?>public/assets/vendor/select2/css/select2-bootstrap4.min.css" rel="stylesheet" type="text/css">
-
+  
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Fredoka+One&display=swap" rel="stylesheet">
-
+  
   <!-- SweetAlert2 -->
   <link rel="stylesheet" href="<?= ROOT; ?>public/assets/vendor/sweetalert2/dist/sweetalert2.css">
   <script src="<?= ROOT; ?>public/assets/vendor/sweetalert2/dist/sweetalert2.js"></script>
-
+  
+  <!-- JQuery -->
   <script src="<?= ROOT; ?>public/assets/vendor/jquery/jquery.js"></script>
+
+  <!-- Select2 -->
+  <link href="<?= ROOT; ?>public/assets/vendor/select2/css/select2.css" rel="stylesheet" type="text/css">
+  <link href="<?= ROOT; ?>public/assets/vendor/select2/css/select2-bootstrap.css" rel="stylesheet" type="text/css">
+  
   
 </head>
 
@@ -72,7 +75,7 @@
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link collapsed" href="#" aria-expanded="true" data-toggle="collapse" data-target="#collapseGestion" >
           <i class="fas fa-fw fa-user"></i>
           <span>Personas</span>
@@ -83,15 +86,37 @@
             <a href="#" class=" collapse-item">Usuarios</a>
             <a href="<?= ROOT;?>Cliente" class=" collapse-item">Clientes</a>
             <a href="#" class=" collapse-item">Empleados</a>
-            <a href="<?= ROOT;?>Proveedor" class=" collapse-item">Proveedores</a>
           </div>
         </div>
+      </li> -->
+
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="fas fa-users-cog"></i>
+          <span>USUARIOS</span>
+        </a>
       </li>
+
+      <li class="nav-item">
+        <a href="<?= ROOT;?>Cliente" class="nav-link">
+          <i class="fas fa-users"></i>
+          <span>CLIENTES</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="fas fa-wrench"></i>
+          <span>EMPLEADOS</span>
+        </a>
+      </li>
+
+
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" aria-expanded="true" data-toggle="collapse" data-target="#collapseTaller" >
           <i class="fas fa-fw fa-warehouse"></i>
-          <span>Taller</span>
+          <span>TALLER</span>
         </a>
 
         <div id="collapseTaller" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
@@ -102,35 +127,62 @@
         </div>
       </li>
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-boxes"></i>
-          <span>Inventario</span>
-        </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded text-white-50">
-            <h6 class="collapse-header">Gestion Inventario:</h6>
-            <a class="collapse-item" href="<?= ROOT;?>Categoria">Categorias</a>
-            <a class="collapse-item" href="<?= ROOT;?>Producto">Productos</a>
-            <h6 class="collapse-header">Entradas | salidas </h6>
-            <a class="collapse-item" href="<?= ROOT;?>Compra">Compras</a>
-            <a class="collapse-item" href="<?= ROOT;?>Venta">Ventas</a>
-          </div>
-        </div>
-      </li>
-
+      
       <!-- Divider -->
       <hr class="sidebar-divider">
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Facturación
+        GESTION DE OPERACIONES
       </div>
+
+      <li class="nav-item">
+        <a href="<?= ROOT;?>Inventario" class="nav-link">
+          <i class="fas fa-warehouse"></i>
+          <span>INVENTARIO</span>
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+          <i class="fas fa-fw fa-boxes"></i>
+          <span>PRODUCTOS</span>
+        </a>
+        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded text-white-50">
+            <h6 class="collapse-header">GESTION DE PRODUCTOS:</h6>
+            <a class="collapse-item" href="<?= ROOT;?>Producto">RESUMEN</a>
+            <a class="collapse-item" href="<?= ROOT;?>Categoria">CATEGORIAS</a>
+          </div>
+        </div>
+      </li>
+      
+
+      <li class="nav-item">
+        <a href="<?= ROOT;?>Proveedor" class="nav-link">
+          <i class="fas fa-truck"></i>
+          <span>PROVEEDORES</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="<?= ROOT;?>Compra" class="nav-link">
+          <i class="fas fa-shopping-cart"></i>
+          <span>COMPRAS</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="<?= ROOT;?>Venta" class="nav-link">
+          <i class="fas fa-store"></i>
+          <span>VENTAS</span>
+        </a>
+      </li>
 
       <li class="nav-item">
         <a href="<?= ROOT;?>Venta/crear" class="nav-link">
           <i class="fas fa-cash-register"></i>
-          <span>Caja</span>
+          <span>CAJA</span>
         </a>
       </li>
 
@@ -139,27 +191,26 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Reportes
+        REPORTES
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>
-          <span>Reportes</span>
+          <span>REPORTES</span>
         </a>
-        <!-- <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Login Screens:</h6>
-            <a class="collapse-item" href="login.html">Login</a>
-            <a class="collapse-item" href="register.html">Register</a>
-            <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
+            <a class="collapse-item" href="#">COMPRAS</a>
+            <a class="collapse-item" href="#">VENTAS</a>
+            <a class="collapse-item" href="#">ORDENES</a>
             <div class="collapse-divider"></div>
             <h6 class="collapse-header">Other Pages:</h6>
             <a class="collapse-item" href="404.html">404 Page</a>
             <a class="collapse-item" href="blank.html">Blank Page</a>
           </div>
-        </div> -->
+        </div>
       </li>
 
 
@@ -334,7 +385,7 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Jesus Arrieche</span>
+                <span class="mr-2 d-none d-lg-inline text-white small">Jesus Arrieche</span>
                 <img class="img-profile rounded-circle" src="/FrameworkJD/public/assets/img/profile/user.png">
               </a>
               <!-- Dropdown - User Information -->

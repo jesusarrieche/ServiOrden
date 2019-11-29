@@ -130,16 +130,26 @@ class Producto extends Model {
   public function listar(){
     try{
       $sql = 
-     "SELECT p.id, p.codigo, p.nombre, c.nombre AS categoria, p.precio_venta AS precio, p.stock, p.estatus 
-      FROM productos p
-      JOIN categorias c 
-      ON p.categoria_id = c.id WHERE p.estatus='ACTIVO' ORDER BY p.created_at DESC";
+     "SELECT * FROM v_inventario";
 
         $consulta = parent::connect()->prepare($sql);
         $consulta->execute();
         
         return $consulta->fetchAll(PDO::FETCH_OBJ);
         
+    } catch (Exception $ex) {
+        die($ex->getMessage());
+    }
+  }
+
+  public function buscarProductoCodigo($codigo){
+    try {
+      $sql = "SELECT * FROM productos WHERE codigo= '$codigo' LIMIT 1";
+
+      $query = parent::connect()->prepare($sql)->execute();
+
+      return $query->fetch(PDO::FETCH_OBJ);
+
     } catch (Exception $ex) {
         die($ex->getMessage());
     }

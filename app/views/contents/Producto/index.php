@@ -3,7 +3,6 @@
     <hr class="bg-danger">
     <div class="row">
         <button class="btn btn-success m-2" data-toggle="modal" data-target="#modalRegistroProducto"><i class="fas fa-plus-circle"></i> Nuevo Producto</button>
-        <button class="btn btn-danger m-2"><i class="fas fa-plus-circle"></i> Categorias</button>
     </div>
     <hr class="bg-danger">
 
@@ -75,7 +74,7 @@
                         <div class="form-group col-md-6">
                             <i class="fas fa-hockey-puck"></i> <label for="unidad">Unidad de Medida</label>
                             <select name="unidad" id="unidad" class="form-control" required>
-                                <option value="" selected>-</option>
+                                <option selected>-</option>
                             </select>
                         </div>
                     </div>

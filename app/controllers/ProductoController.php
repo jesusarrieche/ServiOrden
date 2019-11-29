@@ -43,6 +43,10 @@ class ProductoController extends Controller{
         exit();
     }
 
+    public function buscarCodigo(){
+        
+    }
+
     public function listar(){
 
         $method = $_SERVER['REQUEST_METHOD'];
@@ -277,5 +281,5 @@ class ProductoController extends Controller{
         }
         
     
-      }
+    }
 }

@@ -56,10 +56,10 @@
   <!-- Page level plugins -->
   <script src="<?= ROOT; ?>public/assets/vendor/datatables/jquery.dataTables.js"></script>
   <script src="<?= ROOT; ?>public/assets/vendor/datatables/dataTables.bootstrap4.js"></script>
-
-  <!-- Select2 -->
-  <script src="<?= ROOT; ?>public/assets/vendor/select2/js/select2.min.js"></script>
   
+  <script src="<?= ROOT; ?>public/assets/vendor/select2/js/select2.full.js"></script> 
+
+
   <!-- Script -->
   <script src="<?= ROOT; ?>public/assets/js/script.js"></script>
 

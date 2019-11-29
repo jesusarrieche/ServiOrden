@@ -3,7 +3,7 @@
         <center><h1 class="font-weight-normal">Ventas</h1></center>
         <hr class="bg-danger">
         <div class="row">
-            <a href="?controlador=venta&accion=create" class="btn btn-success m-3"><i class="fas fa-plus-circle"></i> Nueva Venta</a>
+            <a href="<?= ROOT;?>Venta/crear" class="btn btn-success m-3"><i class="fas fa-plus-circle"></i> Nueva Venta</a>
         </div>
         <hr class="bg-danger">
 

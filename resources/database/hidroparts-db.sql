@@ -269,10 +269,10 @@ CREATE TABLE proveedores(
 CREATE TABLE compras(
     id INT AUTO_INCREMENT,
     proveedor_id INT,
-    usuario_id INT,
-    num_compra INT,
+    -- usuario_id INT,
+    num_compra VARCHAR(12) UNIQUE,
+    num_documento_referencia VARCHAR(50) DEFAULT "N/A",
     fecha DATETIME DEFAULT CURRENT_TIMESTAMP,
-    impuesto DECIMAL(3,2) DEFAULT NULL,
     total DECIMAL(10,2),
     estatus VARCHAR(15) DEFAULT 'ACTIVO',
 
@@ -282,19 +282,21 @@ CREATE TABLE compras(
     CONSTRAINT id_compras_pk PRIMARY KEY(id),
     
     CONSTRAINT proveedor_id_fk FOREIGN KEY(proveedor_id) REFERENCES proveedores(id) MATCH FULL
-    ON DELETE SET NULL ON UPDATE CASCADE,
-
-    CONSTRAINT usuarioCompra_id_fk FOREIGN KEY(usuario_id) REFERENCES usuarios(id) MATCH FULL
     ON DELETE SET NULL ON UPDATE CASCADE
+
+    -- CONSTRAINT usuarioCompra_id_fk FOREIGN KEY(usuario_id) REFERENCES usuarios(id) MATCH FULL
+    -- ON DELETE SET NULL ON UPDATE CASCADE
 );
 
-CREATE TABLE detalle_compras(
+CREATE TABLE entradas(
     id INT AUTO_INCREMENT,
     compra_id INT,
     producto_id INT,
 
     cantidad INT,
     precio DECIMAL(10,2),
+    estatus VARCHAR(15) DEFAULT 'ACTIVO',
+
 
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -313,7 +315,7 @@ CREATE TABLE ventas(
     id INT AUTO_INCREMENT,
     cliente_id INT,
     usuario_id INT,
-    num_venta INT,
+    num_venta VARCHAR(12) UNIQUE,
     fecha DATETIME DEFAULT CURRENT_TIMESTAMP,
     impuesto DECIMAL(3,2) DEFAULT NULL,
     total DECIMAL(10,2),
@@ -332,7 +334,7 @@ CREATE TABLE ventas(
 );
 
 
-CREATE TABLE detalle_ventas(
+CREATE TABLE salidas(
     id INT AUTO_INCREMENT,
     venta_id INT,
     producto_id INT,
@@ -340,6 +342,8 @@ CREATE TABLE detalle_ventas(
     cantidad INT,
     precio DECIMAL(10,2),
     descuento DECIMAL(3,2) DEFAULT '0.00',
+    estatus VARCHAR(15) DEFAULT 'ACTIVO',
+
 
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -352,6 +356,39 @@ CREATE TABLE detalle_ventas(
     CONSTRAINT producto_detalleVenta_id_fk FOREIGN KEY(producto_id) REFERENCES productos(id) MATCH FULL
     ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+/* Vistas*/
+
+CREATE VIEW v_entradas AS SELECT p.id, p.codigo, p.nombre, IF(e.estatus = 'ACTIVO', SUM(e.cantidad),0) as total_entrada FROM
+productos p
+	LEFT JOIN
+entradas e
+    ON p.id = e.producto_id AND e.estatus = 'ACTIVO'
+WHERE p.estatus = 'ACTIVO'
+GROUP BY p.id, p.codigo, p.nombre;
+
+CREATE VIEW v_salidas AS SELECT p.id, p.codigo, p.nombre, IF(s.estatus = 'ACTIVO', SUM(s.cantidad),0) as total_salida FROM
+productos p
+	LEFT JOIN
+salidas s
+    ON p.id = s.producto_id AND s.estatus = 'ACTIVO'
+WHERE p.estatus = 'ACTIVO'
+GROUP BY p.id, p.codigo, p.nombre;
+
+CREATE VIEW v_inventario AS SELECT p.id, p.codigo, p.nombre, c.nombre AS categoria, p.precio_venta, IFNULL(e.total_entrada - s.total_salida,0) AS stock, p.stock_min, p.stock_max, p.estatus FROM
+productos p
+	LEFT JOIN
+v_entradas e
+	ON p.id = e.id
+    LEFT JOIN
+v_salidas s 
+	ON p.id = s.id
+    JOIN
+categorias c 
+	ON p.categoria_id = c.id
+WHERE p.estatus = 'ACTIVO'
+GROUP BY p.id, p.codigo, p.nombre, p.precio_venta, p.stock_min, p.stock_max
+ORDER BY p.created_at DESC;
 
 
 
@@ -416,8 +453,8 @@ INSERT INTO modelos(id_marcas, nombre, estatus) VALUES
 
 INSERT INTO proveedores(documento, razon_social, direccion, telefono, email) VALUES
 ('J-26540950', 'MICROTECH', 'BARQUISIMETO', '0424-5294781', 'microtech@gmail.com'),
-('J-26543456', 'CARFORD', 'CARACAS', '0424-5294781', 'microtech@gmail.com'),
-('J-26523234', 'SUPER CAR', 'BARINAS', '0424-5294781', 'microtech@gmail.com');
+('J-26543456', 'CARFORD', 'CARACAS', '0424-5294781', 'Cardford@gmail.com'),
+('J-26523234', 'SUPER CAR', 'BARINAS', '0424-5294781', 'supercar@gmail.com');
 
 
 INSERT INTO unidades(nombre, abreviatura) VALUES
@@ -429,4 +466,11 @@ INSERT INTO categorias(nombre, descripcion) VALUES
 ('RODAMIENTOS', 'RODAMIENTOS EN GENERAL'),
 ('CAJAS', 'CAJAS EN GENERAL'),
 ('MOTORES', 'MOTORES EN GENERAL');
+
+INSERT INTO productos(categoria_id, unidad_id, codigo, nombre, precio_venta) VALUES 
+('3', '1', 'P456125', 'MOTOR V6', '1200'),
+('3', '1', 'P456123', 'MOTOR V4', '3200'),
+('3', '1', 'P456154', 'MOTOR V10', '5000'),
+('2', '1', 'P456165', 'CAJA VR56', '1200'),
+('2', '1', 'P456187', 'CAJA RX34', '1200');
     

@@ -76,4 +76,12 @@ class Movimiento extends Model{
     public function setEstatus($estatus){
         $this->estatus = $estatus;
     }
+
+    public function formatoDocumento($ultimoDocumento){
+       
+        $ultimoDocumento += 1;
+        $result = str_pad($ultimoDocumento, 9,'0',STR_PAD_LEFT);
+        
+        return $result;
+    }
 }

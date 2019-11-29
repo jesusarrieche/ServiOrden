@@ -2,7 +2,7 @@
     <center><h1 class="font-weight-normal">Compras</h1></center>
     <hr class="bg-danger">
     <div class="row">
-        <button class="btn btn-success m-2" data-toggle="modal" data-target="#modalRegistroCompra"><i class="fas fa-plus-circle"></i> Nueva Compra</button>
+        <a href="<?= ROOT;?>Compra/create" class="btn btn-success m-2"><i class="fas fa-plus-circle"></i> Nueva Compra</a>
     </div>
     <hr class="bg-danger">
 
@@ -16,8 +16,8 @@
                 <th>Nro Compra</th>
                 <th>Fecha</th>
                 <th>Proveedor</th>
-                <th>Producto</th>
                 <th></th>
+                <th>Estado</th>
             </tr>
         </thead>
         <tbody>
@@ -38,78 +38,89 @@
     </table>
 </div>
 
-
-<!-- Modal Registro -->
-<div class="modal fade" id="modalRegistroCompra" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+<!-- Modal Detalle Compra -->
+<div class="modal fade" id="modalDetalleCompra" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
 
         <div class="card">
+
             <div class="card-header">
-                <h2 class="card-tittle text-center">Nueva Compra</h2>
-                <hr>
-                <div class="form-row">
-                    <label for="codigo" class="col-form-label col-md-2">Nro Compra</label> 
-                    
-                    <div class="col-md-10">
-                        <input type="text" name="codigo" id="codigo" class=" form-control-plaintext" value="C000001"required disabled >
+                <div class="row justify-content-center">
+                    <h2 class="card-tittle text-center">Detalle Compra</h2>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <div class="row justify-content-end">
+                    <label for="" class="col-form-label col-2"><strong>Nro Compra:</strong> </label>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control-plaintext" id="numero_compra" disabled>
                     </div>
-            
                 </div>
 
-            </div>
-        <div class="card-body">
-          
-                <form action="#" method="POST" id="formularioRegistroProducto" enctype="multipart/form-data">
+                <hr>
+
+                <div class="row pl-5">
+                    <h4>Proveedor</h4>
+                </div>
+
+                <div class="row pl-5">
+                    <label for="" class="col-form-label col-md-2"><strong>RAZON SOCIAL:</strong></label>
+                    <div class="col-md-3">
+                        <input type="text" id="nombre_proveedor" class="form-control-plaintext" value="MICROTECH" disabled>
+                    </div>
+
+                    <label for="" class="col-form-label col-md-2"><strong>RIF:</strong></label>
+                    <div class="col-md-3">
+                        <input type="text" id="rif_proveedor" class="form-control-plaintext" value="J-26540950" disabled>
+                    </div>
+                </div>
+
+                <div class="row pl-5">
+                    <label for="" class="col-form-label col-md-2"><strong>DIRECCION:</strong></label>
+                    <div class="col-md-3">
+                        <input type="text" id="direccion_proveedor" class="form-control-plaintext" value="BARQUISIMETO" disabled>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="row justify-content-center pl-5">
+                    <h4>Productos</h4>
+                </div>
+
+                <div class="row">
+                    <div class=" table-responsive">
+                        <table class="table table-striped">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>CANTIDAD</th>
+                                    <th>CODIGO</th>
+                                    <th>PRODUCTO</th>
+                                    <th>PRECIO COMPRA</th>
+                                    <th>IMPORTE</th>
+                                </tr>
+                            </thead>
     
-
-                    
-                    <div class="form-group">
-                        <label for="proveedor"> <i class="fas fa-user"></i> Proveedor </label>
-                        <select name="proveedor" id="proveedor" class="form-control select2">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>                        
+                            <tbody id="cuerpo">
+    
+                            </tbody>
+                        </table>
                     </div>
 
-                    <div class="form-group">
-                        <label> <i class="fas fa-tag"></i> Producto </label>
-                        <select name="producto" id="producto" class="form-control select2">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>                        
-                    </div>
-                   
-                    <hr>
+                </div>
 
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <i class="fas fa-angle-double-down"></i> <label for="cantidad">Cantidad</label>
-                            <input class="form-control" type="number" name="cantidad" id="cantidad" placeholder="Ej. 5" required >
-                        </div>
+                <hr>
 
-                        <div class="form-group col-md-6">
-                            <i class="fas fa-angle-double-up"></i> <label for="precio">Precio</label>
-                            <input class="form-control" type="number" name="precio" id="precio" placeholder="E j. 10" required >
-                        </div>
-                    </div>
+                <div class="row justify-content-center">
+                    <button class="btn btn-secondary" data-dismiss="modal"> <i class="fas fa-window-close"></i> Cerrar</button>
+                </div>
+            
+            </div>
 
-                    <hr>
 
-                    <div class="form-row justify-content-center">
-                        <button class="btn btn-success" type="submit">Enviar</button>
-                    </div>
-                </form>   
         </div>
-
-
-    </div>
 
         </div>
     </div>
