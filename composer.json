@@ -16,6 +16,7 @@
     },
 
     "require": {
-        "fortawesome/font-awesome": "^5.11"
+        "fortawesome/font-awesome": "^5.11",
+        "spipu/html2pdf": "^5.2"
     }
 }

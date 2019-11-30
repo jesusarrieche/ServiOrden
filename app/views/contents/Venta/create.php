@@ -1,11 +1,34 @@
 <div class=" container-fluid p-2">
-    <form action="#" method="post" id="formularioCompra">
+    <form action="<?= ROOT;?>Compra/guardar" method="post" id="formularioCompra">
  
         <div class="card">
             <div class=" card-header bg-gray">
-               <h3 class=" text-center">Nueva Venta</h3>
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col">
+                        <h3 class="text-center">Nueva Venta</h3>
+                    </div>
+                    <div class="col">
+                        
+                    </div>
+                </div>
             </div>
-            <div class="card-body"> 
+            <div class="card-body">
+                <div class="form-row justify-content-end">
+                    <label for="documento" class=" col-form-label col-md-2">
+                        <strong>Nro Venta:</strong></label>
+                    <div class="col-md-2">
+                        <input type="text" value="<?= $numeroDocumento ?>" class="form-control-plaintext" disabled>
+                    </div>
+                </div>
+
+                <!-- <div class="form-row justify-content-end">
+                    <label for="" class="col-form-label col-md-2"><strong>Fecha:</strong></label>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control-plaintext" disabled>
+                    </div>
+                </div>  -->
+
                 <div class="row">
                     <div class="col">
                         <div class="card">
@@ -20,14 +43,14 @@
                                     </label>
     
                                     <div class="col-md-6 form-group">
-                                        <select name="proveedor" id="listadoProveedores" class="form-control select2">
+                                        <select name="cliente" id="listadoClientes" class="form-control select2">
                                             <option value="">-</option>
 
                                             <?php 
-                                                foreach($proveedores as $proveedor): 
+                                                foreach($clientes as $cliente): 
                                             ?>
 
-                                                <option value="<?= $proveedor->documento; ?>"><?= $proveedor->documento . " - " .$proveedor->razon_social; ?></option>
+                                                <option value="<?= $cliente->documento; ?>"><?= $cliente->documento . " - " .$cliente->nombre; ?></option>
 
                                             <?php 
                                                 endforeach; 
@@ -38,9 +61,10 @@
             
                 
                                     <div class="col-md-4 form-group">
-                                        <button type="button" class="btn btn-block btn-success" id="agregarProveedor" ><i class="fas fa-plus-circle"></i></button>
+                                        <button type="button" class="btn btn-block btn-success" id="agregarCliente" ><i class="fas fa-plus-circle"></i></button>
                                     </div>
                                 </div>
+
                                 
                                 <div class="row form-row">
                                             
@@ -48,15 +72,16 @@
 
                                     <label for="cedula" class="col-form-label col-lg-2"><strong>Cedula | Rif</strong> </label>
                                     <div class="col-lg-10 form-group">
-                                        <input type="text" class="form-control-plaintext" id="documentoProveedor" disabled >    
+                                        <input type="text" class="form-control-plaintext" id="documentoCliente" disabled >    
                                     </div>
                                 </div>
                                 <div class="row form-row">
                                     <label for="Nombre" class="col-form-label col-lg-2"><strong>Nombre:</strong> </label>
                                     <div class="col-lg-10 form-group">
-                                        <input type="text" class="form-control-plaintext" name="nombre" id="nombreProveedor" disabled >
+                                        <input type="text" class="form-control-plaintext" name="nombre" id="nombreCliente" disabled >
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>

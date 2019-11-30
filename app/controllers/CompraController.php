@@ -62,16 +62,14 @@ class CompraController extends Controller{
             foreach($compras as $compra){
 
                 if($compra->estatus == 'ACTIVO'){
-                    $compra->estado = "<button class='btn btn-success'><i class='fas fa-check-circle'></i> Activa</button>";
+                    $compra->estado = "<a href='" . $this->encriptar($compra->id) . "' class='btn btn-success estatus'><i class='fas fa-check-circle'></i> Activa</a>";
                 }else{
-                    $compra->estado = "<button class='btn btn-danger'><i class='fas fa-window-close'></i> Anulada</button>";
+                    $compra->estado = "<a href='" . $this->encriptar($compra->id) . "' class='btn btn-danger estatus'><i class='fas fa-window-close'></i> Anulada</a>";
                 }
 
                 $compra->button = 
                 "<a href='/FrameworkJD/compra/mostrar/". $this->encriptar($compra->id) ."' class='mostrar btn btn-info'><i class='fas fa-search'></i></a>".
-                "<a href='#' class='editar btn btn-danger m-1'><i class='fas fa-file-pdf'></i></a>";
-                // "<a href='". $this->encriptar($compra->id) ."' class='eliminar btn btn-danger'><i class='fas fa-trash-alt'></i></a>";
-
+                "<a href='/FrameworkJD/compra/compraPDF/". $this->encriptar($compra->id) ."' class='pdf btn btn-danger m-1'><i class='fas fa-file-pdf'></i></a>";
             }
 
         http_response_code(200);
@@ -86,7 +84,7 @@ class CompraController extends Controller{
 
         $idCompra = $this->desencriptar($param);
 
-        $query = $this->compra->query("SELECT c.id, c.num_compra, Date_format(c.fecha,'%d/%m/%Y') AS fecha, Date_format(c.fecha,'%H:%i') AS hora, p.documento AS rif_proveedor, p.razon_social AS proveedor, p.direccion, c.estatus FROM
+        $query = $this->compra->query("SELECT c.id, c.num_compra, Date_format(c.fecha,'%d/%m/%Y') AS fecha, Date_format(c.fecha,'%H:%i') AS hora, p.documento AS rif_proveedor, p.razon_social AS proveedor, IF(c.num_documento_referencia = null OR c.num_documento_referencia = '', 'N/A', c.num_documento_referencia) AS referencia, p.direccion, c.total, c.estatus FROM
             compras c
                 LEFT JOIN
             proveedores p
@@ -170,5 +168,73 @@ class CompraController extends Controller{
         echo json_encode([
             'cliente' => $cliente
         ]);
+    }
+
+    public function cambiarEstatus($param){
+        $id = $this->desencriptar($param);
+
+        $estatus = $this->compra->cambiarEstatus('compras', $id);
+
+        if($estatus){
+            http_response_code(200);
+
+            echo json_encode([
+                'titulo' => 'Estatus actualizado',
+                'mensaje' => 'Estatus de la compra actualizado correctamente',
+                'tipo' => 'success'
+            ]);
+
+            exit();
+        }else {
+            http_response_code(200);
+
+            echo json_encode([
+                'titulo' => 'Error al Cambiar estatus',
+                'mensaje' => 'Ocurrio un error al intentar cambiar el estatus',
+                'tipo' => 'error'
+            ]);
+
+            exit();
+        }
+    }
+
+    public function compraPDF($param){
+
+        $idCompra = $this->desencriptar($param);
+
+        $query = $this->compra->query("SELECT c.id, c.num_compra, Date_format(c.fecha,'%d/%m/%Y') AS fecha, Date_format(c.fecha,'%H:%i') AS hora, p.documento AS rif_proveedor, p.razon_social AS proveedor, IF(c.num_documento_referencia = null OR c.num_documento_referencia = '', 'N/A', c.num_documento_referencia) AS referencia, p.direccion, c.total, c.estatus FROM
+            compras c
+                LEFT JOIN
+            proveedores p
+                ON c.proveedor_id = p.id
+            WHERE c.id = '$idCompra' LIMIT 1");
+
+        $query2 = $this->compra->query("SELECT c.id, p.codigo, p.nombre, e.cantidad, e.precio FROM 
+            productos p 
+                JOIN
+            entradas e
+                ON p.id = e.producto_id
+                JOIN
+            compras c 
+                ON e.compra_id = c.id
+            WHERE c.id = '$idCompra'");
+            
+        // Encabezado Compra
+        $compra = $query->fetch(PDO::FETCH_OBJ);
+
+        // Detalles Compra
+        $productos = $query2->fetchAll(PDO::FETCH_OBJ);
+
+        ob_start();
+
+        View::getViewPDF('FormatosPDF.Compra', [
+            'compra' => $compra,
+            'productos' => $productos
+        ]);
+
+        $html = ob_get_clean();
+
+        $this->crearPDF($html);
+
     }
 }

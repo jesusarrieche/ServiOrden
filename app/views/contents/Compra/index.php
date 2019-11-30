@@ -10,7 +10,7 @@
     <table class="table shadow table-striped" id="datatable" style="width:100%">
         <thead class="thead-dark">
             <tr>
-                <th colspan="10" class="text-center bg-danger"><h4 class="font-weight-normal">Ventas Registradas</h4></th>
+                <th colspan="10" class="text-center bg-danger"><h4 class="font-weight-normal">Compras</h4></th>
             </tr>
             <tr>
                 <th>Nro Compra</th>
@@ -21,19 +21,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>C000001</td>
-                <td>15-10-2019</td>
-                <td>Jesus Arrieche</td>
-                <td>Rodamineto JH5</td>
-                <td>
-                    
-                    <a href='#' class='mostrar btn btn-info'><i class='fas fa-search'></i></a>
-                    <a href='#' class='editar btn btn-warning m-1'><i class='fas fa-pencil-alt'></i></a>
-                    <a href='#' class='eliminar btn btn-danger'><i class='fas fa-trash-alt'></i></a>
-                       
-                </td>
-            </tr>
+        
         </tbody>
     </table>
 </div>
@@ -56,6 +44,13 @@
                     <label for="" class="col-form-label col-2"><strong>Nro Compra:</strong> </label>
                     <div class="col-md-2">
                         <input type="text" class="form-control-plaintext" id="numero_compra" disabled>
+                    </div>
+                </div>
+
+                <div class="row justify-content-end">
+                    <label for="" class="col-form-label col-md-2"><strong>REFERENCIA:</strong></label>
+                    <div class="col-md-2">
+                        <input type="text" id="documento_referencia" class="form-control-plaintext" value="FACTURA" disabled>
                     </div>
                 </div>
 
@@ -82,6 +77,8 @@
                     <div class="col-md-3">
                         <input type="text" id="direccion_proveedor" class="form-control-plaintext" value="BARQUISIMETO" disabled>
                     </div>
+
+                    
                 </div>
 
                 <hr>
@@ -109,6 +106,13 @@
                         </table>
                     </div>
 
+                </div>
+                <hr>
+                <div class="row justify-content-end">
+                    <label for="" class="col-form-label col-2"><strong>TOTAL:</strong> </label>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control-plaintext" id="total" disabled>
+                    </div>
                 </div>
 
                 <hr>

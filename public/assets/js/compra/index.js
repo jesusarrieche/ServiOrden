@@ -58,9 +58,15 @@ $(document).ready(function () {
                 console.log(JSON.parse(response));
 
                 $('#numero_compra').val(json.compra.num_compra);
+                $('#documento_referencia').val(json.compra.referencia);
                 $('#nombre_proveedor').val(json.compra.proveedor);
                 $('#rif_proveedor').val(json.compra.rif_proveedor);
                 $('#direccion_proveedor').val(json.compra.direccion);
+                $('#total').val(json.compra.total);
+
+
+                $('#cuerpo').empty();
+                
 
                 json.productos.forEach( element => {
                     
@@ -89,6 +95,27 @@ $(document).ready(function () {
         });
     }
 
+    const cambiarEstatus = (id) => {
+        $.ajax({
+            type: "POST",
+            url: "/FrameworkJD/compra/cambiarEstatus/" + id,
+            success: function (response) {
+                json = JSON.parse(response);
+
+                Swal.fire(
+                    json.titulo,
+                    json.mensaje,
+                    json.tipo
+                );
+
+                table.ajax.reload();
+            },
+            error: function (response) {
+                console.log(JSON.parse(response));
+            }
+        });
+    }
+
 
     /**
      * EVENTOS
@@ -102,4 +129,26 @@ $(document).ready(function () {
         buscarCompra($url);
     });
 
+    $('body').on('click', '.estatus', function (e) {
+        e.preventDefault();
+
+        $url = $(this).attr('href');
+
+        Swal.fire({
+            title: 'Esta Seguro?',
+            text: "Cambiara el estatus de la compra seleccionada y el stock de productos sera afectado",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Cancelar',
+            confirmButtonText: 'Si, Cambiar!'
+            }).then((result) => {
+                if (result.value) {
+                    cambiarEstatus($url);
+                    
+                }
+            })
+
+    });
 });
