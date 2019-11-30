@@ -19,7 +19,7 @@ class Venta extends Movimiento{
             ventas v
                 LEFT JOIN
             clientes c
-                ON v.cliente_id = c.id ORDER BY c.created_at DESC";
+                ON v.cliente_id = c.id ORDER BY v.created_at DESC";
     
             $consulta = $conexion->prepare($sql);
             $consulta->execute();

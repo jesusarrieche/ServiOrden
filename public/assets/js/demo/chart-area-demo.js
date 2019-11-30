@@ -30,12 +30,11 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 // Area Chart Example
 var ctx = document.getElementById("graphic1");
 var myLineChart = new Chart(ctx, {
-  type: 'line',
+  type: 'bar',
   data: {
-    labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+    labels: ["Enero", "Febrero", "Marzo", "Abril"],
     datasets: [{
       label: "Nro. Ventas",
-      lineTension: 0.2,
       backgroundColor: "rgba(78, 115, 223, 0.05)",
       borderColor: "rgba(78, 115, 223, 1)",
       pointRadius: 3,
@@ -46,7 +45,7 @@ var myLineChart = new Chart(ctx, {
       pointHoverBorderColor: "rgba(78, 115, 223, 1)",
       pointHitRadius: 10,
       pointBorderWidth: 2,
-      data: [0, 10000, 5000, 15000, 10000, 20000, 15000, 25000, 20000, 30000, 25000, 40000],
+      data: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
     }],
   },
   options: {
@@ -74,11 +73,11 @@ var myLineChart = new Chart(ctx, {
       }],
       yAxes: [{
         ticks: {
-          maxTicksLimit: 5,
+          maxTicksLimit: 8,
           padding: 10,
           // Include a dollar sign in the ticks
           callback: function(value, index, values) {
-            return 'BsS ' + number_format(value);
+            return  number_format(value) + ' unids.';
           }
         },
         gridLines: {
