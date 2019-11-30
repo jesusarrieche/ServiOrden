@@ -8,7 +8,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; All rights reserved | Powered by Jesus Arrieche</span>
+            <span>Copyright &copy; All rights reserved | Powered by MICROTECH</span>
           </div>
         </div>
       </footer>

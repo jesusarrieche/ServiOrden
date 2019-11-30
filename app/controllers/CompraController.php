@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Models\Cliente;
+
 use App\Models\Compra;
 use App\Models\Entrada;
 use App\Models\Producto;
@@ -14,7 +14,6 @@ use System\Core\View;
 
 class CompraController extends Controller{
 
-    private $cliente;
     private $producto;
     private $proveedor;
     private $compra;
@@ -23,7 +22,6 @@ class CompraController extends Controller{
     use Utility;
 
     public function __construct(){
-        $this->cliente = new Cliente;
         $this->producto = new Producto;
         $this->proveedor = new Proveedor;
         $this->compra = new Compra;
@@ -160,14 +158,6 @@ class CompraController extends Controller{
   
         exit();
 
-    }
-
-    public function buscarCliente($identificacion){
-        $cliente = $this->cliente->query("SELECT * FROM CLIENTES WHERE documento = $identificacion")->fetch();
-        
-        echo json_encode([
-            'cliente' => $cliente
-        ]);
     }
 
     public function cambiarEstatus($param){

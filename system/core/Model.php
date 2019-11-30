@@ -62,6 +62,21 @@ class Model extends Database{
         }
     }
 
+    public function getValorColumna($tabla, $columna, $condicion){
+        
+        $conexion = parent::connect();
+
+        try {
+            $query = $conexion->prepare("SELECT $columna FROM $tabla WHERE $condicion LIMIT 1");
+            $query->execute();
+
+            return $query->fetch(PDO::FETCH_COLUMN);
+            
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
     public function eliminar($tabla, $id){    //Metodo elimina logicamente un registro
         try{
             $consulta = parent::connect()->prepare("UPDATE $tabla SET estatus='ELIMINADO' WHERE id=$id");

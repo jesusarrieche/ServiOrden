@@ -57,7 +57,7 @@
                 <hr>
 
                 <div class="row pl-5">
-                    <h4>Proveedor</h4>
+                    <h4>PROVEEDOR</h4>
                 </div>
 
                 <div class="row pl-5">
@@ -84,7 +84,7 @@
                 <hr>
 
                 <div class="row justify-content-center pl-5">
-                    <h4>Productos</h4>
+                    <h4>PRODUCTOS</h4>
                 </div>
 
                 <div class="row">

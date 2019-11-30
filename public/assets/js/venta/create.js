@@ -11,11 +11,11 @@ $(document).ready(function () {
         return producto;
     }
 
-    const buscarProveedor = (documento) => {
+    const buscarCliente = (documento) => {
 
-        let proveedor = proveedores.find( element => element.documento === documento);
+        let cliente = clientes.find( element => element.documento === documento);
 
-        return proveedor;
+        return cliente;
     }
     /**
      * FIN
@@ -58,13 +58,15 @@ $(document).ready(function () {
                     <input type="text" class="form-control-plaintext" value="${producto.nombre}" disabled>
                 </td>
                 <td>
-                    <input type="number" name="cantidades[]" class="form-control cantidad" value="1" min="1"" required>
+                    <input type="number" name="cantidades[]" class="form-control cantidad" value="1" min="1" max="${producto.stock}" required>
                 </td>
                 <td>
                     <input type="text" class="form-control-plaintext" value="${producto.stock}" disabled>
                 </td>
                 <td>
-                    <input type="number" name="precios[]" class="form-control precio" value="0" min="1" required>
+                    <input type="number" class="form-control-plaintext" value="${producto.precio_venta}" disabled>
+                    <input type="number" name="precios[]" class="form-control precio" value="${producto.precio_venta}" hidden required>
+
                 </td>
                 <td>
                     <input type="number" class="form-control-plaintext total" value="0" disabled>
@@ -82,23 +84,29 @@ $(document).ready(function () {
 
     // Cambio en input de labla de productos
     $('#tproductos').on('change', 'input', function(e){
-    e.preventDefault();
-    // alert('funciona');
+        e.preventDefault();
+        // alert('funciona');
 
-    let row = $(this).closest('tr');
-    let total = row.find('.cantidad').val() * row.find('.precio').val();
+        let row = $(this).closest('tr');
+        let total = row.find('.cantidad').val() * row.find('.precio').val();
 
-    row.find('.total').val(total);
+        row.find('.total').val(total.toFixed(2));
 
-    let elementos = document.querySelectorAll('.total');
+        let elementos = document.querySelectorAll('.total');
 
-    total = 0;
+        total = 0;
 
-    elementos.forEach(element => {
-        total = parseFloat(total) + parseFloat(element.value);
-    })
+        elementos.forEach(element => {
+            total = parseFloat(total) + parseFloat(element.value);
+        })
 
-    $('#totalVenta').val(total);    
+        
+        let impuestos = total * (iva/100);
+        
+
+        $('#impuesto').val(impuestos.toFixed(2));
+        $('#subtotal').val(total.toFixed(2));
+        $('#totalVenta').val((total + impuestos).toFixed(2));    
     
     });
 
@@ -110,23 +118,23 @@ $(document).ready(function () {
 
     });
 
-    //Agregar Proveedor
-    $('#agregarProveedor').click(function (e) { 
+    //Agregar Cliente
+    $('#agregarCliente').click(function (e) { 
         e.preventDefault();
 
         Swal.fire(
-            'Proveedor agregado!',
-            'Se ha seleccionado un proveedor correctamente',
+            'Cliente agregado!',
+            'Se ha seleccionado un cliente correctamente',
             'success'
         )
 
-        let proveedor = buscarProveedor($('#listadoProveedores').val());
+        let cliente = buscarCliente($('#listadoClientes').val());
 
-        $('#proveedor').val(proveedor.id);
-        $('#documentoProveedor').val(proveedor.documento);
-        $('#nombreProveedor').val(proveedor.razon_social);
+        $('#cliente').val(cliente.id);
+        $('#documentoCliente').val(cliente.documento);
+        $('#nombreCliente').val(cliente.nombre);
 
-        console.log(proveedor);
+        console.log(cliente);
         
     });
 
@@ -134,13 +142,13 @@ $(document).ready(function () {
         e.preventDefault();
     
         /**
-         * Proveedor
+         * Cliente
          */
     
-        if($('#proveedor').val() == '' || $('#proveedor').val() == null){
+        if($('#cliente').val() == '' || $('#cliente').val() == null){
             Swal.fire(
-                'Seleccione un Proveedor',
-                'Debe incluir un proveedor en la compra',
+                'Seleccione un Cliente',
+                'Debe incluir un cliente en la Venta',
                 'warning'
             )
     
@@ -155,21 +163,27 @@ $(document).ready(function () {
     
         let totalfilas = document.querySelectorAll('.total');
         let total = 0;
+        
     
         totalfilas.forEach(element => {
                 // console.log(element);
                 total += parseFloat(element.value);
-        });
-    
+        });    
+
+
         if(total == 0){
             Swal.fire(
-                'Compra Vacia',
-                'Debe selecciona al menos un articulo',
+                'Venta Vacia',
+                'Debe seleccionar al menos un articulo',
                 'warning'
             )
     
             return false;
         }
+
+        let impuestos = total * (iva/100);
+
+        total = total + impuestos;
     
         $('#total').val(total);
     
@@ -182,6 +196,7 @@ $(document).ready(function () {
             url: form.attr('action'),
             data: form.serialize(),
             success: function (response) {
+                debugger
                json = JSON.parse(response);
                 console.log(json);
 

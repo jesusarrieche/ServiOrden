@@ -1,5 +1,5 @@
 <div class=" container-fluid p-2">
-    <form action="<?= ROOT;?>Compra/guardar" method="post" id="formularioCompra">
+    <form action="<?= ROOT;?>Venta/guardar" method="post" id="formularioCompra">
  
         <div class="card">
             <div class=" card-header bg-gray">
@@ -68,7 +68,7 @@
                                 
                                 <div class="row form-row">
                                             
-                                    <input type="text" name="proveedor" id="proveedor" hidden>
+                                    <input type="text" name="cliente" id="cliente" hidden>
 
                                     <label for="cedula" class="col-form-label col-lg-2"><strong>Cedula | Rif</strong> </label>
                                     <div class="col-lg-10 form-group">
@@ -177,14 +177,18 @@
                 <div class="row">
                     <table class="table" id="tablaProductos">
                         <tbody>
-                            <!-- <tr>
-                                <td>IVA</td>
-                                <td>6.560</td>
-                            </tr> 
                             <tr>
                                 <td>Sub-Total</td>
-                                <td>0</td>
-                            </tr> -->
+                                <td>
+                                    <input type="text" class="form-control-plaintext" disabled id="subtotal">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>IVA(<?= $iva; ?>%)</td>
+                                <td>
+                                    <input type="text" class="form-control-plaintext" disabled id="impuesto">
+                                </td>
+                            </tr> 
                             <tr class="bg-info">
                                 <td><strong class="text-white">Total</strong></td>
                                 <td> 
@@ -212,8 +216,10 @@
 </div>
 
 <script>
-    let proveedores = <?= json_encode($proveedores) ?>;
-    let productos = <?= json_encode($productos) ?>;    
+    let clientes = <?= json_encode($clientes) ?>;
+    let productos = <?= json_encode($productos) ?>; 
+    let iva = parseFloat(<?= json_encode($iva) ?>);    
+
 </script>
 
-<script src="<?= ROOT; ?>public/assets/js/compra/create.js"></script>
+<script src="<?= ROOT; ?>public/assets/js/venta/create.js"></script>

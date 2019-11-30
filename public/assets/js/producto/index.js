@@ -126,7 +126,7 @@ $(document).ready(function () {
                     $(formulario).find('input#nombre').val(json.data.nombre);
                     $(formulario).find('select#categoria').val(json.data.categoria_id);
                     $(formulario).find('select#unidad').val(json.data.unidad_id);
-                    $(formulario).find('input#precio').val(json.data.precio);
+                    $(formulario).find('input#porcentaje').val(json.data.porcentaje);
                     $(formulario).find('textarea#descripcion').val(json.data.descripcion);
                     $(formulario).find('input#stock_min').val(json.data.stock_min);
                     $(formulario).find('input#stock_max').val(json.data.stock_max);
@@ -137,7 +137,7 @@ $(document).ready(function () {
                     $(formulario).find('input#nombre').val(json.data.nombre);
                     $(formulario).find('input#categoria').val(json.data.categoria);
                     $(formulario).find('input#unidad').val(json.data.unidad);
-                    $(formulario).find('input#precio').val(json.data.precio);
+                    $(formulario).find('input#porcentaje').val(json.data.porcentaje);
                     $(formulario).find('textarea#descripcion').val(json.data.descripcion);
                     $(formulario).find('input#stock_min').val(json.data.stock_min);
                     $(formulario).find('input#stock_max').val(json.data.stock_max);

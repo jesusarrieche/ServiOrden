@@ -15,6 +15,7 @@ class Producto extends Model {
   private $nombre;
   private $descripcion;
   private $precio_venta;
+  private $precio_porcentaje;
   private $stock;
   private $stock_min;
   private $stock_max;
@@ -78,6 +79,14 @@ class Producto extends Model {
 
   public function setPrecioVenta($precio){
     $this->precio_venta = $precio;
+  }
+
+  public function getPrecioPorcentaje(){
+    return $this->precio_porcentaje;
+  }
+
+  public function setPrecioPorcentaje($porcentaje){
+    $this->precio_porcentaje = $porcentaje;
   }
 
   public function getStock(){
@@ -157,8 +166,8 @@ class Producto extends Model {
   
   public function registrar(Producto $producto){
       try{
-          $consulta = parent::connect()->prepare("INSERT INTO productos(codigo, categoria_id, unidad_id, nombre, descripcion, precio_venta, stock_min, stock_max, estatus) "
-              . "VALUES (:codigo, :categoria_id, :unidad_id, :nombre, :descripcion, :precio_venta, :stock_min, :stock_max, :estatus)");
+          $consulta = parent::connect()->prepare("INSERT INTO productos(codigo, categoria_id, unidad_id, nombre, descripcion, precio_porcentaje, stock_min, stock_max, estatus) "
+              . "VALUES (:codigo, :categoria_id, :unidad_id, :nombre, :descripcion, :precio_porcentaje, :stock_min, :stock_max, :estatus)");
       
       
           // $id = $producto->getId();
@@ -167,7 +176,7 @@ class Producto extends Model {
           $unidad_id = $producto->getUnidadId();
           $nombre = $producto->getNombre();
           $descripcion = $producto->getDescripcion();
-          $precio_venta = $producto->getPrecioVenta();
+          $precio_porcentaje = $producto->getPrecioPorcentaje();
           $stock_min = $producto->getStockMin();
           $stock_max = $producto->getStockMax();
           $imagen = $producto->getImagen();
@@ -178,10 +187,9 @@ class Producto extends Model {
           $consulta->bindParam(":unidad_id", $unidad_id);
           $consulta->bindParam(":nombre", $nombre);
           $consulta->bindParam(":descripcion", $descripcion);
-          $consulta->bindParam(":precio_venta", $precio_venta);
+          $consulta->bindParam(":precio_porcentaje", $precio_porcentaje);
           $consulta->bindParam(":stock_min", $stock_min);  
           $consulta->bindParam(":stock_max", $stock_max);
-          // $consulta->bindParam(":imagen", $imagen);         
           $consulta->bindParam(":estatus", $estatus);                    
 
           
@@ -194,14 +202,14 @@ class Producto extends Model {
 
   public function actualizar(Producto $producto){
       try{
-          $consulta = parent::connect()->prepare("UPDATE productos SET codigo=:codigo, categoria_id=:categoria, unidad_id=:unidad, nombre=:nombre, descripcion=:descripcion, precio_venta=:precio_venta, stock_min=:stock_min, stock_max=:stock_max, estatus=:estatus WHERE id=:id");
+          $consulta = parent::connect()->prepare("UPDATE productos SET codigo=:codigo, categoria_id=:categoria, unidad_id=:unidad, nombre=:nombre, descripcion=:descripcion, precio_porcentaje=:precio_porcentaje, stock_min=:stock_min, stock_max=:stock_max, estatus=:estatus WHERE id=:id");
 
           $id = $producto->getId();
           $codigo = $producto->getCodigo();
           $categoria_id = $producto->getCategoriaId();
           $unidad_id = $producto->getUnidadId();
           $nombre = $producto->getNombre();
-          $precio_venta = $producto->getPrecioVenta();
+          $precio_porcentaje = $producto->getPrecioPorcentaje();
           $descripcion = $producto->getDescripcion();
           $stock_min = $producto->getStockMin();
           $stock_max = $producto->getStockMax();
@@ -214,7 +222,7 @@ class Producto extends Model {
           $consulta->bindParam(":unidad", $unidad_id);
           $consulta->bindParam(":nombre", $nombre);
           $consulta->bindParam(':descripcion', $descripcion);
-          $consulta->bindParam(":precio_venta", $precio_venta);
+          $consulta->bindParam(":precio_porcentaje", $precio_porcentaje);
           $consulta->bindParam(":stock_min", $stock_min);  
           $consulta->bindParam(":stock_max", $stock_max);
           $consulta->bindParam(":estatus", $estatus);

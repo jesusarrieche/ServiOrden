@@ -22,8 +22,8 @@ CREATE TABLE usuarios(
     email VARCHAR(100),
     usuario VARCHAR(50),
     password VARCHAR(120),
-    imagen VARCHAR(255) DEFAULT NULL,
-    remenber_token VARCHAR(255) DEFAULT NULL,
+    -- imagen VARCHAR(255) DEFAULT NULL,
+    -- remenber_token VARCHAR(255) DEFAULT NULL,
     estatus VARCHAR(15) DEFAULT 'ACTIVO',
 
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -232,10 +232,11 @@ CREATE TABLE productos(
     nombre VARCHAR(50) UNIQUE,
     descripcion VARCHAR(255) DEFAULT NULL,
     precio_venta DECIMAL(10,2),
+    precio_porcentaje DECIMAL(4,2),
     stock INT DEFAULT '0',
     stock_min INT DEFAULT '0',
     stock_max INT DEFAULT '0',
-    imagen VARCHAR(255) DEFAULT NULL,
+    -- imagen VARCHAR(255) DEFAULT NULL,
     estatus VARCHAR(15) DEFAULT 'ACTIVO',
 
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -357,6 +358,25 @@ CREATE TABLE salidas(
     ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+
+CREATE TABLE impuestos(
+    id INT AUTO_INCREMENT,
+    nombre VARCHAR(50) UNIQUE,
+    valor DECIMAL(4,2) NOT NULL,
+    estatus VARCHAR(15) DEFAULT 'ACTIVO',
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT id_impuestos PRIMARY KEY(id)
+);
+
+/* Disparadores */
+
+CREATE TRIGGER actualizar_precio_producto 
+AFTER INSERT ON entradas FOR EACH ROW
+	UPDATE productos SET precio_venta = (NEW.precio * (precio_porcentaje / 100)+ NEW.precio) WHERE id = NEW.producto_id;
+
 /* Vistas*/
 
 CREATE VIEW v_entradas AS SELECT p.id, p.codigo, p.nombre, IF(e.estatus = 'ACTIVO', SUM(e.cantidad),0) as total_entrada FROM
@@ -451,6 +471,8 @@ INSERT INTO modelos(id_marcas, nombre, estatus) VALUES
 
 /* Inventario */
 
+INSERT INTO impuestos(nombre, valor) VALUES ('iva', '12.00'), ('iva2', '16.00');
+
 INSERT INTO proveedores(documento, razon_social, direccion, telefono, email) VALUES
 ('J-26540950', 'MICROTECH', 'BARQUISIMETO', '0424-5294781', 'microtech@gmail.com'),
 ('J-26543456', 'CARFORD', 'CARACAS', '0424-5294781', 'Cardford@gmail.com'),
@@ -467,10 +489,10 @@ INSERT INTO categorias(nombre, descripcion) VALUES
 ('CAJAS', 'CAJAS EN GENERAL'),
 ('MOTORES', 'MOTORES EN GENERAL');
 
-INSERT INTO productos(categoria_id, unidad_id, codigo, nombre, precio_venta) VALUES 
-('3', '1', 'P456125', 'MOTOR V6', '1200'),
-('3', '1', 'P456123', 'MOTOR V4', '3200'),
-('3', '1', 'P456154', 'MOTOR V10', '5000'),
-('2', '1', 'P456165', 'CAJA VR56', '1200'),
-('2', '1', 'P456187', 'CAJA RX34', '1200');
+INSERT INTO productos(categoria_id, unidad_id, codigo, nombre, precio_porcentaje) VALUES 
+('3', '1', 'P456125', 'MOTOR V6', '30'),
+('3', '1', 'P456123', 'MOTOR V4', '30'),
+('3', '1', 'P456154', 'MOTOR V10', '30'),
+('2', '1', 'P456165', 'CAJA VR56', '30'),
+('2', '1', 'P456187', 'CAJA RX34', '30');
     

@@ -25,7 +25,7 @@ class ProductoController extends Controller{
 
         $param = $this->desencriptar($param);
 
-        $producto = $this->producto->query("SELECT p.id, c.id AS categoria_id, u.id AS unidad_id, p.codigo, p.nombre, c.nombre AS categoria, u.nombre AS unidad, p.precio_venta AS precio, p.descripcion, p.stock, p.stock_min, p.stock_max, p.estatus 
+        $producto = $this->producto->query("SELECT p.id, c.id AS categoria_id, u.id AS unidad_id, p.codigo, p.nombre, c.nombre AS categoria, u.nombre AS unidad, p.precio_porcentaje AS porcentaje, p.descripcion, p.stock, p.stock_min, p.stock_max, p.estatus 
                                             FROM productos p
                                             JOIN categorias c 
                                             JOIN unidades u
@@ -90,7 +90,7 @@ class ProductoController extends Controller{
         $producto->setUnidadId(($this->limpiaCadena($_POST['unidad'])));
         $producto->setCodigo(strtoupper($this->limpiaCadena($_POST['codigo'])));
         $producto->setNombre(strtoupper($this->limpiaCadena($_POST['nombre'])));
-        $producto->setPrecioVenta((strtoupper($this->limpiaCadena($_POST['precio']))));
+        $producto->setPrecioPorcentaje((strtoupper($this->limpiaCadena($_POST['porcentaje']))));
         $producto->setDescripcion((strtoupper($this->limpiaCadena($_POST['descripcion']))));
         $producto->setStockMin($this->limpiaCadena($_POST['stock_min']));
         $producto->setStockMax($this->limpiaCadena($_POST['stock_max']));
@@ -181,7 +181,7 @@ class ProductoController extends Controller{
         $producto->setUnidadId(($this->limpiaCadena($_POST['unidad'])));
         $producto->setCodigo(strtoupper($this->limpiaCadena($_POST['codigo'])));
         $producto->setNombre(strtoupper($this->limpiaCadena($_POST['nombre'])));
-        $producto->setPrecioVenta((strtoupper($this->limpiaCadena($_POST['precio']))));
+        $producto->setPrecioPorcentaje((strtoupper($this->limpiaCadena($_POST['porcentaje']))));
         $producto->setDescripcion((strtoupper($this->limpiaCadena($_POST['descripcion']))));
         $producto->setStockMin($this->limpiaCadena($_POST['stock_min']));
         $producto->setStockMax($this->limpiaCadena($_POST['stock_max']));

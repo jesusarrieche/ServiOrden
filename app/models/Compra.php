@@ -73,17 +73,6 @@ class Compra extends Movimiento{
         }
     }
 
-    public function numeroCompra(){
-        try{
-            $consulta = parent::connect()->query("SELECT num_compra FROM compras ORDER BY id DESC");
-
-            
-
-        }catch(Exception $ex){
-            return $ex->message();
-        }
-    }
-
     public function ultimoDocumento(){
         try {
             $consulta = parent::connect()->prepare("SELECT num_compra FROM compras ORDER BY id DESC LIMIT 1");
