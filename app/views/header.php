@@ -196,8 +196,8 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a href="#" class="nav-link">
-          <i class="fas fa-fw fa-folder"></i>
+        <a href="<?= ROOT;?>reporte" class="nav-link">
+          <i class="fas fa-chart-bar"></i>
           <span>REPORTES</span>
         </a>
       </li>
