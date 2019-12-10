@@ -25,6 +25,10 @@ class HomeController extends Controller{
 
     public function index(){
 
+        session_start();
+
+        $_SESSION['test'] = 'una mierda';
+
         return View::getView('Home.index', [
             'clientes' => $this->cliente->contar('clientes'),
             'productos' => $this->producto->contar('productos'),

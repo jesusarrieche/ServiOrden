@@ -74,7 +74,7 @@
                         <div class="form-group col-md-6">
                             <i class="fas fa-hockey-puck"></i> <label for="unidad">Unidad de Medida</label>
                             <select name="unidad" id="unidad" class="form-control" required>
-                                <option selected>-</option>
+                                <option value="" selected>-</option>
                             </select>
                         </div>
                     </div>
@@ -239,6 +239,7 @@
                 <form action="#" method="POST" id="formularioActualizarProducto" enctype="multipart/form-data">
 
                     <input name="id" id="id" hidden >
+                    <input type="number" name="precio" id="precio" hidden>
 
                     <div class="form-row">
                         <div class="form-group col-md-6">

@@ -25,13 +25,13 @@ class ProductoController extends Controller{
 
         $param = $this->desencriptar($param);
 
-        $producto = $this->producto->query("SELECT p.id, c.id AS categoria_id, u.id AS unidad_id, p.codigo, p.nombre, c.nombre AS categoria, u.nombre AS unidad, p.precio_porcentaje AS porcentaje, p.descripcion, p.stock, p.stock_min, p.stock_max, p.estatus 
-                                            FROM productos p
-                                            JOIN categorias c 
-                                            JOIN unidades u
-                                            ON p.categoria_id = c.id
-                                            WHERE p.id = '$param' LIMIT 1
-                                            ");
+        $producto = $this->producto->query("SELECT p.id, c.id AS categoria_id, u.id AS unidad_id, p.codigo, p.nombre, c.nombre AS categoria, u.nombre AS unidad, p.precio_porcentaje AS porcentaje, p.precio_venta AS precio, p.descripcion, p.stock, p.stock_min, p.stock_max, p.estatus 
+            FROM productos p
+            JOIN categorias c 
+                ON p.categoria_id = c.id
+            JOIN unidades u
+                ON p.unidad_id = u.id
+            WHERE p.id = '$param' LIMIT 1");
         $producto = $producto->fetch(PDO::FETCH_OBJ);                                    
 
         http_response_code(200);
@@ -41,10 +41,6 @@ class ProductoController extends Controller{
         ]);
 
         exit();
-    }
-
-    public function buscarCodigo(){
-        
     }
 
     public function listar(){
@@ -182,6 +178,7 @@ class ProductoController extends Controller{
         $producto->setCodigo(strtoupper($this->limpiaCadena($_POST['codigo'])));
         $producto->setNombre(strtoupper($this->limpiaCadena($_POST['nombre'])));
         $producto->setPrecioPorcentaje((strtoupper($this->limpiaCadena($_POST['porcentaje']))));
+        $producto->setPrecioVenta($this->limpiaCadena($_POST['precio']));
         $producto->setDescripcion((strtoupper($this->limpiaCadena($_POST['descripcion']))));
         $producto->setStockMin($this->limpiaCadena($_POST['stock_min']));
         $producto->setStockMax($this->limpiaCadena($_POST['stock_max']));
@@ -197,7 +194,7 @@ class ProductoController extends Controller{
         $nombre = $producto->getNombre();
 
         $consulta1 = $this->producto->query("SELECT * FROM productos WHERE codigo='$codigo' AND id<>'$id'" ); //Consulta codigo
-        $consulta2 = $this->producto->query("SELECT * FROM productos WHERE nombre='$nombre' AND id<>'$id'" ); //Consulta nombre
+        $consulta2 = $this->producto->query("SELECT * FROM productos WHERE nombre='$nombre' AND id<>'$id'" ); //Consulta nombr
 
         if ($consulta1->rowCount() >= 1) {
 
@@ -223,30 +220,54 @@ class ProductoController extends Controller{
         
             exit();
 
-        } elseif ($this->producto->actualizar($producto)) {
-            
-            http_response_code(200);
-          
-            echo json_encode([
-                'titulo' => 'Actualizacion exitosa!',
-                'mensaje' => 'Registro actualizado en nuestro sistema',
-                'tipo' => 'success'
-            ]);
-        
-            exit();
-
         } else {
 
-            http_response_code(200);
+            //Actualizacion de precio
+            $consulta3 = $this->producto->query("SELECT e.precio FROM 
+                entradas e
+                    JOIN
+                productos p
+                    ON e.producto_id = p.id
+                    WHERE p.id = '$id'
+                    ORDER BY e.id DESC LIMIT 1");
+
+            $ultimoPrecio = $consulta3->fetch(PDO::FETCH_COLUMN);
+
+            $precioVenta = ($producto->getPrecioPorcentaje() / 100) * $ultimoPrecio + $ultimoPrecio ;
+
+            if($precioVenta == 0){
+                $precioVenta = null;
+            }
+
+            $producto->setPrecioVenta($precioVenta);
+
+            // echo json_encode($producto->getPrecioVenta());
+            // exit();
+
+
+            if ($this->producto->actualizar($producto)) {
+                http_response_code(200);
           
-            echo json_encode([
-                'titulo' => 'Error!',
-                'mensaje' => 'Ocurrio un error al actualizar',
-                'tipo' => 'error'
-            ]);
-        
-            exit();
-        }
+                echo json_encode([
+                    'titulo' => 'Actualizacion exitosa!',
+                    'mensaje' => 'Registro actualizado en nuestro sistema',
+                    'tipo' => 'success'
+                ]);
+            
+                exit();
+            } else {
+                http_response_code(200);
+            
+                echo json_encode([
+                    'titulo' => 'Error!',
+                    'mensaje' => 'Ocurrio un error al actualizar',
+                    'tipo' => 'error'
+                ]);
+            
+                exit();
+            }
+
+        } 
 
     }
 

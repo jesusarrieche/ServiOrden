@@ -91,7 +91,7 @@
       </li> -->
 
       <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="<?= ROOT;?>Usuario" class="nav-link">
           <i class="fas fa-users-cog"></i>
           <span>USUARIOS</span>
         </a>
@@ -196,21 +196,23 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+        <a href="#" class="nav-link">
           <i class="fas fa-fw fa-folder"></i>
           <span>REPORTES</span>
         </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="#">COMPRAS</a>
-            <a class="collapse-item" href="#">VENTAS</a>
-            <a class="collapse-item" href="#">ORDENES</a>
-            <div class="collapse-divider"></div>
-            <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item" href="404.html">404 Page</a>
-            <a class="collapse-item" href="blank.html">Blank Page</a>
-          </div>
-        </div>
+      </li>
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Permisos
+      </div>
+
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a href="<?= ROOT;?>rol" class="nav-link">
+          <i class="fas fa-fw fa-folder"></i>
+          <span>Roles</span>
+        </a>
       </li>
 
 

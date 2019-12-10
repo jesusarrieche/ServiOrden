@@ -1,13 +1,36 @@
 CREATE TABLE roles(
     id INT AUTO_INCREMENT,
-    nombre VARCHAR(25) NOT NULL,
-    descripcion VARCHAR(255),
+    nombre VARCHAR(25) NOT NULL UNIQUE,
+    descripcion VARCHAR(255) DEFAULT NULL,
     estatus VARCHAR(15) DEFAULT 'ACTIVO',
 
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT id_roles_pk PRIMARY KEY(id)
+);
+
+CREATE TABLE permisos(
+    id INT AUTO_INCREMENT,
+    nombre VARCHAR(25) NOT NULL UNIQUE,
+    descripcion VARCHAR(255) DEFAULT NULL,
+    estatus VARCHAR(15) DEFAULT 'ACTIVO',
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT id_permisos_pk PRIMARY KEY(id)
+);
+
+CREATE TABLE roles_con_permisos(
+    rol_id INT NOT NULL,
+    permiso_id INT NOT NULL,
+
+    CONSTRAINT roles_con_permisos_id PRIMARY KEY(rol_id, permiso_id),
+
+    CONSTRAINT fk_rol_id FOREIGN KEY(rol_id) REFERENCES roles(id),
+    CONSTRAINT fk_permiso_id FOREIGN KEY(permiso_id) REFERENCES permisos(id)
+
 );
 
 CREATE TABLE usuarios(
@@ -19,9 +42,9 @@ CREATE TABLE usuarios(
     apellido VARCHAR(50),
     direccion VARCHAR(200),
     telefono VARCHAR(15),
-    email VARCHAR(100),
-    usuario VARCHAR(50),
-    password VARCHAR(120),
+    email VARCHAR(100) UNIQUE,
+    usuario VARCHAR(50) UNIQUE,
+    password VARCHAR(150),
     -- imagen VARCHAR(255) DEFAULT NULL,
     -- remenber_token VARCHAR(255) DEFAULT NULL,
     estatus VARCHAR(15) DEFAULT 'ACTIVO',
@@ -32,6 +55,17 @@ CREATE TABLE usuarios(
     CONSTRAINT id_usuraios_pk PRIMARY KEY(id),
     CONSTRAINT rol_id_fk FOREIGN KEY(rol_id) REFERENCES roles(id) MATCH FULL
     ON UPDATE CASCADE
+);
+
+CREATE TABLE bitacora(
+    id INT AUTO_INCREMENT,
+    usuario_id INT NOT NULL,
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    modulo VARCHAR(50),
+    accion VARCHAR(100),
+
+    CONSTRAINT id_bitacora_pk PRIMARY KEY(id),
+    CONSTRAINT usuario_id_bitacora_fk FOREIGN KEY(usuario_id) REFERENCES usuarios(id)
 );
 
 CREATE TABLE clientes(
@@ -495,4 +529,91 @@ INSERT INTO productos(categoria_id, unidad_id, codigo, nombre, precio_porcentaje
 ('3', '1', 'P456154', 'MOTOR V10', '30'),
 ('2', '1', 'P456165', 'CAJA VR56', '30'),
 ('2', '1', 'P456187', 'CAJA RX34', '30');
-    
+
+/* Roles */
+INSERT INTO roles(nombre, descripcion) VALUES ('super admin', 'todos los permisos del sistema');
+
+/* Cargando Permisos */
+INSERT INTO permisos(nombre) VALUES 
+('usuarios'),
+('registrar usuarios'),
+('editar usuarios'),
+('eliminar usuarios'),
+
+('clientes'),
+('registrar clientes'),
+('editar clientes'),
+('eliminar clientes'),
+
+('empleados'),
+('registrar empleados'),
+('editar empleados'),
+('eliminar empleados'),
+
+('vehiculos'),
+('registrar vehiculos'),
+('editar vehiculos'),
+('eliminar vehiculos'),
+
+('ordenes'),
+('registrar ordenes'),
+('editar ordenes'),
+('anular ordenes'),
+
+('inventario'),
+
+('categorias'),
+('registrar categorias'),
+('editar categorias'),
+('eliminar categorias'),
+
+('productos'),
+('registrar productos'),
+('editar productos'),
+('eliminar productos'),
+
+('proveedores'),
+('registrar proveedores'),
+('editar proveedores'),
+('eliminar proveedores'),
+
+('compras'),
+('registrar compras'),
+('anular compras'),
+
+('ventas'),
+('registrar ventas'),
+('anular ventas'),
+
+('reportes'),
+
+('roles'),
+('registrar roles'),
+('editar roles'),
+('eliminar roles');
+
+/* Roles con permisos*/
+INSERT INTO roles_con_permisos(rol_id, permiso_id) VALUES 
+('1','1'),
+('1','2'),
+('1','3'),
+('1','4'),
+('1','5'),
+('1','6'),
+('1','7'),
+('1','8'),
+('1','9'),
+('1','10'),
+('1','11'),
+('1','12'),
+('1','13'),
+('1','14'),
+('1','15'),
+('1','16'),
+('1','17'),
+('1','18'),
+('1','19'),
+('1','20'),
+('1','21'),
+('1','22'),
+('1','23');

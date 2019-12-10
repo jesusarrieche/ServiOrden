@@ -19,7 +19,9 @@ class ClienteController extends Controller{
   }
 
   public function index(){
-    return View::getView('Cliente.index');
+    session_start();
+    echo $_SESSION['test'];
+    // return View::getView('Cliente.index');
   }
   
   public function listar(){
